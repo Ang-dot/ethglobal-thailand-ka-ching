@@ -6,9 +6,14 @@ const Welcome: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{'Safe{Wallet} – Welcome'}</title>
+        <title>Ka-Ching: AI Agent-Powered Multisig Wallet</title>
       </Head>
-
+      <meta
+        name="description"
+        content={
+          "Wallet setup is so easy, even your grandparents could do it.\n" +
+          "AI Agent-Powered Multisig Wallet + Explainable AI Fraudulent Transactions Detection + Gamified Gas Fees + Easy UI"}
+      />
       <NewSafe />
     </>
   )

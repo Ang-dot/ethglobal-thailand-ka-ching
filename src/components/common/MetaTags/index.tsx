@@ -3,8 +3,10 @@ import { ContentSecurityPolicy, StrictTransportSecurity } from '@/config/securit
 import lightPalette from '@/components/theme/lightPalette'
 import darkPalette from '@/components/theme/darkPalette'
 
-const descriptionText = 'Safe{Wallet} is the most trusted smart account wallet on Ethereum with over $100B secured.'
-const titleText = 'Safe{Wallet}'
+const descriptionText =
+  "Wallet setup is so easy, even your grandparents could do it.\n" +
+  "AI Agent-Powered Multisig Wallet + Explainable AI Fraudulent Transactions Detection + Gamified Gas Fees + Easy UI"
+const titleText = 'Ka-Ching: AI Agent-Powered Multisig Wallet'
 
 const MetaTags = ({ prefetchUrl }: { prefetchUrl: string }) => (
   <>
@@ -12,14 +14,8 @@ const MetaTags = ({ prefetchUrl }: { prefetchUrl: string }) => (
     {!IS_PRODUCTION && <meta name="robots" content="noindex" />}
 
     {/* Social sharing */}
-    <meta name="og:image" content="https://app.safe.global/images/social-share.png" />
     <meta name="og:description" content={descriptionText} />
     <meta name="og:title" content={titleText} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@safe" />
-    <meta name="twitter:title" content={titleText} />
-    <meta name="twitter:description" content={descriptionText} />
-    <meta name="twitter:image" content="https://app.safe.global/images/social-share.png" />
 
     {/* CSP */}
     <meta httpEquiv="Content-Security-Policy" content={ContentSecurityPolicy} />
@@ -43,7 +39,6 @@ const MetaTags = ({ prefetchUrl }: { prefetchUrl: string }) => (
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#000" />
   </>
 )
 
