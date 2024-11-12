@@ -1,15 +1,13 @@
 import { AppRoutes } from '@/config/routes'
-import { Paper, SvgIcon, Typography, Divider, Box, Button, Link } from '@mui/material'
-import SafeLogo from '@/public/images/logo-text.svg'
-import css from './styles.module.css'
 import { useRouter } from 'next/router'
 import { CREATE_SAFE_EVENTS } from '@/services/analytics/events/createLoadSafe'
-import { OVERVIEW_EVENTS, OVERVIEW_LABELS, trackEvent } from '@/services/analytics'
+import { trackEvent } from '@/services/analytics'
 import useWallet from '@/hooks/wallets/useWallet'
 import { useHasSafes } from '../MyAccounts/useAllSafes'
-import Track from '@/components/common/Track'
 import { useCallback, useEffect, useState } from 'react'
 import WalletLogin from './WalletLogin'
+import GameBoy from '@/components/common/GameBoy'
+import Link from 'next/link'
 
 const WelcomeLogin = () => {
   const router = useRouter()
@@ -38,48 +36,36 @@ const WelcomeLogin = () => {
   }, [redirect, shouldRedirect])
 
   return (
-    <Paper className={css.loginCard} data-testid="welcome-login">
-      <Box className={css.loginContent}>
-        <SvgIcon component={SafeLogo} inheritViewBox sx={{ height: '24px', width: '80px', ml: '-8px' }} />
-
-        <Typography variant="h6" mt={6} fontWeight={700}>
-          Get started
-        </Typography>
-
-        <Typography mb={2} textAlign="center">
-          {wallet
-            ? 'Open your existing Safe Accounts or create a new one'
-            : 'Connect your wallet to create a new Safe Account or open an existing one'}
-        </Typography>
-
-        <Track {...OVERVIEW_EVENTS.OPEN_ONBOARD} label={OVERVIEW_LABELS.welcome_page}>
-          <WalletLogin onLogin={onLogin} onContinue={redirect} />
-        </Track>
-
+    <GameBoy
+      isScrollable={false}
+    >
+      {wallet && (
+        <div>
+          <h2 className="text-white font-londrina font-bold text-2xl sm:text-3xl md:text-4xl">
+            === Get started ===
+          </h2>
+          <p className="text-white font-londrina-light text-center text-[12px] sm:text-[16px] md:text-[20px]">
+            Open your existing Safe Accounts<br /> or create a new one
+          </p>
+        </div>
+      )}
+      <div className="space-y-3 lg:space-y-12 text-center w-full justify-center px-0.5 lg:px-2.5 2xl:px-8">
+        <WalletLogin onLogin={onLogin} onContinue={redirect} />
         {!wallet && (
-          <>
-            <Divider sx={{ mt: 2, mb: 2, width: '100%' }}>
-              <Typography color="text.secondary" fontWeight={700} variant="overline">
-                or
-              </Typography>
-            </Divider>
-            {hasSafes ? (
-              <Link href={AppRoutes.welcome.accounts}>
-                <Button disableElevation size="small">
-                  View my accounts
-                </Button>
-              </Link>
-            ) : (
-              <Link href={AppRoutes.newSafe.load}>
-                <Button disableElevation size="small">
-                  Watch any account
-                </Button>
-              </Link>
-            )}
-          </>
+          <button className="group relative w-full">
+            <Link href={AppRoutes.newSafe.load}>
+            <div className="w-full p-2 group-hover:bg-black transition duration-300 ease-in-out">
+                <h2
+                  className="text-white font-londrina font-[1000] text-2xl sm:text-3xl md:text-[35px] leading-tight sm:leading-relaxed md:leading-[56.78px] transition duration-300 ease-in-out">
+                  <span className="group-hover:hidden">Watch Any Account</span>
+                  <span className="hidden group-hover:inline underline text-[#909B0E]">&gt; Watch Any Account</span>
+                </h2>
+              </div>
+            </Link>
+          </button>
         )}
-      </Box>
-    </Paper>
+      </div>
+    </GameBoy>
   )
 }
 

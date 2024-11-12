@@ -46,6 +46,148 @@ button, [role=button], a:-webkit-any-link, .cursor-pointer {
   cursor: url("/cursor/ka-ching-cursor-pointer.cur") 3 3, pointer !important;
 }
 
+.pixelCard {
+  position: relative;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Black border created by clip-path */
+.pixelCard::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  background: black; /* This will be the color of the border */
+  clip-path: polygon(
+    /* Top-left corner */
+          0 15px,
+          5px 15px,
+          5px 10px,
+          10px 10px,
+          10px 5px,
+          15px 5px,
+          15px 0,
+
+            /* Top-right corner */
+          calc(100% - 15px) 0,
+          calc(100% - 15px) 5px,
+          calc(100% - 10px) 5px,
+          calc(100% - 10px) 10px,
+          calc(100% - 5px) 10px,
+          calc(100% - 5px) 15px,
+          100% 15px,
+
+            /* Bottom-right corner */
+          100% calc(100% - 15px),
+          calc(100% - 5px) calc(100% - 15px),
+          calc(100% - 5px) calc(100% - 10px),
+          calc(100% - 10px) calc(100% - 10px),
+          calc(100% - 10px) calc(100% - 5px),
+          calc(100% - 15px) calc(100% - 5px),
+          calc(100% - 15px) 100%,
+
+            /* Bottom-left corner */
+          15px 100%,
+          15px calc(100% - 5px),
+          10px calc(100% - 5px),
+          10px calc(100% - 10px),
+          5px calc(100% - 10px),
+          5px calc(100% - 15px),
+          0 calc(100% - 15px),
+
+            /* Close the shape */
+          0 15px
+  );
+  z-index: -2;
+}
+
+/* White inner area */
+.pixelCard::after {
+  content: '';
+  position: absolute;
+  inset: 0.1px; /* Slightly smaller than the black border */
+  background: white;
+  clip-path: polygon(
+    /* Top-left corner */
+          0 13px,
+          3px 13px,
+          3px 8px,
+          8px 8px,
+          8px 3px,
+          13px 3px,
+          13px 0,
+
+            /* Top-right corner */
+          calc(100% - 13px) 0,
+          calc(100% - 13px) 3px,
+          calc(100% - 8px) 3px,
+          calc(100% - 8px) 8px,
+          calc(100% - 3px) 8px,
+          calc(100% - 3px) 13px,
+          100% 13px,
+
+            /* Bottom-right corner */
+          100% calc(100% - 13px),
+          calc(100% - 3px) calc(100% - 13px),
+          calc(100% - 3px) calc(100% - 8px),
+          calc(100% - 8px) calc(100% - 8px),
+          calc(100% - 8px) calc(100% - 3px),
+          calc(100% - 13px) calc(100% - 3px),
+          calc(100% - 13px) 100%,
+
+            /* Bottom-left corner */
+          13px 100%,
+          13px calc(100% - 3px),
+          8px calc(100% - 3px),
+          8px calc(100% - 8px),
+          3px calc(100% - 8px),
+          3px calc(100% - 13px),
+          0 calc(100% - 13px),
+
+            /* Close the shape */
+          0 13px
+  );
+  z-index: -2;
+}
+
+/* Modified content structure */
+.pixelCard > div:first-child {
+  position: relative;
+  z-index: 1;
+  flex: 2; /* Takes up 2/3 of the space */
+}
+
+/* Bottom section with background */
+.pixelCard > div[class*="bg-[#FFFDEA]"] {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  clip-path: polygon(
+          3px 0,
+          calc(100% - 3px) 0,
+          calc(100% - 3px) calc(100% - 18px),
+          calc(100% - 8px) calc(100% - 18px),
+          calc(100% - 8px) calc(100% - 13px),
+          calc(100% - 13px) calc(100% - 13px),
+          calc(100% - 13px) calc(100% - 8px),
+          calc(100% - 18px) calc(100% - 8px),
+          calc(100% - 18px) calc(100% - 3px),
+          18px calc(100% - 3px),
+          18px calc(100% - 8px),
+          13px calc(100% - 8px),
+          13px calc(100% - 13px),
+          8px calc(100% - 13px),
+          8px calc(100% - 18px),
+          3px calc(100% - 18px)
+  );
+}
+
+/* Optional: Add padding to ensure content doesn't overlap with the corners */
+.pixelCard > div[class*="bg-[#FFFDEA]"] > div {
+  padding: 1rem;
+}
+
 main {
   width: 100%;
 }

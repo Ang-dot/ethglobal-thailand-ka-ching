@@ -1,6 +1,5 @@
 import useConnectWallet from '@/components/common/ConnectWallet/useConnectWallet'
 import useWallet from '@/hooks/wallets/useWallet'
-import { Box, Button, Typography } from '@mui/material'
 import EthHashInfo from '@/components/common/EthHashInfo'
 import WalletIcon from '@/components/common/WalletIcon'
 
@@ -15,48 +14,36 @@ const WalletLogin = ({ onLogin, onContinue }: { onLogin: () => void; onContinue:
 
   if (wallet !== null) {
     return (
-      <Box sx={{ width: '100%' }}>
-        <Button variant="contained" sx={{ padding: '8px 16px' }} fullWidth onClick={onContinue}>
-          <Box
-            width="100%"
-            justifyContent="space-between"
-            display="flex"
-            flexDirection="row"
-            alignItems="center"
-            gap={1}
-          >
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography variant="subtitle2" fontWeight={700}>
-                Continue with {wallet.label}
-              </Typography>
-              {wallet.address && (
-                <EthHashInfo
-                  address={wallet.address}
-                  shortAddress
-                  avatarSize={16}
-                  showName={false}
-                  copyAddress={false}
-                />
-              )}
-            </Box>
-            {wallet.icon && <WalletIcon icon={wallet.icon} provider={wallet.label} width={24} height={24} />}
-          </Box>
-        </Button>
-      </Box>
+      <button
+        onClick={onContinue}
+        className="flex flex-col cursor-pointer w-full transform transition-transform hover:scale-[1.02] items-center space-x-2 bg-black text-white px-4 py-3 mt-3 rounded-md">
+        <div className="flex items-center space-x-2">
+          {wallet.icon && <WalletIcon icon={wallet.icon} provider={wallet.label} width={24} height={24} />}
+          <span
+            className="font-londrina-light text-[12px] sm:text-[16px] md:text-[20px]">Continue with {wallet.label} Wallet</span>
+        </div>
+        {wallet.address && (
+          <EthHashInfo
+            address={wallet.address}
+            shortAddress
+            showName={false}
+            copyAddress={false}
+          />
+        )}
+      </button>
     )
   }
 
   return (
-    <Button
-      onClick={onConnectWallet}
-      sx={{ minHeight: '42px' }}
-      variant="contained"
-      size="small"
-      disableElevation
-      fullWidth
-    >
-      Connect wallet
-    </Button>
+    <button className="group relative w-full" onClick={onConnectWallet}>
+      <div className="w-full p-2 group-hover:bg-black transition duration-300 ease-in-out">
+        <h2
+          className="text-white font-londrina font-[1000] text-2xl sm:text-3xl md:text-[35px] leading-tight sm:leading-relaxed md:leading-[56.78px] transition duration-300 ease-in-out">
+          <span className="group-hover:hidden">Connect Wallet</span>
+          <span className="hidden group-hover:inline underline text-[#909B0E]">&gt; Connect Wallet</span>
+        </h2>
+      </div>
+    </button>
   )
 }
 

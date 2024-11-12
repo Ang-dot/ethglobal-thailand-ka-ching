@@ -1,46 +1,33 @@
 import React from 'react'
 import { Grid, SvgIcon, Typography } from '@mui/material'
-import css from './styles.module.css'
-import CheckFilled from '@/public/images/common/check-filled.svg'
 
 import WelcomeLogin from './WelcomeLogin'
-
-const BulletListItem = ({ text }: { text: string }) => (
-  <li>
-    <SvgIcon className={css.checkIcon} component={CheckFilled} inheritViewBox />
-    <Typography color="static.main" fontWeight={700}>
-      {text}
-    </Typography>
-  </li>
-)
+import WelcomeIntro from '@/components/welcome/WelcomeIntro'
 
 const NewSafe = () => {
   return (
     <>
-      <Grid container spacing={3} p={3} pb={0} flex={1} direction="row-reverse">
-        <Grid item xs={12} lg={6}>
+      <div className="mt-14 text-center md:mb-4 w-full">
+        <h1
+          className="text-[#1F1D29] font-londrina text-[35px] sm:text-[55px] md:text-[100px] leading-tight sm:leading-relaxed md:leading-[94.64px]">
+          Get Started With <span className="text-[#E8A616] inline-block">Ka-Ching</span>
+        </h1>
+        <h2
+          className="text-[#343235] font-londrina text-[18px] sm:text-[22px] md:text-[26px] leading-tight sm:leading-relaxed md:leading-[18.93px] py-6">
+          Connect your wallet to create a new Safe Account or open an existing one
+        </h2>
+      </div>
+      <div
+        className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-3 pb-0 min-[460px]:max-w-[90%] md:max-w-2xl lg:max-w-5xl min-[460px]:mx-auto">
+        <div className="col-span-1 lg:col-span-5 pl-0 min-h-[30vh] md:min-h-[40vh]">
+          <WelcomeIntro />
+        </div>
+        <div className="col-span-1 lg:col-span-7 pl-0 lg:pl-8 min-h-[35vh] md:min-h-[45vh]">
           <WelcomeLogin />
-        </Grid>
-        <Grid item xs={12} lg={6} flex={1}>
-          <div className={css.content}>
-            <Typography variant="h1" fontSize={[44, null, 52]} lineHeight={1} letterSpacing={-1.5} color="static.main">
-              Unlock a new way of ownership
-            </Typography>
-
-            <Typography mb={1} color="static.main">
-              The most trusted decentralized custody protocol and collective asset management platform.
-            </Typography>
-
-            <ul className={css.bulletList}>
-              <BulletListItem text="Stealth security with multiple signers" />
-              <BulletListItem text="Make it yours with modules and guards" />
-              <BulletListItem text="Access 130+ ecosystem apps" />
-            </ul>
-          </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </>
   )
-}
+};
 
 export default NewSafe
