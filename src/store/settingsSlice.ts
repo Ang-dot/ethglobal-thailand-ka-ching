@@ -90,9 +90,6 @@ export const settingsSlice = createSlice({
     setTransactionExecution: (state, { payload }: PayloadAction<SettingsState['transactionExecution']>) => {
       state.transactionExecution = payload
     },
-    setDarkMode: (state, { payload }: PayloadAction<SettingsState['theme']['darkMode']>) => {
-      state.theme.darkMode = payload
-    },
     setHiddenTokensForChain: (state, { payload }: PayloadAction<{ chainId: string; assets: string[] }>) => {
       const { chainId, assets } = payload
       state.hiddenTokens[chainId] = assets
@@ -132,7 +129,6 @@ export const {
   setCurrency,
   setCopyShortName,
   setQrShortName,
-  setDarkMode,
   setHiddenTokensForChain,
   setTokenList,
   hideSuspiciousTransactions,
