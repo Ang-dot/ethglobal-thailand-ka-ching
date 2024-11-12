@@ -4,7 +4,6 @@ import classnames from 'classnames'
 import Header from '@/components/common/Header'
 import css from './styles.module.css'
 import SafeLoadingError from '../SafeLoadingError'
-import Footer from '../Footer'
 import SideDrawer from './SideDrawer'
 import { useIsSidebarRoute } from '@/hooks/useIsSidebarRoute'
 import { TxModalContext } from '@/components/tx-flow'
@@ -34,13 +33,11 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
           [css.mainAnimated]: isSidebarRoute && isAnimated,
         })}
       >
-        <div className={css.content}>
+        <div className={css.content + " mb-6"}>
           <SafeLoadingError>{children}</SafeLoadingError>
         </div>
 
         <BatchSidebar isOpen={isBatchOpen} onToggle={setBatchOpen} />
-
-        <Footer />
       </div>
     </>
   )
