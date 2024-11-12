@@ -12,6 +12,11 @@ body {
   margin: 0;
   font-family: DM Sans, sans-serif;
   background-color: var(--color-background-paper);
+  cursor: url("/cursor/ka-ching-cursor-default.cur") 3 3, auto !important;
+}
+
+button, [role=button], a:-webkit-any-link, .cursor-pointer {
+  cursor: url("/cursor/ka-ching-cursor-pointer.cur") 3 3, pointer !important;
 }
 
 main {
