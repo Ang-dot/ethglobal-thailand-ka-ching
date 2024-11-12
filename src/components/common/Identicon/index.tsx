@@ -17,9 +17,8 @@ const Identicon = ({ address, size = 40 }: IdenticonProps): ReactElement => {
       if (!isAddress(address)) {
         return null
       }
-      const blockie = blo(address as `0x${string}`)
       return {
-        backgroundImage: `url(${blockie})`,
+        backgroundImage: "url(/images/basketball.png)",
         width: `${size}px`,
         height: `${size}px`,
       }

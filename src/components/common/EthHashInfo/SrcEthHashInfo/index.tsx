@@ -62,13 +62,13 @@ const SrcEthHashInfo = ({
 
   const addressElement = (
     <>
-      {showPrefix && shouldPrefix && prefix && <b>{prefix}:</b>}
+      {showPrefix && shouldPrefix && prefix && <b>{prefix}: </b>}
       <span>{shortAddress || isMobile ? shortenAddress(address) : address}</span>
     </>
   )
 
   return (
-    <div className={css.container}>
+    <div className="font-londrina-light text-[12px] sm:text-[16px] md:text-[20px] flex items-center space-x-2">
       {showAvatar && (
         <div
           className={css.avatarContainer}

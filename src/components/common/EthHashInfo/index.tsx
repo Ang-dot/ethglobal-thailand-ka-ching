@@ -9,7 +9,7 @@ import SrcEthHashInfo, { type EthHashInfoProps } from './SrcEthHashInfo'
 
 const EthHashInfo = ({
   showName = true,
-  avatarSize = 40,
+  avatarSize = 24,
   ...props
 }: EthHashInfoProps & { showName?: boolean }): ReactElement => {
   const settings = useAppSelector(selectSettings)
@@ -19,10 +19,12 @@ const EthHashInfo = ({
   const link = chain && props.hasExplorer ? getBlockExplorerLink(chain, props.address) : undefined
   const addressBookName = chain ? addressBooks?.[chain.chainId]?.[props.address] : undefined
   const name = showName ? addressBookName || props.name : undefined
+  const showPrefix = !!props.prefix && props.showPrefix !== false
 
   return (
     <SrcEthHashInfo
       prefix={chain?.shortName}
+      showPrefix={showPrefix}
       copyPrefix={settings.shortName.copy}
       {...props}
       name={name}

@@ -35,7 +35,6 @@ const WalletOverview = ({
   showBalance?: boolean
 }): ReactElement => {
   const walletChain = useAppSelector((state) => selectChainById(state, wallet.chainId))
-  const prefix = walletChain?.shortName
 
   return (
     <Box className={css.container}>
@@ -47,10 +46,10 @@ const WalletOverview = ({
             <div>{wallet.ens}</div>
           ) : (
             <EthHashInfo
-              prefix={prefix || ''}
               address={wallet.address}
               showName={false}
               showAvatar={false}
+              showPrefix={false}
               avatarSize={12}
               copyAddress={false}
             />

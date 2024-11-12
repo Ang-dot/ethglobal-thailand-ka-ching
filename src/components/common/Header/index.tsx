@@ -4,21 +4,14 @@ import type { Dispatch, SetStateAction } from 'react'
 import { type ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import type { Url } from 'next/dist/shared/lib/router/router'
-import { IconButton, Paper } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
+import { Paper } from '@mui/material'
 import classnames from 'classnames'
 import css from './styles.module.css'
 import ConnectWallet from '@/components/common/ConnectWallet'
 import NetworkSelector from '@/components/common/NetworkSelector'
-import SafeTokenWidget from '@/components/common/SafeTokenWidget'
-import NotificationCenter from '@/components/notification-center/NotificationCenter'
 import { AppRoutes } from '@/config/routes'
-import SafeLogo from '@/public/images/logo.svg'
-import SafeLogoMobile from '@/public/images/logo-no-text.svg'
 import Link from 'next/link'
 import useSafeAddress from '@/hooks/useSafeAddress'
-import BatchIndicator from '@/components/batch/BatchIndicator'
-import WalletConnect from '@/features/walletconnect/components'
 import { FEATURES } from '@/utils/chains'
 import { useHasFeature } from '@/hooks/useChains'
 import Track from '@/components/common/Track'
@@ -66,48 +59,8 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
   const showBatchButton = safeAddress && (!isProposer || isSafeOwner)
 
   return (
-    <Paper className={css.container}>
-      <div className={classnames(css.element, css.menuButton)}>
-        {onMenuToggle && (
-          <IconButton onClick={handleMenuToggle} size="large" color="default" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-        )}
-      </div>
-
-      <div className={classnames(css.element, css.logoMobile)}>
-        <Link href={logoHref} passHref>
-          <SafeLogoMobile alt="Safe logo" />
-        </Link>
-      </div>
-
-      <div className={classnames(css.element, css.hideMobile, css.logo)}>
-        <Link href={logoHref} passHref>
-          <SafeLogo alt="Safe logo" />
-        </Link>
-      </div>
-
-      {showSafeToken && (
-        <div className={classnames(css.element, css.hideMobile)}>
-          <SafeTokenWidget />
-        </div>
-      )}
-
-      <div className={css.element}>
-        <NotificationCenter />
-      </div>
-
-      {showBatchButton && (
-        <div className={classnames(css.element, css.hideMobile)}>
-          <BatchIndicator onClick={handleBatchToggle} />
-        </div>
-      )}
-
-      {enableWc && (
-        <div className={classnames(css.element, css.hideMobile)}>
-          <WalletConnect />
-        </div>
-      )}
+    <Paper className="flex flex-row flex-nowrap items-center relative h-14 bg-[#FFF0BE] px-4">
+      <Link href="/home" className="ml-10 text-2xl font-nountown text-black flex grow">Ka-Ching</Link>
 
       <div className={classnames(css.element, css.connectWallet)}>
         <Track label={OVERVIEW_LABELS.top_bar} {...OVERVIEW_EVENTS.OPEN_ONBOARD}>
