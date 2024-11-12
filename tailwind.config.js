@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        londrina: ['LondrinaSolid', 'sans-serif'],
+        nountown: ['Nountown', 'sans-serif'],
+        "londrina-light": ['LondrinaLight', 'sans-serif'],
+        "press-start2p": ['PressStart2P', 'monospace']
+      }
+    },
   },
   plugins: [],
 }

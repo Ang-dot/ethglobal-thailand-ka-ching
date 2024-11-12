@@ -1,10 +1,37 @@
 @import url(./vars.css);
 @import url(./onboard.css);
-@import url(/fonts/fonts.css);
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nountown';
+  src: url('/fonts/nountown.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LondrinaSolid';
+  src: url('/fonts/LondrinaSolid-Black.ttf') format('truetype');
+  font-weight: normal; /* Black weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LondrinaLight';
+  src: url('/fonts/LondrinaSolid-Light.ttf') format('truetype');
+  font-weight: normal; /* Black weight */
+  font-style: normal;
+}
 
 html,
 body {
