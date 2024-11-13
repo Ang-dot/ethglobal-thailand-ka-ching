@@ -10,7 +10,7 @@ import PaginatedSafeList from './PaginatedSafeList'
 import { VisibilityOutlined } from '@mui/icons-material'
 import AddIcon from '@/public/images/common/add.svg'
 import { AppRoutes } from '@/config/routes'
-import ConnectWalletButton from '@/components/common/ConnectWallet/ConnectWalletButton'
+import ConnectWalletWidget from '@/components/common/ConnectWallet/ConnectWalletWidget'
 import useWallet from '@/hooks/wallets/useWallet'
 import { useRouter } from 'next/router'
 import useTrackSafesCount from './useTrackedSafesCount'
@@ -80,7 +80,7 @@ const AccountsList = ({ safes, onLinkClick }: AccountsListProps) => {
               <>
                 <Box mb={2}>Connect a wallet to view your Safe Accounts or to create a new one</Box>
                 <Track {...OVERVIEW_EVENTS.OPEN_ONBOARD} label={trackingLabel}>
-                  <ConnectWalletButton text="Connect a wallet" contained />
+                  <ConnectWalletWidget text="Connect a wallet" contained />
                 </Track>
               </>
             )

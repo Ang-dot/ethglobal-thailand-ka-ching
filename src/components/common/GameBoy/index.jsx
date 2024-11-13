@@ -4,7 +4,7 @@ import React from 'react';
 
 const GameBoy = ({ children, isScrollable = true }) => {
   return (
-    <div className="w-full h-full transform transition-transform hover:scale-102 rounded-lg shadow-lg">
+    <div className="w-full h-full transform transition-transform hover:scale-[1.02] rounded-lg shadow-lg">
       {/* Main console body */}
       <div className="bg-[#CFC2AB] p-4 sm:p-6 md:p-8 w-full flex flex-col h-full">
 

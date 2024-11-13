@@ -12,15 +12,17 @@ import WalletBalance from '@/components/common/WalletBalance'
 
 import css from './styles.module.css'
 
-export const WalletIdenticon = ({ wallet, size = 32 }: { wallet: ConnectedWallet; size?: number }) => {
+export const WalletIdenticon = ({ wallet, size = 32 }: { wallet?: ConnectedWallet; size?: number }) => {
   return (
     <Box className={css.imageContainer}>
-      <Identicon address={wallet.address} size={size} />
-      <Suspense>
-        <Box className={css.walletIcon}>
-          <WalletIcon provider={wallet.label} icon={wallet.icon} width={size / 2} height={size / 2} />
-        </Box>
-      </Suspense>
+      <Identicon size={size} />
+      {wallet &&
+        <Suspense>
+          <Box className={css.walletIcon}>
+            <WalletIcon provider={wallet?.label} icon={wallet?.icon} width={size / 2} height={size / 2} />
+          </Box>
+        </Suspense>
+      }
     </Box>
   )
 }
@@ -30,11 +32,10 @@ const WalletOverview = ({
   balance,
   showBalance,
 }: {
-  wallet: ConnectedWallet
+  wallet?: ConnectedWallet
   balance?: string
   showBalance?: boolean
 }): ReactElement => {
-  const walletChain = useAppSelector((state) => selectChainById(state, wallet.chainId))
 
   return (
     <Box className={css.container}>
@@ -42,14 +43,14 @@ const WalletOverview = ({
 
       <Box className={css.walletDetails}>
         <Typography variant="body2" component="div">
-          {wallet.ens ? (
+          {wallet?.ens ? (
             <div>{wallet.ens}</div>
           ) : (
             <EthHashInfo
-              address={wallet.address}
+              showPrefix={false}
+              address={wallet?.address}
               showName={false}
               showAvatar={false}
-              showPrefix={false}
               avatarSize={12}
               copyAddress={false}
             />
@@ -57,9 +58,12 @@ const WalletOverview = ({
         </Typography>
 
         {showBalance && (
-          <Typography variant="caption" component="div" fontWeight="bold" display={{ xs: 'none', sm: 'block' }}>
+          <span className="text-red-500 text-sm">
             <WalletBalance balance={balance} />
-          </Typography>
+          </span>
+        )}
+        {!wallet && (
+          <span className="text-red-500 text-sm cursor-pointer">Connect Wallet</span>
         )}
       </Box>
     </Box>

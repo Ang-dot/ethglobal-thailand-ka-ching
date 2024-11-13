@@ -62,10 +62,8 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
     <Paper className="flex flex-row flex-nowrap items-center relative h-14 bg-[#FFF0BE] px-4">
       <Link href="/home" className="ml-10 text-2xl font-nountown text-black flex grow">Ka-Ching</Link>
 
-      <div className={classnames(css.element, css.connectWallet)}>
-        <Track label={OVERVIEW_LABELS.top_bar} {...OVERVIEW_EVENTS.OPEN_ONBOARD}>
-          <ConnectWallet />
-        </Track>
+      <div className="mr-8">
+        <ConnectWallet />
       </div>
 
       {safeAddress && (

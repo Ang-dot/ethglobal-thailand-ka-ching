@@ -13,7 +13,7 @@ import ImageFallback from '../../ImageFallback'
 import css from './styles.module.css'
 
 export type EthHashInfoProps = {
-  address: string
+  address?: string
   chainId?: string
   name?: string | null
   showAvatar?: boolean
@@ -57,18 +57,24 @@ const SrcEthHashInfo = ({
   const shouldPrefix = isAddress(address)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const identicon = <Identicon address={address} size={avatarSize} />
+  const identicon = <Identicon size={avatarSize} />
   const shouldCopyPrefix = shouldPrefix && copyPrefix
 
   const addressElement = (
     <>
-      {showPrefix && shouldPrefix && prefix && <b>{prefix}: </b>}
-      <span>{shortAddress || isMobile ? shortenAddress(address) : address}</span>
+      {address === undefined ? (
+        "Not connected"
+      ) : (
+        <>
+          {showPrefix && shouldPrefix && prefix && <>{prefix}: </>}
+          <span>{shortAddress || isMobile ? shortenAddress(address) : address}</span>
+        </>
+      )}
     </>
   )
 
   return (
-    <div className="font-londrina-light text-[12px] sm:text-[16px] md:text-[20px] flex items-center space-x-2">
+    <div className="flex items-center space-x-2">
       {showAvatar && (
         <div
           className={css.avatarContainer}
@@ -85,7 +91,7 @@ const SrcEthHashInfo = ({
       <Box overflow="hidden" className={onlyName ? css.inline : undefined} gap={0.5}>
         {name && (
           <Box title={name} display="flex" alignItems="center" gap={0.5}>
-            <Box overflow="hidden" textOverflow="ellipsis">
+            <Box overflow="hidden" textOverflow="ellipsis" className="font-londrina-light text-[12px] sm:text-[16px] md:text-[20px]">
               {name}
             </Box>
 
@@ -101,8 +107,8 @@ const SrcEthHashInfo = ({
 
         <div className={classnames(css.addressContainer, { [css.inline]: onlyName })}>
           {(!onlyName || !name) && (
-            <Box fontWeight="inherit" fontSize="inherit" overflow="hidden" textOverflow="ellipsis">
-              {copyAddress ? (
+            <Box className="overflow-hidden text-ellipsis">
+              {copyAddress && address ? (
                 <CopyAddressButton prefix={prefix} address={address} copyPrefix={shouldCopyPrefix} trusted={trusted}>
                   {addressElement}
                 </CopyAddressButton>
@@ -112,7 +118,7 @@ const SrcEthHashInfo = ({
             </Box>
           )}
 
-          {showCopyButton && (
+          {showCopyButton && address && (
             <CopyAddressButton prefix={prefix} address={address} copyPrefix={shouldCopyPrefix} trusted={trusted} />
           )}
 

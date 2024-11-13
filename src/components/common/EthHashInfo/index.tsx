@@ -16,8 +16,8 @@ const EthHashInfo = ({
   const currentChainId = useChainId()
   const chain = useChain(props.chainId || currentChainId)
   const addressBooks = useAllAddressBooks()
-  const link = chain && props.hasExplorer ? getBlockExplorerLink(chain, props.address) : undefined
-  const addressBookName = chain ? addressBooks?.[chain.chainId]?.[props.address] : undefined
+  const link = chain && props.address && props.hasExplorer ? getBlockExplorerLink(chain, props.address) : undefined
+  const addressBookName = props.address && chain ? addressBooks?.[chain.chainId]?.[props.address] : undefined
   const name = showName ? addressBookName || props.name : undefined
   const showPrefix = !!props.prefix && props.showPrefix !== false
 

@@ -5,7 +5,7 @@ import type { ReactElement } from 'react'
 import SafeLogo from '@/public/images/logo-no-text.svg'
 
 import css from '@/components/new-safe/create/OverviewWidget/styles.module.css'
-import ConnectWalletButton from '@/components/common/ConnectWallet/ConnectWalletButton'
+import ConnectWalletWidget from '@/components/common/ConnectWallet/ConnectWalletWidget'
 import type { ChainInfo } from '@safe-global/safe-gateway-typescript-sdk'
 import NetworkLogosList from '@/features/multichain/components/NetworkLogosList'
 
@@ -45,7 +45,7 @@ const OverviewWidget = ({ safeName, networks }: { safeName: string; networks: Ch
             <Typography variant="body2" color="border.main" textAlign="center" width={1} mb={1}>
               Connect your wallet to continue
             </Typography>
-            <ConnectWalletButton />
+            <ConnectWalletWidget />
           </Box>
         )}
       </Card>

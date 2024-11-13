@@ -6,12 +6,12 @@ const WalletIcon = ({
   height = 30,
   icon,
 }: {
-  provider: string
+  provider?: string
   width?: number
   height?: number
   icon?: string
 }) => {
-  return icon ? (
+  return icon && provider ? (
     <img
       width={width}
       height={height}

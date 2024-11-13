@@ -1,34 +1,24 @@
 import type { ReactElement, CSSProperties } from 'react'
 import { useMemo } from 'react'
-import { blo } from 'blo'
 import Skeleton from '@mui/material/Skeleton'
 
 import css from './styles.module.css'
-import { isAddress } from 'ethers'
 
 export interface IdenticonProps {
-  address: string
   size?: number
 }
 
-const Identicon = ({ address, size = 40 }: IdenticonProps): ReactElement => {
+const Identicon = ({ size = 40 }: IdenticonProps): ReactElement => {
   const style = useMemo<CSSProperties | null>(() => {
-    try {
-      if (!isAddress(address)) {
-        return null
-      }
-      return {
-        backgroundImage: "url(/images/basketball.png)",
-        width: `${size}px`,
-        height: `${size}px`,
-      }
-    } catch (e) {
-      return null
+    return {
+      backgroundImage: "url(/images/basketball.png)",
+      width: `${size}px`,
+      height: `${size}px`,
     }
-  }, [address, size])
+  }, [size])
 
   return !style ? (
-    <Skeleton variant="circular" width={size} height={size} />
+    <Skeleton variant="rounded" width={size} height={size} />
   ) : (
     <div className={css.icon} style={style} />
   )
