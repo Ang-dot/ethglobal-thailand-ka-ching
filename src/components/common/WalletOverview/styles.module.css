@@ -43,8 +43,3 @@
   }
 }
 
-@media (max-width: 899.95px) {
-  .walletDetails {
-    display: none;
-  }
-}

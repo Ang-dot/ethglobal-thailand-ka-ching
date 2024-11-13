@@ -41,7 +41,7 @@ const WalletOverview = ({
     <Box className={css.container}>
       <WalletIdenticon wallet={wallet} />
 
-      <Box className={css.walletDetails}>
+      <Box className="hidden lg:block">
         <Typography variant="body2" component="div">
           {wallet?.ens ? (
             <div>{wallet.ens}</div>

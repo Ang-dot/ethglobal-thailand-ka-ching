@@ -14,8 +14,6 @@ import Link from 'next/link'
 import useSafeAddress from '@/hooks/useSafeAddress'
 import { FEATURES } from '@/utils/chains'
 import { useHasFeature } from '@/hooks/useChains'
-import Track from '@/components/common/Track'
-import { OVERVIEW_EVENTS, OVERVIEW_LABELS } from '@/services/analytics'
 import { useSafeTokenEnabled } from '@/hooks/useSafeTokenEnabled'
 
 type HeaderProps = {
@@ -62,7 +60,7 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
     <Paper className="flex flex-row flex-nowrap items-center relative h-14 bg-[#FFF0BE] px-4">
       <Link href="/home" className="ml-10 text-2xl font-nountown text-black flex grow">Ka-Ching</Link>
 
-      <div className="mr-8">
+      <div className="md:mr-8">
         <ConnectWallet />
       </div>
 

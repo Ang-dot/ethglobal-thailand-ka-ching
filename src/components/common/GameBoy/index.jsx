@@ -13,7 +13,7 @@ const GameBoy = ({ children, isScrollable = true }) => {
           <div className="bg-[#909b0e] w-full h-full flex relative rounded-md">
             {/* Scrollable or auto-height content container */}
             <div className={`${isScrollable ? 'overflow-y-auto h-full' : 'h-auto'} w-full`}>
-              <div className="p-4 flex items-center justify-center min-h-full">
+              <div className="flex items-center justify-center min-h-full">
                 <div className="w-full flex flex-col items-center justify-center">
                   {/* Children content goes here */}
                   {children}
