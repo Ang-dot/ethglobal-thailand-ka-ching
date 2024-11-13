@@ -16,7 +16,7 @@ const WalletLogin = ({ onLogin, onContinue }: { onLogin: () => void; onContinue:
     return (
       <button
         onClick={onContinue}
-        className="flex flex-col cursor-pointer w-full transform transition-transform hover:scale-[1.02] items-center space-x-2 bg-black text-white px-4 py-3 mt-3 rounded-md font-londrina-light text-[12px] sm:text-[16px] md:text-[20px]">
+        className="flex flex-col cursor-pointer w-full transform transition-transform hover:scale-[1.01] items-center space-x-2 bg-black text-white px-4 py-3 mt-3 rounded-md font-londrina-light text-[12px] sm:text-[16px] md:text-[20px]">
         <div className="flex items-center space-x-2">
           {wallet.icon && <WalletIcon icon={wallet.icon} provider={wallet.label} width={24} height={24} />}
           <span>Continue with {wallet.label} Wallet</span>

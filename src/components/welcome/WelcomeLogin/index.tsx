@@ -49,7 +49,7 @@ const WelcomeLogin = () => {
           </p>
         </div>
       )}
-      <div className="space-y-3 lg:space-y-12 text-center w-full justify-center px-0.5 lg:px-2.5 2xl:px-8">
+      <div className="space-y-3 lg:space-y-12 text-center w-full justify-center">
         <WalletLogin onLogin={onLogin} onContinue={redirect} />
         {!wallet && (
           <button className="group relative w-full">
