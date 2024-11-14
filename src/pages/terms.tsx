@@ -14,7 +14,7 @@ const Terms: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{'Safe{Wallet} – Terms'}</title>
+        <title>{'Ka-Ching – Terms'}</title>
       </Head>
 
       <main>{IS_OFFICIAL_HOST && <SafeTerms components={overrideComponents} />}</main>
