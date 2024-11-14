@@ -96,9 +96,9 @@ const OwnerPolicyStep = ({
   })
 
   return (
-    <form data-testid="owner-policy-step-form" onSubmit={onFormSubmit} id={OWNER_POLICY_STEP_FORM_ID}>
-      <FormProvider {...formMethods}>
-        <Box className={layoutCss.row}>
+    <FormProvider {...formMethods}>
+      <form data-testid="owner-policy-step-form" onSubmit={onFormSubmit} id={OWNER_POLICY_STEP_FORM_ID} className="space-y-8">
+        <Box className="w-full">
           {ownerFields.map((field, i) => (
             <OwnerRow
               key={field.id}
@@ -108,19 +108,17 @@ const OwnerPolicyStep = ({
               remove={removeOwner}
             />
           ))}
-          <Button
+          <button
             data-testid="add-owner-btn"
-            variant="text"
             onClick={() => appendOwner({ name: '', address: '' }, { shouldFocus: true })}
-            startIcon={<SvgIcon component={AddIcon} inheritViewBox fontSize="small" />}
-            size="large"
+            className="flex items-center text-[#909B0E] hover:text-[#7A830B] gap-x-2"
           >
+            <SvgIcon component={AddIcon} inheritViewBox fontSize="small" />
             Add new signer
-          </Button>
+          </button>
         </Box>
 
-        <Divider />
-        <Box className={layoutCss.row}>
+        <Box className="w-full space-y-4">
           <Typography variant="h4" fontWeight={700} display="inline-flex" alignItems="center" gap={1}>
             Threshold
             <Tooltip
@@ -133,10 +131,10 @@ const OwnerPolicyStep = ({
               </span>
             </Tooltip>
           </Typography>
-          <Typography variant="body2" mb={2}>
+          <p className="text-gray-600">
             Any transaction requires the confirmation of:
-          </Typography>
-          <Grid container direction="row" alignItems="center" gap={2} pt={1}>
+          </p>
+          <Grid container direction="row" alignItems="center" gap={1} pt={1} className="!pt-0">
             <Grid item>
               <Controller
                 control={control}
@@ -157,25 +155,23 @@ const OwnerPolicyStep = ({
             </Grid>
           </Grid>
         </Box>
-        <Divider />
-        <Box className={layoutCss.row}>
+        <Box className="w-full mt-12">
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
-            <Button
-              data-testid="back-btn"
-              variant="outlined"
-              size="small"
-              onClick={handleBack}
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
+            <button className="flex justify-center items-center gap-x-1 pixelWhiteBtn transform transition-transform hover:scale-[1.02]" onClick={handleBack}>
+              <ArrowBackIcon fontSize="small" />
               Back
-            </Button>
-            <Button data-testid="next-btn" type="submit" variant="contained" size="stretched" disabled={isDisabled}>
+            </button>
+            <button
+              className="pixel-btn transform transition-transform hover:scale-[1.02]"
+              type="submit"
+              disabled={isDisabled}
+            >
               Next
-            </Button>
+            </button>
           </Box>
         </Box>
-      </FormProvider>
-    </form>
+      </form>
+    </FormProvider>
   )
 }
 

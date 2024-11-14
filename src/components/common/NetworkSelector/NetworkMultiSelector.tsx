@@ -151,6 +151,11 @@ const NetworkMultiSelector = ({
                 {...params}
                 error={!!errors.networks}
                 helperText={errors.networks ? 'Select at least one network' : ''}
+                sx={{
+                  '& .MuiFormHelperText-root': {
+                    "margin-left": 0,
+                  },
+                }}
               />
             )}
             filterOptions={(options, { inputValue }) =>

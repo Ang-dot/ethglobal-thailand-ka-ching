@@ -1,10 +1,5 @@
 .radioContainer {
-  border: 1px solid var(--color-border-light);
-  margin: 0;
-  border-radius: 6px;
-  height: 72px;
-  flex-basis: 72px;
-  padding: 0 var(--space-1);
+  @apply flex-1 relative p-3 border rounded-lg border-red-500
 }
 
 .radioGroup {
@@ -12,13 +7,12 @@
   flex-wrap: wrap;
 }
 
-.active {
-  outline: 1px solid var(--color-primary-main);
-  border-color: var(--color-primary-main);
+.radioTitle {
+  @apply font-bold text-[#F55322]
 }
 
-.active .radioTitle {
-  font-weight: bold;
+.active {
+  @apply bg-[#F553221A]
 }
 
 .listItem {
@@ -28,7 +22,7 @@
 }
 
 .active .radioSubtitle {
-  color: var(--color-text-primary);
+  @apply text-sm block
 }
 
 .statusButton {

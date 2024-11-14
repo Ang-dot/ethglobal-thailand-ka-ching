@@ -33,7 +33,7 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
           [css.mainAnimated]: isSidebarRoute && isAnimated,
         })}
       >
-        <div className={css.content + " mb-6"}>
+        <div className={css.content}>
           <SafeLoadingError>{children}</SafeLoadingError>
         </div>
 

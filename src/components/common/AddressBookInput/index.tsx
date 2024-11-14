@@ -94,6 +94,7 @@ const AddressBookInput = ({ name, canAdd, ...props }: AddressInputProps & { canA
                 name={name}
                 onOpenListClick={hasVisibleOptions ? handleOpenAutocomplete : undefined}
                 isAutocompleteOpen={open}
+                showPrefix={props.showPrefix}
                 onAddressBookClick={canAdd && !isInAddressBook ? onAddressBookClick : undefined}
               />
             )}

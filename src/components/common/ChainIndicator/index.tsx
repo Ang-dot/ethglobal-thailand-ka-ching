@@ -58,7 +58,7 @@ const ChainIndicator = ({
   }, [chainConfig])
 
   return noChains ? (
-    <Skeleton width="100%" height="22px" variant="rectangular" sx={{ flexShrink: 0 }} />
+    <Skeleton width="100%" height="32px" variant="rectangular" sx={{ flexShrink: 0 }} />
   ) : chainConfig ? (
     <span
       data-testid="chain-logo"
@@ -75,8 +75,8 @@ const ChainIndicator = ({
         <img
           src={chainConfig.chainLogoUri ?? undefined}
           alt={`${chainConfig.chainName} Logo`}
-          width={24}
-          height={24}
+          width={32}
+          height={32}
           loading="lazy"
         />
       )}

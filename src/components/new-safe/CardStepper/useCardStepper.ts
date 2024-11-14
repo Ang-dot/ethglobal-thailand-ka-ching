@@ -12,14 +12,11 @@ export type StepRenderProps<TData> = {
 }
 
 type Step<TData> = {
-  title: string
-  subtitle: string
   render: (
     data: StepRenderProps<TData>['data'],
     onSubmit: StepRenderProps<TData>['onSubmit'],
     onBack: StepRenderProps<TData>['onBack'],
     setStep: StepRenderProps<TData>['setStep'],
-    setProgressColor: StepRenderProps<TData>['setProgressColor'],
     setStepData: StepRenderProps<TData>['setStepData'],
   ) => ReactElement
 }

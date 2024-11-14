@@ -49,6 +49,7 @@ export const WalletInfo = ({ wallet, balance, currentChainId, onboard, addressBo
           <EthHashInfo
             address={wallet.address}
             name={addressBook[wallet.address] || wallet.ens || wallet.label + ' Wallet'}
+            nameTailwindCSS="text-lg font-semibold text-gray-800"
             showAvatar={false}
             showPrefix={false}
             hasExplorer
@@ -81,12 +82,12 @@ export const WalletInfo = ({ wallet, balance, currentChainId, onboard, addressBo
       <Box display="flex" flexDirection="column" gap={1} width={1}>
         <ChainSwitcher fullWidth />
 
-        <button onClick={handleSwitchWallet} className="pixelBtn transform transition-transform hover:scale-[1.02]">
+        <button onClick={handleSwitchWallet} className="pixel-btn transform transition-transform hover:scale-[1.02]">
           Switch Chain
         </button>
 
-        <button onClick={handleDisconnect} className="pixelRedBtn transform transition-transform hover:scale-[1.02]">
-          <PowerSettingsNewIcon className="mr-1" />
+        <button onClick={handleDisconnect} className="pixelRedBtn flex justify-center items-center gap-x-1 transform transition-transform hover:scale-[1.02]">
+          <PowerSettingsNewIcon />
           Disconnect
         </button>
       </Box>

@@ -76,21 +76,19 @@ export const NetworkFee = ({
 }
 
 export const SafeSetupOverview = ({
-  name,
   owners,
   threshold,
   networks,
 }: {
-  name?: string
   owners: NamedAddress[]
   threshold: number
   networks: ChainInfo[]
 }) => {
   return (
-    <Grid container spacing={3}>
-      <ReviewRow
-        name={networks.length > 1 ? 'Networks' : 'Network'}
-        value={
+    <>
+      <div className="flex items-center gap-4 justify-between">
+        <div className="flex flex-col items-start gap-2">
+          <span className="text-[#8F7E7C] font-semibold">{networks.length > 1 ? 'Networks' : 'Network'}</span>
           <Tooltip
             title={
               <Box>
@@ -107,13 +105,19 @@ export const SafeSetupOverview = ({
               <NetworkLogosList networks={networks} />
             </Box>
           </Tooltip>
-        }
-      />
-      {name && <ReviewRow name="Name" value={<Typography>{name}</Typography>} />}
-      <ReviewRow
-        name="Signers"
-        value={
-          <Box data-testid="review-step-owner-info" className={css.ownersArray}>
+        </div>
+        <span className="text-gray-500">|</span>
+        <div className="flex flex-col items-start gap-2">
+          <span className="text-[#8F7E7C] font-semibold">Threshold</span>
+          <span className="font-bold text-[#221B1A] text-[20px]">
+            {threshold}/{owners.length} {owners.length > 1 ? 'Signers' : 'Signer'}
+          </span>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <span className="text-[#8F7E7C] font-semibold">Signers</span>
+        {owners.map((owner, index) => (
+          <div key={index} className="flex flex-col">
             {owners.map((owner, index) => (
               <EthHashInfo
                 address={owner.address}
@@ -126,18 +130,10 @@ export const SafeSetupOverview = ({
                 key={index}
               />
             ))}
-          </Box>
-        }
-      />
-      <ReviewRow
-        name="Threshold"
-        value={
-          <Typography>
-            {threshold} out of {owners.length} {owners.length > 1 ? 'signers' : 'signer'}
-          </Typography>
-        }
-      />
-    </Grid>
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 
@@ -364,15 +360,14 @@ const ReviewStep = ({ data, onSubmit, onBack, setStep }: StepRenderProps<NewSafe
   const isDisabled = showNetworkWarning || isCreating
 
   return (
-    <>
-      <Box className={layoutCss.row}>
-        <SafeSetupOverview name={data.name} owners={data.owners} threshold={data.threshold} networks={data.networks} />
-      </Box>
+    <div className="space-y-8">
+      <h1 className="font-londrina text-[50px] text-[#221B1A]">{data.name}</h1>
+      <SafeSetupOverview owners={data.owners} threshold={data.threshold} networks={data.networks} />
 
       {isCounterfactualEnabled && (
         <>
           <Divider />
-          <Box className={layoutCss.row}>
+          <Box className="w-full">
             <PayNowPayLater
               totalFee={totalFee}
               isMultiChain={isMultiChainDeployment}
@@ -463,32 +458,26 @@ const ReviewStep = ({ data, onSubmit, onBack, setStep }: StepRenderProps<NewSafe
         </>
       )}
 
-      <Divider />
-
-      <Box className={layoutCss.row}>
+      <Box className="w-full">
         {submitError && <ErrorMessage className={css.errorMessage}>{submitError}</ErrorMessage>}
         <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
-          <Button
-            data-testid="back-btn"
-            variant="outlined"
-            size="small"
+          <button
+            className="flex justify-center items-center gap-x-1 pixelWhiteBtn transform transition-transform hover:scale-[1.02]"
             onClick={handleBack}
-            startIcon={<ArrowBackIcon fontSize="small" />}
           >
+            <ArrowBackIcon fontSize="small" />
             Back
-          </Button>
-          <Button
-            data-testid="review-step-next-btn"
+          </button>
+          <button
             onClick={handleCreateSafeClick}
-            variant="contained"
-            size="stretched"
             disabled={isDisabled}
+            className="pixel-btn flex justify-center items-center gap-x-1 transform transition-transform hover:scale-[1.02]"
           >
             {isCreating ? <CircularProgress size={18} /> : 'Create Account'}
-          </Button>
+          </button>
         </Box>
       </Box>
-    </>
+    </div>
   )
 }
 

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        "ka-ching-white": '#FDF8FF',
+      },
       fontFamily: {
         londrina: ['LondrinaSolid', 'sans-serif'],
         nountown: ['Nountown', 'sans-serif'],

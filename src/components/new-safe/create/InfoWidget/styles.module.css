@@ -1,18 +1,9 @@
-.cardHeader {
-  padding-bottom: 0px;
-}
-
 .title {
   width: fit-content;
-  padding: 4px var(--space-1);
   border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 4px;
-}
-
-.titleIcon {
-  font-size: 12px;
 }
 
 .tipsList :global .MuiCardContent-root {
@@ -34,5 +25,5 @@
 }
 
 .tipAccordion :global .MuiAccordionDetails-root {
-  padding-top: 0;
+  padding: 0;
 }

@@ -1,15 +1,10 @@
-import { Box, Button, ButtonBase } from '@mui/material'
+import { Box } from '@mui/material'
 import useConnectWallet from '@/components/common/ConnectWallet/useConnectWallet'
 import css from '@/components/common/ConnectWallet/styles.module.css'
 import WalletOverview from '@/components/common/WalletOverview'
-import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const ConnectWalletWidget = ({
   onConnect,
-  contained = true,
-  small = false,
-  text,
 }: {
   onConnect?: () => void
   contained?: boolean

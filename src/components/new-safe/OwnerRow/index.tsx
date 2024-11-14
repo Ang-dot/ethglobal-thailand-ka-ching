@@ -71,13 +71,13 @@ export const OwnerRow = ({
   return (
     <Grid
       container
-      spacing={3}
+      spacing={1}
       alignItems="center"
       marginBottom={3}
       flexWrap={['wrap', undefined, 'nowrap']}
       className={classNames({ [css.helper]: walletIsOwner })}
     >
-      <Grid item xs={12} md={readOnly ? 5 : 4}>
+      <Grid item xs={12} md={8}>
         <FormControl fullWidth>
           <NameInput
             data-testid="owner-name"
@@ -86,6 +86,12 @@ export const OwnerRow = ({
             InputLabelProps={{ shrink: true }}
             placeholder={ens || `Signer ${index + 1}`}
             helperText={walletIsOwner && 'Your connected wallet'}
+            sx={{
+              '& .MuiFormHelperText-root': {
+                "margin-left": 0,
+                "margin-top": "0.5rem"
+              },
+            }}
             InputProps={{
               endAdornment: resolving ? (
                 <InputAdornment position="end">
@@ -96,14 +102,14 @@ export const OwnerRow = ({
           />
         </FormControl>
       </Grid>
-      <Grid item xs={11} md={7}>
+      <Grid item xs={11} md={4}>
         {readOnly ? (
           <Typography variant="body2" component="div">
             <EthHashInfo address={owner.address} shortAddress hasExplorer showCopyButton />
           </Typography>
         ) : (
           <FormControl fullWidth>
-            <AddressBookInput name={`${fieldName}.address`} label="Signer" validate={validateSafeAddress} deps={deps} />
+            <AddressBookInput name={`${fieldName}.address`} label="Signer" validate={validateSafeAddress} deps={deps} showPrefix={false} />
           </FormControl>
         )}
       </Grid>

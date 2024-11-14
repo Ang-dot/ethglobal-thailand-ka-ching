@@ -42,9 +42,9 @@ const _ExecutionMethodSelector = ({
   }
 
   return (
-    <Box className={css.container} sx={{ borderRadius: ({ shape }) => `${shape.borderRadius}px` }}>
+    <div className="bg-[#FFFDEA] rounded-lg border-4 border-solid border-black">
       <div className={css.method}>
-        <FormControl sx={{ display: 'flex' }}>
+        <FormControl sx={{ display: "flex" }}>
           {!noLabel ? (
             <Typography variant="body2" className={css.label}>
               Who will pay gas fees:
@@ -58,10 +58,19 @@ const _ExecutionMethodSelector = ({
               label={
                 <Typography className={css.radioLabel} whiteSpace="nowrap">
                   Sponsored by
-                  <SponsoredBy chainId={chain?.chainId ?? ''} />
+                  <SponsoredBy chainId={chain?.chainId ?? ""} />
                 </Typography>
               }
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    color: "#EF4444",
+                    '&.Mui-checked': {
+                      color: "#EF4444",
+                    }
+                  }}
+                />
+              }
             />
 
             <FormControlLabel
@@ -70,18 +79,28 @@ const _ExecutionMethodSelector = ({
               value={ExecutionMethod.WALLET}
               label={
                 <Typography className={css.radioLabel}>
-                  <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Connected
+                  <WalletIcon provider={wallet?.label || ""} width={20} height={20} icon={wallet?.icon} /> Connected
                   wallet
                 </Typography>
               }
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    color: "#EF4444",
+                    '&.Mui-checked': {
+                      color: "#EF4444",
+                    }
+                  }}
+                />
+              }
             />
           </RadioGroup>
         </FormControl>
       </div>
 
-      {shouldRelay && relays ? <RemainingRelays relays={relays} tooltip={tooltip} /> : wallet ? <BalanceInfo /> : null}
-    </Box>
+      {shouldRelay && relays ? <RemainingRelays relays={relays} tooltip={tooltip} /> : wallet ?
+        <BalanceInfo /> : null}
+    </div>
   )
 }
 

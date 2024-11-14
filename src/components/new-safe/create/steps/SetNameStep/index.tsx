@@ -1,11 +1,10 @@
-import { InputAdornment, Tooltip, SvgIcon, Typography, Box, Divider, Button, Grid } from '@mui/material'
+import { InputAdornment, Tooltip, SvgIcon, Box, Grid } from '@mui/material'
 import { FormProvider, useForm, useWatch } from 'react-hook-form'
 import { useMnemonicSafeName } from '@/hooks/useMnemonicName'
 import InfoIcon from '@/public/images/notifications/info.svg'
 import type { StepRenderProps } from '@/components/new-safe/CardStepper/useCardStepper'
 import type { NewSafeFormData } from '@/components/new-safe/create'
 
-import layoutCss from '@/components/new-safe/create/styles.module.css'
 import NameInput from '@/components/common/NameInput'
 import { CREATE_SAFE_EVENTS, trackEvent } from '@/services/analytics'
 import { AppRoutes } from '@/config/routes'
@@ -104,9 +103,12 @@ function SetNameStep({
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={handleSubmit(onFormSubmit)} id={SET_NAME_STEP_FORM_ID}>
-        <Box className={layoutCss.row}>
-          <Grid container spacing={1}>
+      <form
+        onSubmit={handleSubmit(onFormSubmit)}
+        id={SET_NAME_STEP_FORM_ID}
+      >
+        <Box className="w-full">
+          <Grid container className="space-y-12">
             <Grid item xs={12} md={12}>
               <NameInput
                 name={SetNameStepFields.name}
@@ -129,17 +131,15 @@ function SetNameStep({
               />
             </Grid>
 
-            <Grid xs={12} item>
-              <Typography variant="h5" fontWeight={700} display="inline-flex" alignItems="center" gap={1} mt={2}>
-                Select Networks
-              </Typography>
-              <Typography variant="body2" mb={2}>
+            <Grid xs={12} item className="space-y-2">
+              <h2 className="text-xl font-semibold text-black">Select Networks</h2>
+              <p className="text-gray-600">
                 Choose which networks you want your account to be active on. You can add more networks later.{' '}
-              </Typography>
+              </p>
               <NetworkMultiSelector isAdvancedFlow={isAdvancedFlow} name={SetNameStepFields.networks} />
             </Grid>
           </Grid>
-          <Typography variant="body2" mt={2}>
+          <p className="text-sm text-gray-600 mt-12">
             By continuing, you agree to our{' '}
             <Link href={AppRoutes.terms} passHref legacyBehavior>
               <MUILink>terms of use</MUILink>
@@ -148,20 +148,22 @@ function SetNameStep({
             <Link href={AppRoutes.privacy} passHref legacyBehavior>
               <MUILink>privacy policy</MUILink>
             </Link>
-            .
-          </Typography>
+          </p>
 
           <NoWalletConnectedWarning />
         </Box>
-        <Divider />
-        <Box className={layoutCss.row}>
+        <Box className="w-full mt-12">
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
-            <Button data-testid="cancel-btn" variant="outlined" onClick={onCancel} size="small">
+            <button className="pixelWhiteBtn transform transition-transform hover:scale-[1.02]" onClick={onCancel}>
               Cancel
-            </Button>
-            <Button data-testid="next-btn" type="submit" variant="contained" size="stretched" disabled={isDisabled}>
+            </button>
+            <button
+              className="pixel-btn transform transition-transform hover:scale-[1.02]"
+              type="submit"
+              disabled={isDisabled}
+            >
               Next
-            </Button>
+            </button>
           </Box>
         </Box>
       </form>

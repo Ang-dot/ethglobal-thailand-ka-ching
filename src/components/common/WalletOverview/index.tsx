@@ -29,16 +29,18 @@ const WalletOverview = ({
   wallet,
   balance,
   showBalance,
+  hideAddressInMobile,
 }: {
   wallet?: ConnectedWallet
   balance?: string
   showBalance?: boolean
+  hideAddressInMobile?: boolean
 }): ReactElement => {
   return (
     <Box className={css.container}>
       <WalletIdenticon wallet={wallet} />
 
-      <Box className="hidden lg:block">
+      <Box className={hideAddressInMobile ? 'hidden lg:block' : ''}>
         <Typography variant="body2" component="div">
           {wallet?.ens ? (
             <div>{wallet.ens}</div>

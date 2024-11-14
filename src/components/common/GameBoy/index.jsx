@@ -23,7 +23,7 @@ const GameBoy = ({ children, isScrollable = true }) => {
         </div>
 
         {/* Control buttons */}
-        <div className="flex items-center pt-4 sm:pt-5 md:pt-7 gap-2 sm:gap-3 lg:gap-5 2xl:gap-6">
+        <div className="flex items-center pt-4 sm:pt-5 md:pt-7 gap-2 sm:gap-3 lg:gap-5 2xl:gap-6 overflow-x-hidden">
           {/* D-Pad and Small squares */}
           <div className="flex items-center">
             {/* Cross button */}
@@ -53,9 +53,9 @@ const GameBoy = ({ children, isScrollable = true }) => {
           </div>
 
           {/* A/B buttons */}
-          <div className="flex gap-2 sm:gap-3 2xl:gap-3.5">
-            <button className="bg-blue-600 hover:bg-blue-700 transition-colors w-16 h-10 xl:w-20 xl:h-12 2xl:w-[86.17px] 2xl:h-[57.44px] rounded-sm"></button>
-            <button className="bg-red-600 hover:bg-red-700 transition-colors w-16 h-10 xl:w-20 xl:h-12 2xl:w-[86.17px] 2xl:h-[57.44px] rounded-sm"></button>
+          <div className="flex gap-2 sm:gap-3 2xl:gap-3.5 ml-auto">
+            <button className="bg-blue-600 hover:bg-blue-700 transition-colors w-16 h-10 md:w-[86.17px] md:h-[57.44px] rounded-sm"></button>
+            <button className="bg-red-600 hover:bg-red-700 transition-colors w-16 h-10 md:w-[86.17px] md:h-[57.44px] rounded-sm"></button>
           </div>
         </div>
       </div>

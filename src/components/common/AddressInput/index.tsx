@@ -32,6 +32,7 @@ export type AddressInputProps = TextFieldProps & {
   isAutocompleteOpen?: boolean
   validate?: Validate<string>
   deps?: string | string[]
+  showPrefix?: boolean
   onAddressBookClick?: () => void
 }
 
@@ -43,6 +44,7 @@ const AddressInput = ({
   isAutocompleteOpen,
   onAddressBookClick,
   deps,
+  showPrefix = true,
   ...props
 }: AddressInputProps): ReactElement => {
   const {
@@ -136,12 +138,12 @@ const AddressInput = ({
             // Display the current short name in the adornment, unless the value contains the same prefix
             <InputAdornment position="end" sx={{ ml: 0, gap: 1 }}>
               {watchedValue && !fieldError ? (
-                <Identicon address={watchedValue} size={32} />
+                <Identicon size={32} />
               ) : (
                 <Skeleton variant="circular" width={32} height={32} animation={false} />
               )}
 
-              {!rawValueRef.current.startsWith(`${currentShortName}:`) && <>{currentShortName}:</>}
+              {showPrefix && !rawValueRef.current.startsWith(`${currentShortName}:`) && <>{currentShortName}:</>}
             </InputAdornment>
           ),
 

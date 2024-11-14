@@ -11,11 +11,12 @@ import {
   Typography,
 } from '@mui/material'
 import type { AlertColor } from '@mui/material'
-import type { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import LightbulbIcon from '@/public/images/common/lightbulb.svg'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import css from 'src/components/new-safe/create/InfoWidget/styles.module.css'
 import { CREATE_SAFE_EVENTS, trackEvent } from '@/services/analytics'
+import CopyIcon from "@/public/images/common/copy.svg";
 
 type InfoWidgetProps = {
   title: string
@@ -32,18 +33,22 @@ const InfoWidget = ({ title, steps, variant, startExpanded = false }: InfoWidget
   return (
     <Card
       sx={{
-        backgroundColor: ({ palette }) => palette[variant]?.background,
-        borderColor: ({ palette }) => palette[variant]?.main,
-        borderWidth: 1,
+        '&::before': {
+          background: ({ palette }) => `${palette[variant]?.main} !important`,
+        },
+        '&::after': {
+          background: ({ palette }) => `${palette[variant]?.background} !important`,
+        }
       }}
+      className="pixel-card p-5 space-y-4"
     >
       <CardHeader
-        className={css.cardHeader}
+        className="p-0"
         title={
-          <Box className={css.title} sx={{ backgroundColor: ({ palette }) => palette[variant]?.main }}>
-            <SvgIcon component={LightbulbIcon} inheritViewBox className={css.titleIcon} />
-            <Typography variant="caption">
-              <b>{title}</b>
+          <Box className={css.title}>
+            <SvgIcon component={LightbulbIcon} inheritViewBox sx={{color: ({ palette }) => palette[variant]?.light }} />
+            <Typography className="font-bold text-xl" sx={{ color: ({ palette }) => palette[variant]?.main }}>
+              {title}
             </Typography>
           </Box>
         }
@@ -64,11 +69,12 @@ const InfoWidget = ({ title, steps, variant, startExpanded = false }: InfoWidget
                       <ExpandMoreIcon sx={{ color: ({ palette }) => palette[variant]?.main }} />
                     </IconButton>
                   }
+                  className="p-0"
                 >
                   {title}
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">{text}</Typography>
+                  <Typography variant="body2" >{text}</Typography>
                 </AccordionDetails>
               </Accordion>
             )
