@@ -50,15 +50,14 @@ const WelcomeLogin = () => {
         </div>
       )}
       <div className="space-y-3 lg:space-y-12 text-center w-full justify-center">
-        <div className="m-4 lg:m-7">
+        <div className={wallet ? 'm-4 lg:m-7' : ''}>
           <WalletLogin onLogin={onLogin} onContinue={redirect} />
         </div>
         {!wallet && (
           <button className="group relative w-full">
             <Link href={AppRoutes.newSafe.load}>
-            <div className="w-full p-2 group-hover:bg-black transition duration-300 ease-in-out">
-                <h2
-                  className="text-white font-londrina font-[1000] text-2xl sm:text-3xl md:text-[35px] leading-tight sm:leading-relaxed md:leading-[56.78px] transition duration-300 ease-in-out">
+              <div className="w-full p-2 group-hover:bg-black transition duration-300 ease-in-out">
+                <h2 className="text-white font-londrina font-[1000] text-2xl sm:text-3xl md:text-[35px] leading-tight sm:leading-relaxed md:leading-[56.78px] transition duration-300 ease-in-out">
                   <span className="group-hover:hidden">Watch Any Account</span>
                   <span className="hidden group-hover:inline underline text-[#909B0E]">&gt; Watch Any Account</span>
                 </h2>

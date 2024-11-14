@@ -182,14 +182,14 @@ const CreateSafe = () => {
   }
 
   return (
-    <Container>
+    <Container className="min-[1200px]:!max-w-6xl !px-0">
       <Grid container columnSpacing={3} justifyContent="center" mt={[2, null, 7]}>
         <Grid item xs={12}>
           <Typography variant="h2" pb={2}>
             Create new Safe Account
           </Typography>
         </Grid>
-        <Grid item xs={12} md={8} order={[1, null, 0]}>
+        <Grid item xs={12} md={7} order={[1, null, 0]}>
           <CardStepper
             initialData={initialData}
             initialStep={initialStep}
@@ -200,7 +200,7 @@ const CreateSafe = () => {
           />
         </Grid>
 
-        <Grid item xs={12} md={4} mb={[3, null, 0]} order={[0, null, 1]}>
+        <Grid item xs={12} md={5} mb={[3, null, 0]} order={[0, null, 1]}>
           <Grid container spacing={3}>
             {activeStep < 2 && <OverviewWidget safeName={safeName} networks={overviewNetworks || []} />}
             {wallet?.address && <CreateSafeInfos staticHint={staticHint} dynamicHint={dynamicHint} />}
