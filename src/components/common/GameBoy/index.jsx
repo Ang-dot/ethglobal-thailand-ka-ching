@@ -1,13 +1,12 @@
 'use client'
 
-import React from 'react';
+import React from 'react'
 
 const GameBoy = ({ children, isScrollable = true }) => {
   return (
     <div className="w-full h-full transform transition-transform hover:scale-[1.02] rounded-lg shadow-lg">
       {/* Main console body */}
       <div className="bg-[#CFC2AB] p-4 sm:p-6 md:p-8 w-full flex flex-col h-full">
-
         {/* Screen area */}
         <div className="bg-[#867C1D] ps-5 sm:ps-6 md:ps-7 lg:ps-8 pt-5 sm:pt-6 md:pt-7 lg:pt-8 w-full flex-grow rounded-md">
           <div className="bg-[#909b0e] w-full h-full flex relative rounded-md">
@@ -24,8 +23,7 @@ const GameBoy = ({ children, isScrollable = true }) => {
         </div>
 
         {/* Control buttons */}
-        <div className="flex items-center pt-4 sm:pt-5 md:pt-7 gap-2 sm:gap-3 lg:gap-5 2xl:gap-10">
-
+        <div className="flex items-center pt-4 sm:pt-5 md:pt-7 gap-2 sm:gap-3 lg:gap-5 2xl:gap-6">
           {/* D-Pad and Small squares */}
           <div className="flex items-center">
             {/* Cross button */}
@@ -55,14 +53,14 @@ const GameBoy = ({ children, isScrollable = true }) => {
           </div>
 
           {/* A/B buttons */}
-          <div className="flex gap-2 sm:gap-3 2xl:gap-6">
+          <div className="flex gap-2 sm:gap-3 2xl:gap-3.5">
             <button className="bg-blue-600 hover:bg-blue-700 transition-colors w-16 h-10 xl:w-20 xl:h-12 2xl:w-[86.17px] 2xl:h-[57.44px] rounded-sm"></button>
             <button className="bg-red-600 hover:bg-red-700 transition-colors w-16 h-10 xl:w-20 xl:h-12 2xl:w-[86.17px] 2xl:h-[57.44px] rounded-sm"></button>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GameBoy;
+export default GameBoy
