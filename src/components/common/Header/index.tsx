@@ -58,17 +58,19 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
 
   return (
     <Paper className="flex flex-row flex-nowrap items-center relative h-14 bg-[#FFF0BE] px-4">
-      <Link href="/home" className="md:ml-10 text-2xl font-nountown text-black flex grow">Ka-Ching</Link>
+      <Link href="/home" className="md:ml-10 text-2xl font-nountown text-black flex grow">
+        Ka-Ching
+      </Link>
 
-      <div className="md:mr-10">
+      <div className={classnames("flex flex-row items-center", { "md:mr-10": !safeAddress })}>
         <ConnectWallet />
-      </div>
 
-      {safeAddress && (
-        <div className={classnames(css.element, css.networkSelector)}>
-          <NetworkSelector offerSafeCreation />
-        </div>
-      )}
+        {safeAddress && (
+          <div className={classnames(css.element, css.networkSelector)}>
+            <NetworkSelector offerSafeCreation />
+          </div>
+        )}
+      </div>
     </Paper>
   )
 }
