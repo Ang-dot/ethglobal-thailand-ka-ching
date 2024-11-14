@@ -6,8 +6,6 @@ import type { ReactElement } from 'react'
 import EthHashInfo from '@/components/common/EthHashInfo'
 import WalletIcon from '@/components/common/WalletIcon'
 import type { ConnectedWallet } from '@/hooks/wallets/useOnboard'
-import { useAppSelector } from '@/store'
-import { selectChainById } from '@/store/chainsSlice'
 import WalletBalance from '@/components/common/WalletBalance'
 
 import css from './styles.module.css'
@@ -16,13 +14,13 @@ export const WalletIdenticon = ({ wallet, size = 32 }: { wallet?: ConnectedWalle
   return (
     <Box className={css.imageContainer}>
       <Identicon size={size} />
-      {wallet &&
+      {wallet && (
         <Suspense>
           <Box className={css.walletIcon}>
             <WalletIcon provider={wallet?.label} icon={wallet?.icon} width={size / 2} height={size / 2} />
           </Box>
         </Suspense>
-      }
+      )}
     </Box>
   )
 }
@@ -36,7 +34,6 @@ const WalletOverview = ({
   balance?: string
   showBalance?: boolean
 }): ReactElement => {
-
   return (
     <Box className={css.container}>
       <WalletIdenticon wallet={wallet} />
@@ -62,9 +59,7 @@ const WalletOverview = ({
             <WalletBalance balance={balance} />
           </span>
         )}
-        {!wallet && (
-          <span className="text-red-500 text-sm cursor-pointer">Connect Wallet</span>
-        )}
+        {!wallet && <span className="text-red-500 text-sm cursor-pointer">Connect Wallet</span>}
       </Box>
     </Box>
   )

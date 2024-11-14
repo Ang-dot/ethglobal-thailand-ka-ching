@@ -1,6 +1,6 @@
 import WalletBalance from '@/components/common/WalletBalance'
 import { WalletIdenticon } from '@/components/common/WalletOverview'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import css from './styles.module.css'
 import EthHashInfo from '@/components/common/EthHashInfo'
 import ChainSwitcher from '@/components/common/ChainSwitcher'
@@ -48,7 +48,7 @@ export const WalletInfo = ({ wallet, balance, currentChainId, onboard, addressBo
         <Typography variant="body2" className={css.address} component="div">
           <EthHashInfo
             address={wallet.address}
-            name={addressBook[wallet.address] || wallet.ens || wallet.label}
+            name={addressBook[wallet.address] || wallet.ens || wallet.label + ' Wallet'}
             showAvatar={false}
             showPrefix={false}
             hasExplorer
@@ -58,49 +58,37 @@ export const WalletInfo = ({ wallet, balance, currentChainId, onboard, addressBo
         </Typography>
       </Box>
 
-      <Box className={css.rowContainer}>
-        <Box className={css.row}>
-          <Typography variant="body2" color="primary.light">
-            Wallet
-          </Typography>
-          <Typography variant="body2">{wallet.label}</Typography>
-        </Box>
-
-        <Box className={css.row}>
-          <Typography variant="body2" color="primary.light">
-            Balance
-          </Typography>
-          <Typography variant="body2" textAlign="right">
-            <WalletBalance balance={balance} />
-
-            {currentChainId !== chainInfo?.chainId && (
-              <>
-                <Typography variant="body2" color="primary.light">
+      <div className="bg-gray-50 rounded-lg p-4 border-2 border-solid border-black">
+        <div className="grid gap-4">
+          <div>
+            <p className="text-sm text-gray-600 mb-1">Wallet</p>
+            <p className="font-semibold text-gray-800">{wallet.label}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600 mb-1">Balance</p>
+            <p className="font-semibold text-gray-800">
+              <WalletBalance balance={balance} />
+              {currentChainId !== chainInfo?.chainId && (
+                <>
                   ({chainInfo?.chainName || 'Unknown chain'})
-                </Typography>
-              </>
-            )}
-          </Typography>
-        </Box>
-      </Box>
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <Box display="flex" flexDirection="column" gap={2} width={1}>
+      <Box display="flex" flexDirection="column" gap={1} width={1}>
         <ChainSwitcher fullWidth />
 
-        <Button variant="contained" size="small" onClick={handleSwitchWallet} fullWidth>
-          Switch wallet
-        </Button>
+        <button onClick={handleSwitchWallet} className="pixelBtn transform transition-transform hover:scale-[1.02]">
+          Switch Chain
+        </button>
 
-        <Button
-          onClick={handleDisconnect}
-          variant="danger"
-          size="small"
-          fullWidth
-          disableElevation
-          startIcon={<PowerSettingsNewIcon />}
-        >
+        <button onClick={handleDisconnect} className="pixelRedBtn transform transition-transform hover:scale-[1.02]">
+          <PowerSettingsNewIcon className="mr-1" />
           Disconnect
-        </Button>
+        </button>
       </Box>
     </>
   )

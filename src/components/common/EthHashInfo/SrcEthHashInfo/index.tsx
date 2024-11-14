@@ -63,7 +63,7 @@ const SrcEthHashInfo = ({
   const addressElement = (
     <>
       {address === undefined ? (
-        "Not connected"
+        'Not connected'
       ) : (
         <>
           {showPrefix && shouldPrefix && prefix && <>{prefix}: </>}
@@ -91,7 +91,11 @@ const SrcEthHashInfo = ({
       <Box overflow="hidden" className={onlyName ? css.inline : undefined} gap={0.5}>
         {name && (
           <Box title={name} display="flex" alignItems="center" gap={0.5}>
-            <Box overflow="hidden" textOverflow="ellipsis" className="font-londrina-light text-[12px] sm:text-[16px] md:text-[20px]">
+            <Box
+              overflow="hidden"
+              textOverflow="ellipsis"
+              className="font-londrina-light text-[12px] sm:text-[16px] md:text-[20px]"
+            >
               {name}
             </Box>
 

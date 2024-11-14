@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { type ConnectedWallet } from '@/hooks/wallets/useOnboard'
 import WalletOverview from '../WalletOverview'
 import WalletInfo from '@/components/common/WalletInfo'
+import Image from 'next/image'
 
 export const AccountCenter = ({ wallet }: { wallet: ConnectedWallet }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
