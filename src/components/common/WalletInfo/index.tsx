@@ -83,7 +83,7 @@ export const WalletInfo = ({ wallet, balance, currentChainId, onboard, addressBo
         <ChainSwitcher fullWidth />
 
         <button onClick={handleSwitchWallet} className="pixel-btn transform transition-transform hover:scale-[1.02]">
-          Switch Chain
+          Switch Wallet
         </button>
 
         <button onClick={handleDisconnect} className="pixelRedBtn flex justify-center items-center gap-x-1 transform transition-transform hover:scale-[1.02]">
