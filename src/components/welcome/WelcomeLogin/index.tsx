@@ -50,7 +50,9 @@ const WelcomeLogin = () => {
         </div>
       )}
       <div className="space-y-3 lg:space-y-12 text-center w-full justify-center">
-        <WalletLogin onLogin={onLogin} onContinue={redirect} />
+        <div className="m-4 lg:m-7">
+          <WalletLogin onLogin={onLogin} onContinue={redirect} />
+        </div>
         {!wallet && (
           <button className="group relative w-full">
             <Link href={AppRoutes.newSafe.load}>
