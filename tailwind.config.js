@@ -10,10 +10,10 @@ export default {
         "ka-ching-white": '#FDF8FF',
       },
       fontFamily: {
-        londrina: ['LondrinaSolid', 'sans-serif'],
-        nountown: ['Nountown', 'sans-serif'],
-        "londrina-light": ['LondrinaLight', 'sans-serif'],
-        "press-start2p": ['PressStart2P', 'monospace']
+        londrina: ['var(--font-londrina)'],
+        "londrina-light": ['var(--font-nunito)', 'sans-serif'],
+        "press-start2p": ['var(--font-press-start-2p)', 'monospace'],
+        nountown: ['Nountown', 'sans-serif']
       }
     },
   },

@@ -6,30 +6,9 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'PressStart2P';
-  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Nountown';
   src: url('/fonts/nountown.otf') format('opentype');
   font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'LondrinaSolid';
-  src: url('/fonts/LondrinaSolid-Black.ttf') format('truetype');
-  font-weight: normal; /* Black weight */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'LondrinaLight';
-  src: url('/fonts/LondrinaSolid-Light.ttf') format('truetype');
-  font-weight: normal; /* Black weight */
   font-style: normal;
 }
 
@@ -206,6 +185,7 @@ button, [role=button] {
                 /* Bottom-left corner */
             4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
     );
+    @apply transform transition-transform  hover:scale-[1.02]
 }
 
 .pixel-btn::after {
@@ -229,7 +209,7 @@ button, [role=button] {
     );
 }
 
-.pixelWhiteBtn {
+.pixel-white-btn {
     position: relative;
     background: #FFC110;
     color: #000;
@@ -249,7 +229,7 @@ button, [role=button] {
 }
 
 /* White inner area */
-.pixelWhiteBtn::after {
+.pixel-white-btn::after {
     content: '';
     position: absolute;
     top: -2px;

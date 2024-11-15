@@ -157,7 +157,7 @@ const OwnerPolicyStep = ({
         </Box>
         <Box className="w-full mt-12">
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
-            <button className="flex justify-center items-center gap-x-1 pixelWhiteBtn transform transition-transform hover:scale-[1.02]" onClick={handleBack}>
+            <button className="flex justify-center items-center gap-x-1 pixel-white-btn transform transition-transform hover:scale-[1.02]" onClick={handleBack}>
               <ArrowBackIcon fontSize="small" />
               Back
             </button>

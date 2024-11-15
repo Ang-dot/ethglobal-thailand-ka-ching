@@ -462,7 +462,7 @@ const ReviewStep = ({ data, onSubmit, onBack, setStep }: StepRenderProps<NewSafe
         {submitError && <ErrorMessage className={css.errorMessage}>{submitError}</ErrorMessage>}
         <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
           <button
-            className="flex justify-center items-center gap-x-1 pixelWhiteBtn transform transition-transform hover:scale-[1.02]"
+            className="flex justify-center items-center gap-x-1 pixel-white-btn transform transition-transform hover:scale-[1.02]"
             onClick={handleBack}
           >
             <ArrowBackIcon fontSize="small" />

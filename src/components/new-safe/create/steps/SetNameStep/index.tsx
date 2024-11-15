@@ -154,7 +154,7 @@ function SetNameStep({
         </Box>
         <Box className="w-full mt-12">
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
-            <button className="pixelWhiteBtn transform transition-transform hover:scale-[1.02]" onClick={onCancel}>
+            <button className="pixel-white-btn transform transition-transform hover:scale-[1.02]" onClick={onCancel}>
               Cancel
             </button>
             <button

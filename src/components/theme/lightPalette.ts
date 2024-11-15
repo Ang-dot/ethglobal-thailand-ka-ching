@@ -46,7 +46,7 @@ const lightPalette = {
   },
   background: {
     default: '#F4F4F4',
-    main: '#F4F4F4',
+    main: '#FDF8FF',
     paper: '#FFFFFF',
     light: '#EFFFF4',
   },
