@@ -1,6 +1,6 @@
 import { FormControl, FormControlLabel, InputLabel, Radio, RadioGroup, SvgIcon, Tooltip } from '@mui/material'
 import { Controller, useFormContext } from 'react-hook-form'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { safeFormatUnits } from '@/utils/formatters'
 import type { TokenInfo } from '@safe-global/safe-gateway-typescript-sdk'
 import { TokenTransferFields, TokenTransferType } from '@/components/tx-flow/flows/TokenTransfer'
@@ -141,7 +141,7 @@ const SpendingLimitRow = ({
               }
               control={<Radio />}
               componentsProps={{ typography: { variant: 'body2' } }}
-              className={classNames(css.label, { [css.spendingLimit]: !isOnlySpendLimitBeneficiary })}
+              className={classnames(css.label, { [css.spendingLimit]: !isOnlySpendLimitBeneficiary })}
             />
           </RadioGroup>
         )}

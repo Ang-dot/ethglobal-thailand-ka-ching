@@ -31,7 +31,7 @@ export type EthHashInfoProps = {
   trusted?: boolean
   ExplorerButtonProps?: ExplorerButtonProps
   isAddressBookName?: boolean
-  nameTailwindCSS?: string
+  nameClassname?: string
 }
 
 const stopPropagation = (e: SyntheticEvent) => e.stopPropagation()
@@ -54,7 +54,7 @@ const SrcEthHashInfo = ({
   children,
   trusted = true,
   isAddressBookName = false,
-  nameTailwindCSS,
+  nameClassname,
 }: EthHashInfoProps): ReactElement => {
   const shouldPrefix = isAddress(address)
   const theme = useTheme()
@@ -93,7 +93,7 @@ const SrcEthHashInfo = ({
       <Box overflow="hidden" className={onlyName ? css.inline : undefined} gap={0.5}>
         {name && (
           <Box title={name} display="flex" alignItems="center" gap={0.5}>
-            <Box overflow="hidden" textOverflow="ellipsis" className={nameTailwindCSS}>
+            <Box overflow="hidden" textOverflow="ellipsis" className={nameClassname}>
               {name}
             </Box>
 

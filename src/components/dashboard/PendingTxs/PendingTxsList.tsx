@@ -16,7 +16,7 @@ import { useRecoveryQueue } from '@/features/recovery/hooks/useRecoveryQueue'
 import type { SafeInfo, Transaction } from '@safe-global/safe-gateway-typescript-sdk'
 import type { RecoveryQueueItem } from '@/features/recovery/services/recovery-state'
 import EthLoader from "@/components/common/EthLoader";
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 const PendingRecoveryListItem = dynamic(() => import('./PendingRecoveryListItem'))
 
@@ -37,7 +37,7 @@ const EmptyState = () => {
 }
 
 const LoadingState = () => (
-  <div className="h-[250px] w-full">
+  <div className="h-[200px] w-full">
     <EthLoader id="loader-5" />
   </div>
 )
@@ -111,7 +111,7 @@ const PendingTxsList = (): ReactElement | null => {
       {loading ? (
         <LoadingState />
       ) : totalTxs > 0 ? (
-        <div className={classNames(css.list, "h-full")}>
+        <div className={classnames(css.list, "h-full")}>
           {recoveryTxs.map((tx) => (
             <PendingRecoveryListItem transaction={tx} key={tx.transactionHash} />
           ))}

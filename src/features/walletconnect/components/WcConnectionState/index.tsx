@@ -1,5 +1,5 @@
 import { SvgIcon, Typography } from '@mui/material'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import type { CoreTypes } from '@walletconnect/types'
 import SafeAppIconCard from '@/components/safe-apps/SafeAppIconCard'
 import SafeLogo from '@/public/images/logo-no-text.svg'
@@ -19,7 +19,7 @@ const WcConnectionState = ({ metadata, isDelete }: { metadata?: CoreTypes.Metada
           component={ConnectionDots}
           inheritViewBox
           sx={{ mx: 2 }}
-          className={classNames(css.dots, { [css.errorDots]: isDelete })}
+          className={classnames(css.dots, { [css.errorDots]: isDelete })}
         />
 
         <SafeAppIconCard src={icon} width={28} height={28} alt={`${name} logo`} />

@@ -2,7 +2,7 @@ import { useMemo, type ReactElement } from 'react'
 import { Accordion, AccordionSummary, Typography, AccordionDetails, Box } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import CodeIcon from '@mui/icons-material/Code'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { SafeMessageStatus, type SafeMessage } from '@safe-global/safe-gateway-typescript-sdk'
 
 import { formatDateTime } from '@/utils/date'
@@ -77,7 +77,7 @@ const MsgDetails = ({ msg }: { msg: SafeMessage }): ReactElement => {
         </div>
 
         {msg.preparedSignature && (
-          <div className={classNames(txDetailsCss.txSummary, txDetailsCss.multiSend)}>
+          <div className={classnames(txDetailsCss.txSummary, txDetailsCss.multiSend)}>
             <TxDataRow title="Prepared signature:">{generateDataRowValue(msg.preparedSignature, 'hash')}</TxDataRow>
           </div>
         )}

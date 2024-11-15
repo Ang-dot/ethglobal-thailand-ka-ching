@@ -49,7 +49,7 @@ export const WalletInfo = ({ wallet, balance, currentChainId, onboard, addressBo
           <EthHashInfo
             address={wallet.address}
             name={addressBook[wallet.address] || wallet.ens || wallet.label + ' Wallet'}
-            nameTailwindCSS="text-lg font-semibold text-gray-800"
+            nameClassname="text-lg font-semibold text-gray-800"
             showAvatar={false}
             showPrefix={false}
             hasExplorer

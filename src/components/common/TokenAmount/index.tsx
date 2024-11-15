@@ -4,7 +4,7 @@ import { TransferDirection } from '@safe-global/safe-gateway-typescript-sdk'
 import css from './styles.module.css'
 import { formatVisualAmount } from '@/utils/formatters'
 import TokenIcon from '../TokenIcon'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 const PRECISION = 20
 
@@ -33,7 +33,7 @@ const TokenAmount = ({
 
   return (
     <Tooltip title={fullAmount}>
-      <span className={classNames(css.container, { [css.verticalAlign]: logoUri })}>
+      <span className={classnames(css.container, { [css.verticalAlign]: logoUri })}>
         {logoUri && <TokenIcon logoUri={logoUri} tokenSymbol={tokenSymbol} fallbackSrc={fallbackSrc} className="max-h-[260px]" />}
         <b>
           {sign}

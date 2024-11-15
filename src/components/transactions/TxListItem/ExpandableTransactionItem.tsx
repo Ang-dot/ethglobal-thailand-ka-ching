@@ -8,7 +8,7 @@ import { isCreationTxInfo } from '@/utils/transaction-guards'
 import { useContext } from 'react'
 import { BatchExecuteHoverContext } from '@/components/transactions/BatchExecuteButton/BatchExecuteHoverProvider'
 import css from './styles.module.css'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { trackEvent, TX_LIST_EVENTS } from '@/services/analytics'
 
 type ExpandableTransactionItemProps = {
@@ -38,7 +38,7 @@ export const ExpandableTransactionItem = ({
       }}
       elevation={0}
       defaultExpanded={!!txDetails}
-      className={classNames(css.listItem, { [css.batched]: isBatched })}
+      className={classnames(css.listItem, { [css.batched]: isBatched })}
       data-testid={testId}
       onChange={(_, expanded) => {
         if (expanded) {

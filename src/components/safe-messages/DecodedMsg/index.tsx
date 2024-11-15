@@ -5,7 +5,7 @@ import { type EIP712Normalized, normalizeTypedData } from '@/utils/web3'
 import { Box, Typography } from '@mui/material'
 import type { SafeMessage } from '@safe-global/safe-gateway-typescript-sdk'
 import { ErrorBoundary } from '@sentry/react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { isAddress } from 'ethers'
 import type { ReactElement } from 'react'
 import Msg from '../Msg'
@@ -79,7 +79,7 @@ export const DecodedMsg = ({
 
   return (
     <Box
-      className={classNames(css.container, { [css.scrollable]: isInModal })}
+      className={classnames(css.container, { [css.scrollable]: isInModal })}
       sx={{
         borderRadius: (theme) => `${theme.shape.borderRadius}px`,
       }}

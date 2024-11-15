@@ -1,5 +1,5 @@
 import { SvgIcon, Typography } from '@mui/material'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 import SafeAppIcon from '@/public/images/apps/apps-icon.svg'
 
@@ -13,7 +13,7 @@ const CustomAppPlaceholder = ({ error = '' }: CustomAppPlaceholderProps) => {
   return (
     <div className={css.customAppPlaceholderContainer}>
       <SvgIcon
-        className={classNames({
+        className={classnames({
           [css.customAppPlaceholderIconError]: error,
           [css.customAppPlaceholderIconDefault]: !error,
         })}

@@ -5,7 +5,7 @@ import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import { resolveHref } from 'next/dist/client/resolve-href'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import type { ReactNode, SyntheticEvent } from 'react'
 import type { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk'
 import type { NextRouter } from 'next/router'
@@ -155,7 +155,7 @@ export const SafeAppCardContainer = ({
 
   return (
     <Link href={safeAppUrl} passHref rel="noreferrer" onClick={handleClickSafeApp}>
-      <Card className={classNames(css.safeAppContainer, className)} sx={{ height }}>
+      <Card className={classnames(css.safeAppContainer, className)} sx={{ height }}>
         {children}
       </Card>
     </Link>

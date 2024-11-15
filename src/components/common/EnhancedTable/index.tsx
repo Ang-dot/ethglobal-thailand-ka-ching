@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import Paper from '@mui/material/Paper'
 import { visuallyHidden } from '@mui/utils'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 import css from './styles.module.css'
 import { Collapse } from '@mui/material'
@@ -80,7 +80,7 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
               width: headCell.width ? headCell.width : '',
               textAlign: headCell.align ? headCell.align : '',
             }}
-            className={classNames({ sticky: headCell.sticky })}
+            className={classnames({ sticky: headCell.sticky })}
           >
             {headCell.label && (
               <>
@@ -156,7 +156,7 @@ function EnhancedTable({ rows, headCells, mobileVariant }: EnhancedTableProps) {
                   {Object.entries(row.cells).map(([key, cell]) => (
                     <TableCell
                       key={key}
-                      className={classNames({
+                      className={classnames({
                         sticky: cell.sticky,
                         [css.collapsedCell]: row.collapsed,
                       })}

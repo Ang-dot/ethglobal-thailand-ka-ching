@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import css from '@/components/tx-flow/flows/SuccessScreen/styles.module.css'
 import { isTimeoutError } from '@/utils/ethers-utils'
 
@@ -15,7 +15,7 @@ export const DefaultStatus = ({ error }: Props) => (
       {error ? TRANSACTION_FAILED : TRANSACTION_SUCCESSFUL}
     </Typography>
     {error && (
-      <Box className={classNames(css.instructions, error ? css.errorBg : css.infoBg)}>
+      <Box className={classnames(css.instructions, error ? css.errorBg : css.infoBg)}>
         <Typography variant="body2">
           {error ? (isTimeoutError(error) ? 'Transaction timed out' : error.message) : ''}
         </Typography>

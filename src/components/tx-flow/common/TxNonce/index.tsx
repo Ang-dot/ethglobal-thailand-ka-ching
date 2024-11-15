@@ -29,14 +29,14 @@ import usePreviousNonces from '@/hooks/usePreviousNonces'
 import { isRejectionTx } from '@/utils/transactions'
 
 import css from './styles.module.css'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 const CustomPopper = function ({
   // Don't set width of Popper to that of the field
   className,
   ...props
 }: PopperProps) {
-  return <Popper {...props} className={classNames(className, css.popper)} style={undefined} placement="bottom-start" />
+  return <Popper {...props} className={classnames(className, css.popper)} style={undefined} placement="bottom-start" />
 }
 
 const NonceFormHeader = memo(function NonceFormSubheader({ children, ...props }: ListSubheaderProps) {
@@ -250,7 +250,7 @@ const TxNonceForm = ({ nonce, recommendedNonce }: { nonce: string; recommendedNo
                         </InputAdornment>
                       ) : null,
                     }}
-                    className={classNames([
+                    className={classnames([
                       css.input,
                       {
                         [css.withAdornment]: showRecommendedNonceButton,

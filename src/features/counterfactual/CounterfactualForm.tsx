@@ -10,7 +10,7 @@ import { TX_EVENTS, TX_TYPES } from '@/services/analytics/events/transactions'
 import madProps from '@/utils/mad-props'
 import React, { type ReactElement, type SyntheticEvent, useContext, useState } from 'react'
 import { CircularProgress, Box, Button, CardActions, Divider, Alert } from '@mui/material'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 import ErrorMessage from '@/components/tx/ErrorMessage'
 import { trackError, Errors } from '@/services/exceptions'
@@ -134,7 +134,7 @@ export const CounterfactualForm = ({
           </ul>
         </Alert>
 
-        <div className={classNames(css.params)}>
+        <div className={classnames(css.params)}>
           <AdvancedParams
             willExecute
             params={advancedParams}

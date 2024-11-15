@@ -5,7 +5,7 @@ import Kiln from '@/public/images/common/kiln.svg'
 import StakeIllustrationLight from '@/public/images/common/stake-illustration-light.svg'
 import StakeIllustrationDark from '@/public/images/common/stake-illustration-dark.svg'
 import StakeIcon from '@/public/images/common/stake.svg'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
@@ -65,11 +65,11 @@ const StakingBanner = ({
       <>
         <Card className={`${css.bannerWrapper} ${css.bannerWrapperLarge}`}>
           <Box sx={{ display: { xs: 'none', sm: 'block' }, position: 'relative' }} mr={{ sm: -8, md: -4, lg: 0 }}>
-            <Box className={classNames(css.gradientShadow, { [css.gradientShadowDarkMode]: isDarkMode })} />
+            <Box className={classnames(css.gradientShadow, { [css.gradientShadowDarkMode]: isDarkMode })} />
             <SvgIcon
               component={isDarkMode ? StakeIllustrationLight : StakeIllustrationDark}
               inheritViewBox
-              className={classNames(css.stakeIllustration)}
+              className={classnames(css.stakeIllustration)}
             />
           </Box>
 
@@ -83,7 +83,7 @@ const StakingBanner = ({
                   component={Kiln}
                   inheritViewBox
                   color="border"
-                  className={classNames(css.kilnIcon, { [css.kilnIconDarkMode]: isDarkMode })}
+                  className={classnames(css.kilnIcon, { [css.kilnIconDarkMode]: isDarkMode })}
                 />
               </Stack>
             </Grid>
@@ -92,7 +92,7 @@ const StakingBanner = ({
               <Typography
                 variant="h2"
                 fontWeight={700}
-                className={classNames(css.header, { [css.gradientText]: isDarkMode })}
+                className={classnames(css.header, { [css.gradientText]: isDarkMode })}
               >
                 Stake your ETH and earn rewards
               </Typography>
@@ -138,7 +138,7 @@ const StakingBanner = ({
   return (
     <>
       <Card className={css.bannerWrapper}>
-        {!isDarkMode && <Box className={classNames(css.gradientBackground)} />}
+        {!isDarkMode && <Box className={classnames(css.gradientBackground)} />}
 
         <Stack
           direction={{ xs: 'column', md: 'row' }}
@@ -182,7 +182,7 @@ const StakingBanner = ({
               passHref
               rel="noreferrer"
               onClick={onClick}
-              className={classNames(css.stakeButton)}
+              className={classnames(css.stakeButton)}
             >
               <Button fullWidth size="small" variant="contained">
                 Stake

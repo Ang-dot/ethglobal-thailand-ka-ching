@@ -11,7 +11,7 @@ import type { NamedAddress } from '@/components/new-safe/create/types'
 import useWallet from '@/hooks/wallets/useWallet'
 import { sameAddress } from '@/utils/addresses'
 import css from './styles.module.css'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 export const OwnerRow = ({
   index,
@@ -75,7 +75,7 @@ export const OwnerRow = ({
       alignItems="center"
       marginBottom={3}
       flexWrap={['wrap', undefined, 'nowrap']}
-      className={classNames({ [css.helper]: walletIsOwner })}
+      className={classnames({ [css.helper]: walletIsOwner })}
     >
       <Grid item xs={12} md={8}>
         <FormControl fullWidth>

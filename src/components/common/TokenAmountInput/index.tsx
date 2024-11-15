@@ -6,7 +6,7 @@ import NumberField from '@/components/common/NumberField'
 import { validateDecimalLength, validateLimitedAmount } from '@/utils/validation'
 import { AutocompleteItem } from '@/components/tx-flow/flows/TokenTransfer/CreateTokenTransfer'
 import { useFormContext } from 'react-hook-form'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useCallback } from 'react'
 
 export enum TokenAmountFields {
@@ -55,7 +55,7 @@ const TokenAmountInput = ({
   return (
     <FormControl
       data-testid="token-amount-section"
-      className={classNames(css.outline, { [css.error]: isAmountError })}
+      className={classnames(css.outline, { [css.error]: isAmountError })}
       fullWidth
     >
       <InputLabel shrink required className={css.label}>

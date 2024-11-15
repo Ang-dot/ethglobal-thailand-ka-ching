@@ -1,6 +1,6 @@
 import { type ReactElement, type ReactNode, type SyntheticEvent, useState } from 'react'
 import { Link, Typography, SvgIcon, AlertTitle } from '@mui/material'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import WarningIcon from '@/public/images/notifications/warning.svg'
 import InfoIcon from '@/public/images/notifications/info.svg'
 import css from './styles.module.css'
@@ -28,7 +28,7 @@ const ErrorMessage = ({
   }
 
   return (
-    <div data-testid="error-message" className={classNames(css.container, css[level], className, 'errorMessage')}>
+    <div data-testid="error-message" className={classnames(css.container, css[level], className, 'errorMessage')}>
       <div className={css.message}>
         <SvgIcon
           component={level === 'info' ? InfoIcon : WarningIcon}

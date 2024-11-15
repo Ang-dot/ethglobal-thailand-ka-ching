@@ -10,7 +10,7 @@ import DateTime from '@/components/common/DateTime'
 import TxInfo from '@/components/transactions/TxInfo'
 import { isMultisigExecutionInfo, isTxQueued } from '@/utils/transaction-guards'
 import TxType from '@/components/transactions/TxType'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { isImitation, isTrustedTx } from '@/utils/transactions'
 import MaliciousTxWarning from '../MaliciousTxWarning'
 import QueueActions from './QueueActions'
@@ -41,7 +41,7 @@ const TxSummary = ({ item, isConflictGroup, isBulkGroup }: TxSummaryProps): Reac
   return (
     <Box
       data-testid="transaction-item"
-      className={classNames(css.gridContainer, {
+      className={classnames(css.gridContainer, {
         [css.history]: !isQueue,
         [css.conflictGroup]: isConflictGroup,
         [css.bulkGroup]: isBulkGroup,
