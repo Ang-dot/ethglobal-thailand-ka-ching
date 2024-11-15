@@ -94,8 +94,8 @@ const useSafeNotifications = (): void => {
         groupKey: OUTDATED_VERSION_KEY,
 
         message: isUnsupported
-          ? `Safe Account version ${version} is not supported by this web app anymore. You can update your Safe Account via the CLI.`
-          : `Your Safe Account version ${version} is out of date. Please update it.`,
+          ? `Ka-Ching Account version ${version} is not supported by this web app anymore. You can update your Ka-Ching Account via the CLI.`
+          : `Your Ka-Ching Account version ${version} is out of date. Please update it.`,
 
         link: isUnsupported
           ? CLI_LINK
@@ -104,7 +104,7 @@ const useSafeNotifications = (): void => {
                 pathname: AppRoutes.settings.setup,
                 query: { safe: query.safe },
               },
-              title: 'Update Safe Account',
+              title: 'Update Ka-Ching Account',
             },
 
         onClose: () => dismissUpdateNotification(OUTDATED_VERSION_KEY),
@@ -137,9 +137,9 @@ const useSafeNotifications = (): void => {
     const isMigrationPossible = isMigrationToL2Possible(safe)
 
     const message = isMigrationPossible
-      ? `This Safe Account was created with an unsupported base contract.
+      ? `This Ka-Ching Account was created with an unsupported base contract.
            It is possible to migrate it to a compatible base contract. This migration will be automatically included with your first transaction.`
-      : `This Safe Account was created with an unsupported base contract.
+      : `This Ka-Ching Account was created with an unsupported base contract.
            The web interface might not work correctly.
            We recommend using the command line interface instead.`
 

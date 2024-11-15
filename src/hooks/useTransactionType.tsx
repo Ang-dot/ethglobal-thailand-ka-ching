@@ -55,7 +55,7 @@ export const getTransactionType = (tx: TransactionSummary, addressBook: AddressB
     case TransactionInfoType.CREATION: {
       return {
         icon: toAddress?.logoUri || '/images/transactions/settings.svg',
-        text: 'Safe Account created',
+        text: 'Ka-Ching Account created',
       }
     }
     case TransactionInfoType.SWAP_TRANSFER:
