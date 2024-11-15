@@ -102,7 +102,7 @@ const PendingTxsList = (): ReactElement | null => {
   )
 
   return (
-    <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6 h-full space-y-4">
+    <div className="pixel-card hover:scale-[1.02] p-6 h-full space-y-4">
       <div className="flex flex-row w-full items-center">
         <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px] flex-grow">Pending
           Transactions</h3>

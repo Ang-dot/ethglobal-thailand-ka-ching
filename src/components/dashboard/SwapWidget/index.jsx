@@ -10,7 +10,7 @@ const SwapWidget = () => {
   const router = useRouter()
 
   return (
-    <div className="pixel-card transform transition-transform hover:scale-[1.02] bg-white">
+    <div className="pixel-card hover:scale-[1.02] bg-white">
       <div className="relative w-full max-w-2xl p-8">
         <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-gradient-to-bl from-yellow-100/50 to-transparent" />
 

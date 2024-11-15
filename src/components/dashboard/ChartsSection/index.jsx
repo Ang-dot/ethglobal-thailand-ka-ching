@@ -178,7 +178,7 @@ const ChartsSection = () => {
     <div className="grid grid-cols-1 xl:grid-cols-1 2xl:grid-cols-6 gap-6">
       {/* Risky Transaction Alerts Card */}
       <div className="2xl:col-span-2">
-        <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6 h-full">
+        <div className="pixel-card hover:scale-[1.02] p-6 h-full">
           <div className="pb-4">
             <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px]">
               Risky Transaction Alerts
@@ -205,7 +205,7 @@ const ChartsSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 2xl:col-span-4">
         {/* Transaction Frequency Card */}
         <div className="lg:col-span-2">
-          <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6 h-full">
+          <div className="pixel-card hover:scale-[1.02] p-6 h-full">
             <div className="pb-4">
               <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px]">
                 Transaction Frequency Over Time
@@ -233,7 +233,7 @@ const ChartsSection = () => {
 
         {/* Transaction Type Breakdown Card */}
         <div className="lg:col-span-2">
-          <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6 h-full">
+          <div className="pixel-card hover:scale-[1.02] p-6 h-full">
             <div className="pb-4">
               <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px]">
                 Transaction Type Breakdown

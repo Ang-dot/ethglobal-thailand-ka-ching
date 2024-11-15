@@ -49,7 +49,7 @@ button, [role=button] {
 }
 
 .pixel-card {
-  @apply relative flex flex-col overflow-visible;
+  @apply relative transform transition-transform flex flex-col overflow-visible;
 }
 
 /* Black border created by clip-path */

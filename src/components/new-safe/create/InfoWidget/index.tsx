@@ -11,12 +11,12 @@ import {
   Typography,
 } from '@mui/material'
 import type { AlertColor } from '@mui/material'
-import React, { ReactElement } from 'react'
+import type { ReactElement } from 'react'
+import React from 'react'
 import LightbulbIcon from '@/public/images/common/lightbulb.svg'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import css from 'src/components/new-safe/create/InfoWidget/styles.module.css'
 import { CREATE_SAFE_EVENTS, trackEvent } from '@/services/analytics'
-import CopyIcon from "@/public/images/common/copy.svg";
 
 type InfoWidgetProps = {
   title: string
@@ -38,7 +38,7 @@ const InfoWidget = ({ title, steps, variant, startExpanded = false }: InfoWidget
         },
         '&::after': {
           background: ({ palette }) => `${palette[variant]?.background} !important`,
-        }
+        },
       }}
       className="pixel-card p-5 space-y-4"
     >
@@ -46,7 +46,11 @@ const InfoWidget = ({ title, steps, variant, startExpanded = false }: InfoWidget
         className="p-0"
         title={
           <Box className={css.title}>
-            <SvgIcon component={LightbulbIcon} inheritViewBox sx={{color: ({ palette }) => palette[variant]?.light }} />
+            <SvgIcon
+              component={LightbulbIcon}
+              inheritViewBox
+              sx={{ color: ({ palette }) => palette[variant]?.light }}
+            />
             <Typography className="font-bold text-xl" sx={{ color: ({ palette }) => palette[variant]?.main }}>
               {title}
             </Typography>
@@ -74,7 +78,7 @@ const InfoWidget = ({ title, steps, variant, startExpanded = false }: InfoWidget
                   {title}
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2" >{text}</Typography>
+                  <Typography variant="body2">{text}</Typography>
                 </AccordionDetails>
               </Accordion>
             )

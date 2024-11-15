@@ -63,7 +63,7 @@ const Overview = (): ReactElement => {
       {isLoading ? (
         SkeletonOverview
       ) : (
-        <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6">
+        <div className="pixel-card hover:scale-[1.02] p-6">
           <div className="flex items-center gap-4">
             <div className="bg-black p-2 rounded-full">
               <div className="w-6 h-6 bg-gray-300 rounded-full" />

@@ -10,7 +10,7 @@ const WelcomeIntro = () => {
   ];
 
   return (
-    <div className="pixel-card transform transition-transform hover:scale-[1.02] h-full">
+    <div className="pixel-card hover:scale-[1.02] h-full">
       <div className="space-y-4 p-4 lg:p-8 flex flex-col items-center">
         <h2
           className="text-black font-londrina font-[1000] text-xl sm:text-xl md:text-[30px] leading-tight sm:leading-relaxed md:leading-[37.86px] text-center">
