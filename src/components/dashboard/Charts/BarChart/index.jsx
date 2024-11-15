@@ -3,9 +3,9 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-const HeatMap = ({ data }) => {
+const BarChart = ({ data }) => {
   const labels = data.map(item => item.transactionID);
-  const heatmapData = {
+  const barChartData = {
     labels,
     datasets: [
       {
@@ -39,8 +39,13 @@ const HeatMap = ({ data }) => {
   return (
     <div className="h-full">
       <Bar
-        data={heatmapData}
+        data={barChartData}
         options={{
+          layout: {
+            padding: {
+              top: 20,
+            },
+          },
           scales: {
             y: {
               beginAtZero: true,
@@ -48,17 +53,33 @@ const HeatMap = ({ data }) => {
             },
             x: {
               stacked: true,
+              ticks: {
+                font: {
+                  size: 10,
+                },
+                maxTicksLimit: 5,
+              },
             },
           },
           plugins: {
             legend: {
               position: 'top',
+              labels: {
+                font: {
+                  size: 10,
+                },
+                padding: 8,
+              },
             },
           },
+          barThickness: 20,
+          barPercentage: 0.8,
+          maintainAspectRatio: false,
+          aspectRatio: 0.5,
         }}
       />
     </div>
   );
 };
 
-export default HeatMap;
+export default BarChart;

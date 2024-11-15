@@ -6,9 +6,8 @@ import 'chart.js/auto';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import DoughnutChart from "@/components/dashboard/Charts/DoughnutChart";
-import HeatMap from "@/components/dashboard/Charts/HeatMap";
+import BarChart from "@/components/dashboard/Charts/BarChart";
 import EthLoader from "@/components/common/EthLoader";
-import { useRouter } from 'next/router'
 
 const contractABI = [
   {
@@ -83,7 +82,6 @@ const ChartsSection = () => {
   const [isHeatLoading, setIsHeatLoading] = useState(true);
   const [isDonutLoading, setIsDonutLoading] = useState(true);
   const [error, setError] = useState(null);
-  const router = useRouter()
 
   const fetchWeekData = async () => {
     setIsLoading(true);
@@ -194,7 +192,7 @@ const ChartsSection = () => {
             ) : error ? (
               <p>{error}</p>
             ) : weekData.length > 0 ? (
-              <HeatMap data={riskyTransactionAlerts} />
+              <BarChart data={riskyTransactionAlerts} />
             ) : (
               <p>No data available</p>
             )}
