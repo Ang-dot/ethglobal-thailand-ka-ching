@@ -3,11 +3,12 @@ import { safeCreationPendingStatuses } from '@/features/counterfactual/hooks/use
 import { SafeCreationEvent, safeCreationSubscribe } from '@/features/counterfactual/services/safeCreationEvents'
 import { useChain, useCurrentChain } from '@/hooks/useChains'
 import { useEffect, useState } from 'react'
-import { Box, Button, Dialog, DialogContent, Typography } from '@mui/material'
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
+import { Box, Dialog, DialogContent, IconButton, Typography } from "@mui/material";
 import type { ChainInfo } from '@safe-global/safe-gateway-typescript-sdk'
 import NetworkLogosList from '../multichain/components/NetworkLogosList'
 import useAllAddressBooks from '@/hooks/useAllAddressBooks'
+import css from "@/components/common/TxModalDialog/styles.module.css";
+import CloseIcon from "@mui/icons-material/Close";
 
 const CounterfactualSuccessScreen = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -56,69 +57,70 @@ const CounterfactualSuccessScreen = () => {
   }
 
   return (
-    <Dialog open={open}>
-      <DialogContent
+    <>
+      <Dialog
+        open={open}
+        PaperProps={{
+          className: 'border-black border-2 rounded-xl',
+        }}
         sx={{
-          py: 10,
-          px: 6,
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 3,
+          '& .MuiDialog-paper': {
+            width: 'min(500px, calc(100% - 64px))',
+          },
         }}
       >
-        <Box
-          sx={{
-            backgroundColor: ({ palette }) => palette.success.background,
-            padding: 3,
-            borderRadius: '50%',
-            display: 'inline-flex',
-          }}
-        >
-          <CheckRoundedIcon sx={{ width: 50, height: 50 }} color="success" />
-        </Box>
+        <DialogContent className="bg-[#D7D3CD] p-4 relative">
+          <div
+            className="flex flex-col justify-center items-center p-8 border-black border-2 bg-ka-ching-white rounded">
+            <div className="absolute top-4 right-4 border-2 border-black rounded-bl bg-[#D7D3CD]">
+              <button className="p-0.5" onClick={onClose}>
+                <CloseIcon fontSize="medium" className="text-[#ABAAA8]" />
+              </button>
+            </div>
+            <Box textAlign="center" className="font-londrina mt-4">
+              <div className="text-2xl mb-3">
+                {isCFCreation ? 'Your Account is Almost Set' : 'Your Account is All Set'}
+              </div>
+              <p className="font-light">
+                {isCFCreation
+                  ? `Activate the account ${
+                    isMultiChain ? 'per network' : ''
+                  } to unlock all features of your smart wallet.`
+                  : 'Start your journey to the smart account security now.'}
+                {' '}
+                {isCFCreation && isMultiChain
+                  ? `You can use the address below to receive funds on the selected ${
+                    isMultiChain ? 'networks' : 'network'
+                  }.`
+                  : `Use your address to receive funds ${chainName ? `on ${chainName}` : ''}`}
+              </p>
+            </Box>
 
-        <Box textAlign="center">
-          <Typography variant="h3" fontWeight="bold" mb={1}>
-            {isCFCreation ? 'Your account is almost set!' : 'Your account is all set!'}
-          </Typography>
-          <Typography variant="body2">
-            {isCFCreation
-              ? `Activate the account ${isMultiChain ? 'per network' : ''} to unlock all features of your smart wallet.`
-              : 'Start your journey to the smart account security now.'}
-          </Typography>
-          <Typography variant="body2">
-            {isCFCreation && isMultiChain
-              ? `You can use the address below to receive funds on the selected ${
-                  isMultiChain ? 'networks' : 'network'
-                }.`
-              : `Use your address to receive funds ${chainName ? `on ${chainName}` : ''}`}
-          </Typography>
-        </Box>
+            {safeAddress && (
+              <Box p={2} borderRadius={1} fontSize={14} className="mt-3">
+                <div className="flex justify-center mb-1">
+                  <NetworkLogosList networks={networks.length > 0 ? networks : chain ? [chain] : []} />
+                </div>
+                <Typography variant="h5">
+                  {safeName}
+                </Typography>
+                <EthHashInfo
+                  address={safeAddress}
+                  showCopyButton
+                  showAvatar={false}
+                  showName={false}
+                  showPrefix={false}
+                />
+              </Box>
+            )}
 
-        {safeAddress && (
-          <Box p={2} bgcolor="background.main" borderRadius={1} fontSize={14}>
-            <NetworkLogosList networks={networks.length > 0 ? networks : chain ? [chain] : []} />
-            <Typography variant="h5" mt={2}>
-              {safeName}
-            </Typography>
-            <EthHashInfo
-              address={safeAddress}
-              showCopyButton
-              shortAddress={false}
-              showAvatar={false}
-              showName={false}
-              showPrefix={false}
-            />
-          </Box>
-        )}
-
-        <Button variant="contained" onClick={onClose} data-testid="cf-creation-lets-go-btn">
-          Let&apos;s go
-        </Button>
-      </DialogContent>
-    </Dialog>
+            <button onClick={onClose} className="pixel-btn font-londrina !font-normal mt-8">
+              Let&apos;s go
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }
 
