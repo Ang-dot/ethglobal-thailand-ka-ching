@@ -25,7 +25,7 @@ const MAX_TXS = 4
 const EmptyState = () => {
   return (
     <Card>
-      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100%" gap={2}>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100%">
         <LoadingState />
 
         <Typography data-testid="no-tx-text" variant="body1" color="primary.light">
