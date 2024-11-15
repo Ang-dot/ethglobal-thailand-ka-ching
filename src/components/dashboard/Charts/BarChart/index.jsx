@@ -41,11 +41,6 @@ const BarChart = ({ data }) => {
       <Bar
         data={barChartData}
         options={{
-          layout: {
-            padding: {
-              top: 20,
-            },
-          },
           scales: {
             y: {
               beginAtZero: true,

@@ -79,21 +79,24 @@ const providerUrl = "https://sepolia.infura.io/v3/206aa1f4330a4ebc9969c8126a47a6
 const ChartsSection = () => {
   const [weekData, setWeekData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isHeatLoading, setIsHeatLoading] = useState(true);
-  const [isDonutLoading, setIsDonutLoading] = useState(true);
+  const [isBarChartLoading, setIsBarChartLoading] = useState(true);
+  const [isDonutChartLoading, setIsDonutChartLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchWeekData = async () => {
     setIsLoading(true);
-    setIsHeatLoading(true);
-    setIsDonutLoading(true);
+    setIsBarChartLoading(true);
+    setIsDonutChartLoading(true);
     setError(null);
+
+    setTimeout(() => setIsBarChartLoading(false), Math.random() * 9000 + 500);
+    setTimeout(() => setIsDonutChartLoading(false), Math.random() * 9000 + 500);
 
     if (typeof window.ethereum === 'undefined') {
       setError("Ethereum provider not detected. Please install MetaMask or use a Web3-enabled browser.");
       setIsLoading(false);
-      setIsHeatLoading(false);
-      setIsDonutLoading(false);
+      setIsBarChartLoading(false);
+      setIsDonutChartLoading(false);
       return;
     }
 
@@ -122,8 +125,6 @@ const ChartsSection = () => {
       setError(`Failed to fetch data: ${err.message}`);
     } finally {
       setIsLoading(false);
-      setIsHeatLoading(false);
-      setIsDonutLoading(false);
     }
   };
 
@@ -183,18 +184,14 @@ const ChartsSection = () => {
             </h3>
           </div>
           <div className="pt-4 h-full">
-            {isHeatLoading ? (
+            {isBarChartLoading ? (
               <div className="h-[300px]">
                 {' '}
                 {/* Adjust this height to match your chart */}
                 <EthLoader id="loader-1" />
               </div>
-            ) : error ? (
-              <p>{error}</p>
-            ) : weekData.length > 0 ? (
-              <BarChart data={riskyTransactionAlerts} />
             ) : (
-              <p>No data available</p>
+              <BarChart data={riskyTransactionAlerts} />
             )}
           </div>
         </div>
@@ -219,7 +216,7 @@ const ChartsSection = () => {
               ) : error ? (
                 <p>{error}</p>
               ) : weekData.length > 0 ? (
-                <div className="h-full">
+                <div className="h-[300px]">
                   <Line data={chartData} options={chartOptions} />
                 </div>
               ) : (
@@ -237,19 +234,17 @@ const ChartsSection = () => {
                 Transaction Type Breakdown
               </h3>
             </div>
-            <div className="pt-4 h-full">
-              {isDonutLoading ? (
+            <div className="h-full">
+              {isDonutChartLoading ? (
                 <div className="h-[300px]">
                   {' '}
                   {/* Adjust this height to match your chart */}
                   <EthLoader id="loader-3" />
                 </div>
-              ) : error ? (
-                <p>{error}</p>
-              ) : weekData.length > 0 ? (
-                <div>
+              ) : (
+                <div className="h-[200px]">
                   <DoughnutChart data={transactionTypeBreakdown} />
-                  <div className="space-y-2 pt-4">
+                  <div className="space-y-2 mt-4">
                     {transactionTypeBreakdown.map((item, index) => (
                       <div key={index} className="flex justify-between text-sm text-black">
                         <span>{item.transactionType}</span>
@@ -258,8 +253,6 @@ const ChartsSection = () => {
                     ))}
                   </div>
                 </div>
-              ) : (
-                <p>No data available</p>
               )}
             </div>
           </div>
