@@ -15,7 +15,7 @@ import FiatValue from '@/components/common/FiatValue'
 import { AppRoutes } from '@/config/routes'
 import { Button, Grid, Skeleton, Typography, useMediaQuery } from '@mui/material'
 import { useRouter } from 'next/router'
-import { type ReactElement, useContext } from 'react'
+import React, { type ReactElement, useContext } from 'react'
 import { WidgetBody, WidgetContainer } from '../styled'
 import { useTheme } from '@mui/material/styles'
 import { SWAP_EVENTS, SWAP_LABELS } from '@/services/analytics/events/swaps'
@@ -59,97 +59,33 @@ const Overview = (): ReactElement => {
   const buttonWidth = isSwapFeatureEnabled ? 4 : 6
 
   return (
-    <WidgetContainer>
-      <WidgetBody>
-        {isLoading ? (
-          SkeletonOverview
-        ) : (
-          <>
-            <Grid container pb={2} mt={3} gap={2} alignItems="flex-end" justifyContent="space-between">
-              <Grid item>
-                <Typography color="primary.light" fontWeight="bold" mb={1}>
-                  Total asset value
-                </Typography>
-                <Typography component="div" variant="h1" fontSize={44} lineHeight="40px">
-                  {safe.deployed ? (
-                    <FiatValue value={balances.fiatTotal} maxLength={20} precise />
-                  ) : (
-                    <TokenAmount
-                      value={balances.items[0].balance}
-                      decimals={balances.items[0].tokenInfo.decimals}
-                      tokenSymbol={balances.items[0].tokenInfo.symbol}
-                    />
-                  )}
-                </Typography>
-              </Grid>
-
-              {safe.deployed && (
-                <Grid
-                  item
-                  container
-                  spacing={1}
-                  xs={12}
-                  sm
-                  justifyContent="flex-end"
-                  flexWrap={{ xs: 'wrap', sm: 'nowrap' }}
-                >
-                  <Grid item xs={12} sm="auto">
-                    <BuyCryptoButton />
-                  </Grid>
-
-                  <Grid item xs={buttonWidth} sm="auto">
-                    <Button
-                      onClick={handleOnSend}
-                      size={isSmallScreen ? 'medium' : 'small'}
-                      variant="outlined"
-                      color="primary"
-                      startIcon={<ArrowIconNW />}
-                      fullWidth
-                    >
-                      Send
-                    </Button>
-                  </Grid>
-                  <Grid item xs={buttonWidth} sm="auto">
-                    <Track {...OVERVIEW_EVENTS.SHOW_QR} label="dashboard">
-                      <QrCodeButton>
-                        <Button
-                          size={isSmallScreen ? 'medium' : 'small'}
-                          variant="outlined"
-                          color="primary"
-                          startIcon={<ArrowIconSE />}
-                          fullWidth
-                        >
-                          Receive
-                        </Button>
-                      </QrCodeButton>
-                    </Track>
-                  </Grid>
-
-                  {isSwapFeatureEnabled && (
-                    <Grid item xs={buttonWidth} sm="auto">
-                      <Track {...SWAP_EVENTS.OPEN_SWAPS} label={SWAP_LABELS.dashboard}>
-                        <Link href={{ pathname: AppRoutes.swap, query: router.query }} passHref type="button">
-                          <Button
-                            data-testid="overview-swap-btn"
-                            size={isSmallScreen ? 'medium' : 'small'}
-                            variant="outlined"
-                            color="primary"
-                            startIcon={<SwapIcon />}
-                            fullWidth
-                          >
-                            Swap
-                          </Button>
-                        </Link>
-                      </Track>
-                    </Grid>
-                  )}
-                </Grid>
-              )}
-            </Grid>
-          </>
-        )}
-      </WidgetBody>
-    </WidgetContainer>
+    <>
+      {isLoading ? (
+        SkeletonOverview
+      ) : (
+        <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6">
+          <div className="flex items-center gap-4">
+            <div className="bg-black p-2 rounded-full">
+              <div className="w-6 h-6 bg-gray-300 rounded-full" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Total Asset Value</p>
+              <p className="text-2xl font-bold text-black">
+                {safe.deployed ? (
+                  <FiatValue value={balances.fiatTotal} maxLength={20} precise />
+                ) : (
+                  <TokenAmount
+                    value={balances.items[0].balance}
+                    decimals={balances.items[0].tokenInfo.decimals}
+                    tokenSymbol={balances.items[0].tokenInfo.symbol}
+                  />
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

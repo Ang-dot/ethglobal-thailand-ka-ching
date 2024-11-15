@@ -1,14 +1,13 @@
-import type { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { getLatestTransactions } from '@/utils/tx-list'
-import { Box, Skeleton, Typography } from '@mui/material'
-import { Card, ViewAllLink, WidgetBody, WidgetContainer } from '../styled'
+import { Box, Typography } from '@mui/material'
+import { Card, ViewAllLink } from '../styled'
 import PendingTxListItem from './PendingTxListItem'
 import useTxQueue from '@/hooks/useTxQueue'
 import { AppRoutes } from '@/config/routes'
-import NoTransactionsIcon from '@/public/images/transactions/no-transactions.svg'
 import css from './styles.module.css'
 import { isSignableBy, isExecutable } from '@/utils/transaction-guards'
 import useWallet from '@/hooks/wallets/useWallet'
@@ -16,6 +15,8 @@ import useSafeInfo from '@/hooks/useSafeInfo'
 import { useRecoveryQueue } from '@/features/recovery/hooks/useRecoveryQueue'
 import type { SafeInfo, Transaction } from '@safe-global/safe-gateway-typescript-sdk'
 import type { RecoveryQueueItem } from '@/features/recovery/services/recovery-state'
+import EthLoader from "@/components/common/EthLoader";
+import classNames from 'classnames'
 
 const PendingRecoveryListItem = dynamic(() => import('./PendingRecoveryListItem'))
 
@@ -25,7 +26,7 @@ const EmptyState = () => {
   return (
     <Card>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100%" gap={2}>
-        <NoTransactionsIcon data-testid="no-tx-icon" />
+        <LoadingState />
 
         <Typography data-testid="no-tx-text" variant="body1" color="primary.light">
           This Safe Account has no queued transactions
@@ -36,10 +37,8 @@ const EmptyState = () => {
 }
 
 const LoadingState = () => (
-  <div className={css.list}>
-    {Array.from(Array(MAX_TXS).keys()).map((key) => (
-      <Skeleton key={key} variant="rectangular" height={52} />
-    ))}
+  <div className="h-[250px] w-full">
+    <EthLoader id="loader-5" />
   </div>
 )
 
@@ -103,33 +102,28 @@ const PendingTxsList = (): ReactElement | null => {
   )
 
   return (
-    <WidgetContainer data-testid="pending-tx-widget">
-      <div className={css.title}>
-        <Typography component="h2" variant="subtitle1" fontWeight={700} mb={2}>
-          Pending transactions
-        </Typography>
-
+    <div className="pixel-card transform transition-transform hover:scale-[1.02] p-6 h-full space-y-4">
+      <div className="flex flex-row w-full items-center">
+        <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px] flex-grow">Pending
+          Transactions</h3>
         {totalTxs > 0 && <ViewAllLink url={queueUrl} />}
       </div>
+      {loading ? (
+        <LoadingState />
+      ) : totalTxs > 0 ? (
+        <div className={classNames(css.list, "h-full")}>
+          {recoveryTxs.map((tx) => (
+            <PendingRecoveryListItem transaction={tx} key={tx.transactionHash} />
+          ))}
 
-      <WidgetBody>
-        {loading ? (
-          <LoadingState />
-        ) : totalTxs > 0 ? (
-          <div className={css.list}>
-            {recoveryTxs.map((tx) => (
-              <PendingRecoveryListItem transaction={tx} key={tx.transactionHash} />
-            ))}
-
-            {queuedTxs.map((tx) => (
-              <PendingTxListItem transaction={tx.transaction} key={tx.transaction.id} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState />
-        )}
-      </WidgetBody>
-    </WidgetContainer>
+          {queuedTxs.map((tx) => (
+            <PendingTxListItem transaction={tx.transaction} key={tx.transaction.id} />
+          ))}
+        </div>
+      ) : (
+        <EmptyState />
+      )}
+    </div>
   )
 }
 

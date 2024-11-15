@@ -84,9 +84,9 @@ const ChainIndicator = ({
         <Stack>
           <span className={css.name}>{chainConfig.chainName}</span>
           {fiatValue && (
-            <Typography fontWeight={700} textAlign="left" fontSize="14px">
+            <span className="text-red-500 text-sm">
               <FiatValue value={fiatValue} />
-            </Typography>
+            </span>
           )}
         </Stack>
       )}

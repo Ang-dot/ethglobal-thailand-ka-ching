@@ -34,7 +34,7 @@ const TokenAmount = ({
   return (
     <Tooltip title={fullAmount}>
       <span className={classNames(css.container, { [css.verticalAlign]: logoUri })}>
-        {logoUri && <TokenIcon logoUri={logoUri} tokenSymbol={tokenSymbol} fallbackSrc={fallbackSrc} />}
+        {logoUri && <TokenIcon logoUri={logoUri} tokenSymbol={tokenSymbol} fallbackSrc={fallbackSrc} className="max-h-[260px]" />}
         <b>
           {sign}
           {amount} {tokenSymbol}
