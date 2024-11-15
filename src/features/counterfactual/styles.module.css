@@ -1,0 +1,46 @@
+.radioContainer {
+  @apply flex-1 relative p-3 border rounded-lg border-red-500;
+}
+
+.radioGroup {
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.radioTitle {
+  @apply font-bold text-[#F55322];
+}
+
+.active {
+  @apply bg-[#F553221A];
+}
+
+.listItem {
+  min-width: 0;
+  margin-right: var(--space-1);
+  color: var(--color-primary-main);
+}
+
+.active .radioSubtitle {
+  @apply text-sm block;
+}
+
+.statusButton {
+  border-radius: 4px;
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  background: var(--color-warning-background);
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.statusButton.processing {
+  background: var(--color-info-background);
+}
+
+@media (max-width: 400px) {
+  .radioGroup {
+    flex-direction: column;
+  }
+}
