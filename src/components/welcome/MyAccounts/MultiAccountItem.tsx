@@ -154,7 +154,7 @@ const MultiAccountItem = ({ onLinkClick, multiSafeAccountItem }: MultiAccountIte
         >
           <Box className={css.safeLink} width="100%">
             <Box pr={2.5} data-testid="group-safe-icon">
-              <SafeIcon address={address} owners={sharedSetup?.owners.length} threshold={sharedSetup?.threshold} />
+              <SafeIcon owners={sharedSetup?.owners.length} threshold={sharedSetup?.threshold} />
             </Box>
             <Typography variant="body2" component="div" className={css.safeAddress}>
               {name && (

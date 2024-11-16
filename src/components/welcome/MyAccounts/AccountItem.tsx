@@ -89,7 +89,6 @@ const AccountItem = ({ onLinkClick, safeItem }: AccountItemProps) => {
         <Link onClick={onLinkClick} href={href} className={css.safeLink}>
           <Box pr={2.5}>
             <SafeIcon
-              address={address}
               owners={safeOverview?.owners.length ?? counterfactualSetup?.owners.length}
               threshold={safeOverview?.threshold ?? counterfactualSetup?.threshold}
               chainId={chainId}

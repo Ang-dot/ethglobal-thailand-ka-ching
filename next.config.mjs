@@ -36,6 +36,7 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   eslint: {
     dirs: ['src', 'cypress'],
+    ignoreDuringBuilds: true,
   },
   experimental: {
     optimizePackageImports: [

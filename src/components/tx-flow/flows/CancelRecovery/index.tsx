@@ -20,9 +20,7 @@ function CancelRecoveryFlow({ recovery }: { recovery: RecoveryQueueItem }): Reac
   return (
     <TxLayout
       title={isIntro ? 'Cancel Account recovery' : 'New transaction'}
-      subtitle={isIntro ? undefined : 'Cancel Account recovery'}
       step={step}
-      hideNonce={isIntro}
       onBack={prevStep}
     >
       {steps}

@@ -4,7 +4,7 @@ import SettingsIcon from '@/public/images/sidebar/settings.svg'
 
 const UpdateSafeFlow = () => {
   return (
-    <TxLayout title="Confirm transaction" subtitle="Update Safe Account version" icon={SettingsIcon}>
+    <TxLayout title="Confirm transaction">
       <UpdateSafeReview />
     </TxLayout>
   )

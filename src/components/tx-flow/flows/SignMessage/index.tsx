@@ -51,9 +51,7 @@ const SignMessageFlow = ({ ...props }: ProposeProps | ConfirmProps) => {
   return (
     <TxLayout
       title="Confirm message"
-      subtitle={<AppTitle name={props.name} logoUri={props.logoUri} />}
       step={0}
-      hideNonce
       isMessage
     >
       <ErrorBoundary fallback={<div>Error signing message</div>}>

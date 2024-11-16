@@ -40,8 +40,6 @@ const ConfirmBatchFlow = (props: ConfirmBatchProps) => {
   return (
     <TxLayout
       title="Confirm batch"
-      subtitle={`This batch contains ${length} transaction${length > 1 ? 's' : ''}`}
-      icon={BatchIcon}
       step={0}
       isBatch
     >

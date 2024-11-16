@@ -31,7 +31,7 @@ const StatusStep = ({
       >
         <Box flexShrink={0}>
           {safeAddress && !isLoading ? (
-            <Identicon address={safeAddress} size={32} />
+            <Identicon size={32} />
           ) : (
             <Skeleton variant="circular" width="2.3em" height="2.3em" />
           )}

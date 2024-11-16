@@ -122,7 +122,7 @@ const ReplaceTxMenu = ({
   const canDelete = safeTxHash && isDeleteEnabled && proposer && wallet && sameAddress(wallet.address, proposer)
 
   return (
-    <TxLayout title={`Reject transaction #${txNonce}`} step={0} hideNonce isReplacement>
+    <TxLayout title={`Reject transaction #${txNonce}`} step={0} isReplacement>
       <TxCard>
         <Box mt={2} textAlign="center">
           <ReplaceTxIcon />

@@ -58,12 +58,8 @@ function UpsertRecoveryFlow({ delayModifier }: { delayModifier?: RecoveryState[n
   return (
     <TxLayout
       title="Account recovery"
-      subtitle={Subtitles[step]}
-      icon={icon}
       step={step}
       onBack={prevStep}
-      hideNonce={isIntro}
-      hideProgress={isIntro}
     >
       {steps}
     </TxLayout>

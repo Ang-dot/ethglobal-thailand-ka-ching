@@ -36,11 +36,8 @@ function RecoverAccountFlow(): ReactElement {
   return (
     <TxLayout
       title={step === 0 ? 'Start Account recovery' : 'Confirm transaction'}
-      subtitle="Change Account settings"
-      icon={SaveAddressIcon}
       step={step}
       onBack={prevStep}
-      hideNonce
     >
       {steps}
     </TxLayout>

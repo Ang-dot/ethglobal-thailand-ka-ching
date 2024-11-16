@@ -8,7 +8,6 @@ const SignMessageOnChainFlow = ({ props }: { props: SignMessageOnChainProps }) =
   return (
     <TxLayout
       title="Confirm message"
-      subtitle={<AppTitle name={props.app?.name} logoUri={props.app?.iconUrl} />}
       step={0}
     >
       <ReviewSignMessageOnChain {...props} />

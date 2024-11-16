@@ -112,7 +112,7 @@ const AppActions = ({ wallet, onConnectWallet, chain, appUrl, app }: Props): Rea
           {compatibleSafes.map(({ address, chainId, shortName }) => (
             <MenuItem key={`${chainId}:${address}`} value={address}>
               <Grid container alignItems="center" gap={1}>
-                <SafeIcon address={address} />
+                <SafeIcon />
 
                 <Grid item xs>
                   <Typography variant="body2">{addressBook?.[chainId]?.[address]}</Typography>

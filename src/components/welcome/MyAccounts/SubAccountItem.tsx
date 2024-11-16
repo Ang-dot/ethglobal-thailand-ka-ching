@@ -65,7 +65,6 @@ const SubAccountItem = ({ onLinkClick, safeItem, safeOverview }: SubAccountItem)
         <Link onClick={onLinkClick} href={href} className={css.safeSubLink}>
           <Box pr={2.5}>
             <SafeIcon
-              address={address}
               owners={safeOverview?.owners.length ?? cfSafeSetup?.owners.length}
               threshold={safeOverview?.threshold ?? cfSafeSetup?.threshold}
               isSubItem

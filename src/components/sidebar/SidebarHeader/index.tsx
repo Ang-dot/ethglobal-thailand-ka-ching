@@ -51,7 +51,7 @@ const SafeHeader = (): ReactElement => {
         <div data-testid="safe-header-info" className={css.safe}>
           <div data-testid="safe-icon">
             {safeAddress ? (
-              <SafeIcon address={safeAddress} threshold={threshold} owners={owners?.length} />
+              <SafeIcon threshold={threshold} owners={owners?.length} />
             ) : (
               <Skeleton variant="circular" width={40} height={40} />
             )}

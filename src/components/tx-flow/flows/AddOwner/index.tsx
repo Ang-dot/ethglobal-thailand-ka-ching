@@ -32,8 +32,6 @@ const FlowInner = ({ defaultValues }: { defaultValues: AddOwnerFlowProps }) => {
   return (
     <TxLayout
       title={step === 0 ? 'New transaction' : 'Confirm transaction'}
-      subtitle="Add signer"
-      icon={SaveAddressIcon}
       step={step}
       onBack={prevStep}
     >
