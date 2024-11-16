@@ -105,12 +105,10 @@ export const CreateTokenTransfer = ({
             </FormControl>
           )}
 
-          <Divider className={commonCss.nestedDivider} />
-
           <CardActions>
-            <Button variant="contained" type="submit">
+            <button className="pixel-btn" type="submit">
               Next
-            </Button>
+            </button>
           </CardActions>
         </form>
       </FormProvider>

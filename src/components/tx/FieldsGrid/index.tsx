@@ -9,7 +9,7 @@ const FieldsGrid = ({ title, children }: { title: string | ReactNode; children: 
   return (
     <Grid container alignItems="center" gap={1} sx={wrap}>
       <Grid item data-testid="tx-row-title" width={width} minWidth={minWidth} style={{ wordBreak: 'break-word' }}>
-        <Typography color="primary.light">{title}</Typography>
+        <p className="font-bold text-[#8F7E7C]">{title}</p>
       </Grid>
 
       <Grid item xs data-testid="tx-data-row">

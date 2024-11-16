@@ -9,10 +9,10 @@ import classnames from 'classnames'
 import css from './styles.module.css'
 import CloseIcon from '@mui/icons-material/Close'
 import useWallet from '@/hooks/wallets/useWallet'
-import SafeLogo from '@/public/images/logo-no-text.svg'
 import { SafeTxContext } from '@/components/tx-flow/SafeTxProvider'
 import useIsSafeOwner from '@/hooks/useIsSafeOwner'
 import { useIsWalletProposer } from '@/hooks/useProposers'
+import GameBoy from '@/components/common/GameBoy'
 
 const TxStatusWidget = ({
   step,
@@ -46,65 +46,61 @@ const TxStatusWidget = ({
 
   return (
     <Paper>
-      <div className={css.header}>
-        <Typography fontWeight="700" display="flex" alignItems="center" gap={1}>
-          <SafeLogo width={16} height={16} className={css.logo} />
-          {isMessage ? 'Message' : 'Transaction'} status
-        </Typography>
+      <GameBoy>
+        <div className={css.header}>
+          <div className="font-londrina font-black md:text-xl xl:text-3xl 2xl:text-4xl text-white pt-4 capitalize">
+            {isMessage ? 'Message' : 'Transaction'} status
+          </div>
 
-        <IconButton className={css.close} aria-label="close" onClick={handleClose} size="small">
-          <CloseIcon />
-        </IconButton>
-      </div>
+          <IconButton className={css.close} aria-label="close" onClick={handleClose} size="small">
+            <CloseIcon />
+          </IconButton>
+        </div>
 
-      <Divider />
+        <Divider />
 
-      <div className={css.content}>
-        <List className={css.status}>
-          <ListItem>
-            <ListItemIcon>
-              <CreatedIcon />
-            </ListItemIcon>
+        <div className={classnames(css.content, 'self-start')}>
+          <List className={css.status}>
+            <ListItem>
+              <ListItemIcon>
+                <CreatedIcon />
+              </ListItemIcon>
 
-            <ListItemText primaryTypographyProps={{ fontWeight: 700 }}>
-              {isBatch ? 'Queue transactions' : 'Create'}
-            </ListItemText>
-          </ListItem>
+              <ListItemText primaryTypographyProps={{ fontWeight: 700 }}>
+                {isBatch ? 'Queue transactions' : 'Create'}
+              </ListItemText>
+            </ListItem>
 
-          <ListItem className={classnames({ [css.incomplete]: !canConfirm && !isBatch })}>
-            <ListItemIcon>
-              <SignedIcon />
-            </ListItemIcon>
+            <ListItem className={classnames({ [css.incomplete]: !canConfirm && !isBatch })}>
+              <ListItemIcon>
+                <SignedIcon />
+              </ListItemIcon>
 
-            <ListItemText primaryTypographyProps={{ fontWeight: 700 }}>
-              {isBatch ? (
-                'Create batch'
-              ) : !nonceNeeded ? (
-                'Confirmed'
-              ) : isMessage ? (
-                'Collect signatures'
-              ) : (
-                <>
-                  Confirmed ({confirmationsSubmitted} of {threshold})
-                  {canSign && (
-                    <Typography variant="body2" component="span" className={css.badge}>
-                      +1
-                    </Typography>
-                  )}
-                </>
-              )}
-            </ListItemText>
-          </ListItem>
+              <ListItemText primaryTypographyProps={{ fontWeight: 700 }}>
+                {isBatch ? (
+                  'Create batch'
+                ) : !nonceNeeded ? (
+                  'Confirmed'
+                ) : isMessage ? (
+                  'Collect signatures'
+                ) : (
+                  <>
+                    Confirmed ({confirmationsSubmitted} of {threshold})
+                  </>
+                )}
+              </ListItemText>
+            </ListItem>
 
-          <ListItem className={classnames({ [css.incomplete]: step < 2 })}>
-            <ListItemIcon>
-              <SignedIcon />
-            </ListItemIcon>
+            <ListItem className={classnames({ [css.incomplete]: step < 2 })}>
+              <ListItemIcon>
+                <SignedIcon />
+              </ListItemIcon>
 
-            <ListItemText primaryTypographyProps={{ fontWeight: 700 }}>{isMessage ? 'Done' : 'Execute'}</ListItemText>
-          </ListItem>
-        </List>
-      </div>
+              <ListItemText primaryTypographyProps={{ fontWeight: 700 }}>{isMessage ? 'Done' : 'Execute'}</ListItemText>
+            </ListItem>
+          </List>
+        </div>
+      </GameBoy>
     </Paper>
   )
 }

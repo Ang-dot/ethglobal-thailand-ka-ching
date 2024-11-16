@@ -2,9 +2,11 @@ import TxLayout from '@/components/tx-flow/common/TxLayout'
 import useTxStepper from '../../useTxStepper'
 import CreateTokenTransfer from './CreateTokenTransfer'
 import ReviewTokenTx from '@/components/tx-flow/flows/TokenTransfer/ReviewTokenTx'
-import AssetsIcon from '@/public/images/sidebar/assets.svg'
 import { ZERO_ADDRESS } from '@safe-global/protocol-kit/dist/src/utils/constants'
 import { TokenAmountFields } from '@/components/common/TokenAmountInput'
+import { Grid } from '@mui/material'
+import Image from 'next/image'
+import { FC } from 'react'
 
 export enum TokenTransferType {
   multiSig = 'multiSig',
@@ -36,6 +38,22 @@ const defaultParams: TokenTransferParams = {
   type: TokenTransferType.multiSig,
 }
 
+const FraudDetection: FC = () => {
+  return (
+    <>
+      <Grid item xs={12} md={7} className="pixel-card p-10 space-y-8 relative">
+        <div className="space-y-4 pr-20">
+          <div className="font-londrina text-[42px] capitalize">AI Transaction Risk Rate</div>
+          <div>Let your AI buddy sniff out any sneaky transactions! Hit the button and watch it work its magic!</div>
+        </div>
+        <button className="pixel-btn w-36">Detect Fraud</button>
+        <Image src="/images/brain3.png" alt="brain3" width={125} height={158} className="absolute bottom-0 right-5" />
+      </Grid>
+      <Grid item xs={12} md={4} />
+    </>
+  )
+}
+
 const TokenTransferFlow = ({ txNonce, ...params }: TokenTransferFlowProps) => {
   const { data, step, nextStep, prevStep } = useTxStepper<TokenTransferParams>({
     ...defaultParams,
@@ -56,10 +74,9 @@ const TokenTransferFlow = ({ txNonce, ...params }: TokenTransferFlowProps) => {
   return (
     <TxLayout
       title={step === 0 ? 'New transaction' : 'Confirm transaction'}
-      subtitle="Send tokens"
-      icon={AssetsIcon}
       step={step}
       onBack={prevStep}
+      additionalChildren={<FraudDetection />}
     >
       {steps}
     </TxLayout>

@@ -5,15 +5,15 @@ import Button from '@mui/material/Button'
 import { OVERVIEW_EVENTS, trackEvent } from '@/services/analytics'
 import CheckWallet from '@/components/common/CheckWallet'
 import { TxModalContext } from '@/components/tx-flow'
-import { NewTxFlow } from '@/components/tx-flow/flows'
 import WatchlistAddButton from '../WatchlistAddButton'
+import TokenTransferFlow from '@/components/tx-flow/flows/TokenTransfer'
 
 const NewTxButton = (): ReactElement => {
   const { setTxFlow } = useContext(TxModalContext)
   const isCounterfactualSafe = useIsCounterfactualSafe()
 
   const onClick = () => {
-    setTxFlow(<NewTxFlow />, undefined, false)
+    setTxFlow(<TokenTransferFlow />)
     trackEvent({ ...OVERVIEW_EVENTS.NEW_TRANSACTION, label: 'sidebar' })
   }
 
@@ -25,18 +25,9 @@ const NewTxButton = (): ReactElement => {
     <CheckWallet allowSpendingLimit noTooltip>
       {(isOk) =>
         isOk ? (
-          <Button
-            data-testid="new-tx-btn"
-            onClick={onClick}
-            variant="contained"
-            size="small"
-            disabled={!isOk}
-            fullWidth
-            disableElevation
-            sx={{ py: 1.3 }}
-          >
-            New transaction
-          </Button>
+          <button data-testid="new-tx-btn" onClick={onClick} disabled={!isOk} className="pixel-btn w-full">
+            New Transaction
+          </button>
         ) : (
           <WatchlistAddButton />
         )

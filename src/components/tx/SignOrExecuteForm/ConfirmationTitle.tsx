@@ -10,18 +10,11 @@ export enum ConfirmationTitleTypes {
 
 const ConfirmationTitle = ({ isCreation, variant }: { isCreation?: boolean; variant: ConfirmationTitleTypes }) => {
   return (
-    <div className={css.wrapper}>
-      <div className={`${css.icon} ${variant === ConfirmationTitleTypes.sign ? css.sign : css.execute}`}>
-        <SvgIcon component={EditIcon} inheritViewBox fontSize="small" />
-      </div>
-      <div>
-        <Typography variant="h5" sx={{ textTransform: 'capitalize' }}>
-          {variant}
-        </Typography>
-        <Typography variant="body2">
-          You&apos;re about to {isCreation ? 'create and ' : ''}
-          {variant} this transaction.
-        </Typography>
+    <div className="flex flex-col">
+      <div className="capitalize text-2xl font-bold">{variant}</div>
+      <div className="text-xl">
+        You&apos;re about to {isCreation ? 'create and ' : ''}
+        {variant} this transaction.
       </div>
     </div>
   )

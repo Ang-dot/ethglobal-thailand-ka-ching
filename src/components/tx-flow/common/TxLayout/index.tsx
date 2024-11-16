@@ -1,64 +1,26 @@
-import useSafeInfo from '@/hooks/useSafeInfo'
-import { type ComponentType, type ReactElement, type ReactNode, useContext, useEffect, useState } from 'react'
-import { Box, Container, Grid, Typography, Button, Paper, SvgIcon, IconButton, useMediaQuery } from '@mui/material'
+import { type ReactElement, type ReactNode, useEffect, useState } from 'react'
+import { Box, Grid, Button, IconButton, useMediaQuery } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { useTheme } from '@mui/material/styles'
 import type { TransactionSummary } from '@safe-global/safe-gateway-typescript-sdk'
 import classnames from 'classnames'
-import { ProgressBar } from '@/components/common/ProgressBar'
 import SafeTxProvider, { SafeTxContext } from '../../SafeTxProvider'
 import { TxInfoProvider } from '@/components/tx-flow/TxInfoProvider'
-import TxNonce from '../TxNonce'
 import TxStatusWidget from '../TxStatusWidget'
 import css from './styles.module.css'
 import SafeLogo from '@/public/images/logo-no-text.svg'
 import { TxSecurityProvider } from '@/components/tx/security/shared/TxSecurityContext'
 import ChainIndicator from '@/components/common/ChainIndicator'
 import SecurityWarnings from '@/components/tx/security/SecurityWarnings'
-
-const TxLayoutHeader = ({
-  hideNonce,
-  icon,
-  subtitle,
-}: {
-  hideNonce: TxLayoutProps['hideNonce']
-  icon: TxLayoutProps['icon']
-  subtitle: TxLayoutProps['subtitle']
-}) => {
-  const { safe } = useSafeInfo()
-  const { nonceNeeded } = useContext(SafeTxContext)
-
-  if (hideNonce && !icon && !subtitle) return null
-
-  return (
-    <Box className={css.headerInner}>
-      <Box display="flex" alignItems="center">
-        {icon && (
-          <div className={css.icon}>
-            <SvgIcon component={icon} inheritViewBox />
-          </div>
-        )}
-
-        <Typography variant="h4" component="div" fontWeight="bold">
-          {subtitle}
-        </Typography>
-      </Box>
-
-      {!hideNonce && safe.deployed && nonceNeeded && <TxNonce />}
-    </Box>
-  )
-}
+import Image from 'next/image'
 
 type TxLayoutProps = {
   title: ReactNode
   children: ReactNode
-  subtitle?: ReactNode
-  icon?: ComponentType
+  additionalChildren?: ReactNode
   step?: number
   txSummary?: TransactionSummary
   onBack?: () => void
-  hideNonce?: boolean
-  hideProgress?: boolean
   isBatch?: boolean
   isReplacement?: boolean
   isMessage?: boolean
@@ -66,14 +28,11 @@ type TxLayoutProps = {
 
 const TxLayout = ({
   title,
-  subtitle,
-  icon,
   children,
+  additionalChildren,
   step = 0,
   txSummary,
   onBack,
-  hideNonce = false,
-  hideProgress = false,
   isBatch = false,
   isReplacement = false,
   isMessage = false,
@@ -82,10 +41,8 @@ const TxLayout = ({
 
   const theme = useTheme()
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'))
-  const isDesktop = useMediaQuery(theme.breakpoints.down('lg'))
 
   const steps = Array.isArray(children) ? children : [children]
-  const progress = Math.round(((step + 1) / steps.length) * 100)
 
   useEffect(() => {
     setStatusVisible(!isSmallScreen)
@@ -112,47 +69,30 @@ const TxLayout = ({
               </IconButton>
             )}
 
-            <Container className={css.container}>
+            <div className={css.container}>
               <Grid container gap={3} justifyContent="center">
                 {/* Main content */}
-                <Grid item xs={12} md={7}>
+                <Grid item xs={12} md={7} className="pixel-card p-10">
                   <div className={css.titleWrapper}>
-                    <Typography
-                      data-testid="modal-title"
-                      variant="h3"
-                      component="div"
-                      fontWeight="700"
-                      className={css.title}
-                    >
+                    <div className="font-londrina text-[18px] md:text-[26px] lg:text-[32px] xl:text-[42px] capitalize">
                       {title}
-                    </Typography>
+                    </div>
 
-                    <ChainIndicator inline />
+                    <ChainIndicator inline className="!text-xl !font-bold" />
                   </div>
-
-                  <Paper data-testid="modal-header" className={css.header}>
-                    {!hideProgress && (
-                      <Box className={css.progressBar}>
-                        <ProgressBar value={progress} />
-                      </Box>
-                    )}
-
-                    <TxLayoutHeader subtitle={subtitle} icon={icon} hideNonce={hideNonce} />
-                  </Paper>
 
                   <div className={css.step}>
                     {steps[step]}
 
                     {onBack && step > 0 && (
-                      <Button
+                      <button
                         data-testid="modal-back-btn"
-                        variant={isDesktop ? 'text' : 'outlined'}
                         onClick={onBack}
-                        className={css.backButton}
-                        startIcon={<ArrowBackIcon fontSize="small" />}
+                        className="pixel-white-btn !absolute bottom-0 left-0"
                       >
+                        <ArrowBackIcon fontSize="small" className="mr-1" />
                         Back
-                      </Button>
+                      </button>
                     )}
                   </div>
                 </Grid>
@@ -175,8 +115,10 @@ const TxLayout = ({
                     </Box>
                   </Grid>
                 )}
+
+                {additionalChildren && additionalChildren}
               </Grid>
-            </Container>
+            </div>
           </>
         </TxSecurityProvider>
       </TxInfoProvider>
