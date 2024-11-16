@@ -216,15 +216,14 @@ const ActivateAccountFlow = () => {
         <Box display="flex" flexDirection="row" justifyContent="flex-end" gap={3}>
           <CheckWallet checkNetwork={!submitDisabled} allowNonOwner allowUndeployedSafe>
             {(isOk) => (
-              <Button
+              <button
                 data-testid="activate-account-btn"
                 onClick={createSafe}
-                variant="contained"
-                size="stretched"
                 disabled={!isOk || submitDisabled}
+                className="pixel-btn"
               >
                 {!isSubmittable ? <CircularProgress size={20} /> : 'Activate'}
-              </Button>
+              </button>
             )}
           </CheckWallet>
         </Box>

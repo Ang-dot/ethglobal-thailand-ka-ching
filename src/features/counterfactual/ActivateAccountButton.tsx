@@ -27,14 +27,11 @@ const ActivateAccountButton = () => {
       <span>
         <CheckWallet allowNonOwner allowUndeployedSafe>
           {(isOk) => (
-            <Button
+            <button
               data-testid="activate-account-btn-cf"
-              variant="contained"
-              size="small"
-              fullWidth
               onClick={activateAccount}
               disabled={isProcessing || !isOk}
-              sx={{ minHeight: '40px' }}
+              className="pixel-btn w-full"
             >
               {isProcessing ? (
                 <>
@@ -44,9 +41,9 @@ const ActivateAccountButton = () => {
                   <CircularProgress size={16} />
                 </>
               ) : (
-                'Activate now'
+                'Activate Now'
               )}
-            </Button>
+            </button>
           )}
         </CheckWallet>
       </span>

@@ -118,18 +118,16 @@ export const SafeSetupOverview = ({
         <span className="text-[#8F7E7C] font-semibold">Signers</span>
         {owners.map((owner, index) => (
           <div key={index} className="flex flex-col">
-            {owners.map((owner, index) => (
-              <EthHashInfo
-                address={owner.address}
-                name={owner.name || owner.ens}
-                shortAddress={false}
-                showPrefix={false}
-                showName
-                hasExplorer
-                showCopyButton
-                key={index}
-              />
-            ))}
+            <EthHashInfo
+              address={owner.address}
+              name={owner.name || owner.ens}
+              shortAddress={false}
+              showPrefix={false}
+              showName
+              hasExplorer
+              showCopyButton
+              key={index}
+            />
           </div>
         ))}
       </div>
