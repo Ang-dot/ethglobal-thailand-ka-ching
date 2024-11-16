@@ -7,7 +7,7 @@ import type { EthHashInfoProps } from '../EthHashInfo/SrcEthHashInfo'
 const NamedAddressInfo = ({ address, name, customAvatar, ...props }: EthHashInfoProps) => {
   const chainId = useChainId()
   const [contract] = useAsync(
-    () => (!name && !customAvatar ? getContract(chainId, address) : undefined),
+    () => (address && !name && !customAvatar ? getContract(chainId, address) : undefined),
     [address, chainId, name, customAvatar],
   )
 
