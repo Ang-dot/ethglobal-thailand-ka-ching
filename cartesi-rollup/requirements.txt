@@ -1,0 +1,6 @@
+requests == 2.31.0
+https://files.pythonhosted.org/packages/4b/2c/ffbf7a134b9ab11a67b0cf0726453cedd9c5043a4fe7a35d1cefa9a1bcfb/threadpoolctl-3.5.0-py3-none-any.whl
+https://files.pythonhosted.org/packages/91/29/df4b9b42f2be0b623cbd5e2140cafcaa2bef0759a00b7b70104dcfe2fb51/joblib-1.4.2-py3-none-any.whl
+-i https://think-and-dev.github.io/riscv-python-wheels/pip-index/
+numpy == 1.26.2
+scikit-learn == 1.2.2
