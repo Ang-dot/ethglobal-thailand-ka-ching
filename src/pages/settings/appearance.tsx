@@ -13,10 +13,7 @@ const Appearance: NextPage = () => {
   const dispatch = useAppDispatch()
   const settings = useAppSelector(selectSettings)
 
-  const handleToggle = (
-    action: typeof setCopyShortName,
-    event: typeof SETTINGS_EVENTS.APPEARANCE.COPY_PREFIXES,
-  ) => {
+  const handleToggle = (action: typeof setCopyShortName, event: typeof SETTINGS_EVENTS.APPEARANCE.COPY_PREFIXES) => {
     return (_: ChangeEvent<HTMLInputElement>, checked: boolean) => {
       dispatch(action(checked))
 

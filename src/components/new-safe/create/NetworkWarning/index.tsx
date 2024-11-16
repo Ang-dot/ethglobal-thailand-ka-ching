@@ -15,7 +15,7 @@ const NetworkWarning = ({ action }: { action?: string }) => {
       You are trying to {action || 'sign or execute a transaction'} on {chain.chainName}. Make sure that your wallet is
       set to the same network.
       <Box mt={2}>
-        <ChainSwitcher color={"error"} />
+        <ChainSwitcher color={'error'} />
       </Box>
     </Alert>
   )

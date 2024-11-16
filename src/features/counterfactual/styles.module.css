@@ -1,5 +1,5 @@
 .radioContainer {
-  @apply flex-1 relative p-3 border rounded-lg border-red-500
+  @apply flex-1 relative p-3 border rounded-lg border-red-500;
 }
 
 .radioGroup {
@@ -8,11 +8,11 @@
 }
 
 .radioTitle {
-  @apply font-bold text-[#F55322]
+  @apply font-bold text-[#F55322];
 }
 
 .active {
-  @apply bg-[#F553221A]
+  @apply bg-[#F553221A];
 }
 
 .listItem {
@@ -22,7 +22,7 @@
 }
 
 .active .radioSubtitle {
-  @apply text-sm block
+  @apply text-sm block;
 }
 
 .statusButton {

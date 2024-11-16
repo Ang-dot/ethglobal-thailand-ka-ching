@@ -15,7 +15,7 @@ import useSafeInfo from '@/hooks/useSafeInfo'
 import { useRecoveryQueue } from '@/features/recovery/hooks/useRecoveryQueue'
 import type { SafeInfo, Transaction } from '@safe-global/safe-gateway-typescript-sdk'
 import type { RecoveryQueueItem } from '@/features/recovery/services/recovery-state'
-import EthLoader from "@/components/common/EthLoader";
+import EthLoader from '@/components/common/EthLoader'
 import classnames from 'classnames'
 
 const PendingRecoveryListItem = dynamic(() => import('./PendingRecoveryListItem'))
@@ -104,14 +104,15 @@ const PendingTxsList = (): ReactElement | null => {
   return (
     <div className="pixel-card hover:scale-[1.02] p-6 h-full space-y-4">
       <div className="flex flex-row w-full items-center">
-        <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px] flex-grow">Pending
-          Transactions</h3>
+        <h3 className="text-[#292F32] font-bold text-[16px] sm:text-[18px] md:text-[20px] flex-grow">
+          Pending Transactions
+        </h3>
         {totalTxs > 0 && <ViewAllLink url={queueUrl} />}
       </div>
       {loading ? (
         <LoadingState />
       ) : totalTxs > 0 ? (
-        <div className={classnames(css.list, "h-full")}>
+        <div className={classnames(css.list, 'h-full')}>
           {recoveryTxs.map((tx) => (
             <PendingRecoveryListItem transaction={tx} key={tx.transactionHash} />
           ))}

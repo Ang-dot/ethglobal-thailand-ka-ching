@@ -11,17 +11,13 @@ export interface IdenticonProps {
 const Identicon = ({ size = 40 }: IdenticonProps): ReactElement => {
   const style = useMemo<CSSProperties | null>(() => {
     return {
-      backgroundImage: "url(/images/basketball.png)",
+      backgroundImage: 'url(/images/basketball.png)',
       width: `${size}px`,
       height: `${size}px`,
     }
   }, [size])
 
-  return !style ? (
-    <Skeleton variant="rounded" width={size} height={size} />
-  ) : (
-    <div className={css.icon} style={style} />
-  )
+  return !style ? <Skeleton variant="rounded" width={size} height={size} /> : <div className={css.icon} style={style} />
 }
 
 export default Identicon

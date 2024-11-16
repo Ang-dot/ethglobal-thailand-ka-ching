@@ -103,10 +103,7 @@ function SetNameStep({
 
   return (
     <FormProvider {...formMethods}>
-      <form
-        onSubmit={handleSubmit(onFormSubmit)}
-        id={SET_NAME_STEP_FORM_ID}
-      >
+      <form onSubmit={handleSubmit(onFormSubmit)} id={SET_NAME_STEP_FORM_ID}>
         <Box className="w-full">
           <Grid container className="space-y-12">
             <Grid item xs={12} md={12}>

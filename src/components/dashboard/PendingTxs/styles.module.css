@@ -10,7 +10,7 @@
   gap: var(--space-2);
   min-height: 50px;
 
-  @apply hover:bg-yellow-100/50 hover:border-yellow-300
+  @apply hover:bg-yellow-100/50 hover:border-yellow-300;
 }
 .innerContainer {
   min-width: 0;

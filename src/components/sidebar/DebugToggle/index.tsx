@@ -8,7 +8,6 @@ const LS_KEY = 'debugProdCgw'
 export const cgwDebugStorage = localItem<boolean>(LS_KEY)
 
 const DebugToggle = (): ReactElement => {
-
   const [isProdGateway = false, setIsProdGateway] = useLocalStorage<boolean>(LS_KEY)
 
   const onToggleGateway = (event: ChangeEvent<HTMLInputElement>) => {

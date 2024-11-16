@@ -2,13 +2,7 @@ import type { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import classnames from 'classnames'
 import { useCurrentChain } from '@/hooks/useChains'
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Typography,
-} from '@mui/material'
+import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 
 import css from './styles.module.css'
 import ErrorMessage from '@/components/tx/ErrorMessage'
@@ -50,10 +44,11 @@ const PayNowPayLater = ({
         {isMultiChain && (
           <li className="flex items-start space-x-2">
             <CheckRoundedIcon className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#909B0E]" />
-            <span className="text-[#221B1A]">Start exploring the accounts now, and activate them later to start making transactions</span>
+            <span className="text-[#221B1A]">
+              Start exploring the accounts now, and activate them later to start making transactions
+            </span>
           </li>
-          )
-        }
+        )}
         <li className="flex items-start space-x-2">
           <CheckRoundedIcon className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#909B0E]" />
           <span className="text-[#221B1A]">There will be a one-time activation fee</span>
@@ -77,7 +72,11 @@ const PayNowPayLater = ({
             <FormControlLabel
               sx={{ flex: 1 }}
               value={PayMethod.PayNow}
-              className={classnames(css.radioContainer, { [css.active]: payMethod === PayMethod.PayLater }, "cursor-pointer")}
+              className={classnames(
+                css.radioContainer,
+                { [css.active]: payMethod === PayMethod.PayLater },
+                'cursor-pointer',
+              )}
               label={
                 <>
                   <Typography className={css.radioTitle}>Pay now</Typography>
@@ -93,20 +92,26 @@ const PayNowPayLater = ({
                 </>
               }
               control={
-              <Radio
-                sx={{
-                color: "#EF4444",
-                '&.Mui-checked': {
-                  color: "#EF4444",
-                }}}
-              />}
+                <Radio
+                  sx={{
+                    color: '#EF4444',
+                    '&.Mui-checked': {
+                      color: '#EF4444',
+                    },
+                  }}
+                />
+              }
             />
 
             <FormControlLabel
               data-testid="connected-wallet-execution-method"
               sx={{ flex: 1 }}
               value={PayMethod.PayLater}
-              className={classnames(css.radioContainer, { [css.active]: payMethod === PayMethod.PayLater }, "cursor-pointer")}
+              className={classnames(
+                css.radioContainer,
+                { [css.active]: payMethod === PayMethod.PayLater },
+                'cursor-pointer',
+              )}
               label={
                 <>
                   <Typography className={css.radioTitle}>Pay later</Typography>
@@ -116,13 +121,15 @@ const PayNowPayLater = ({
                 </>
               }
               control={
-              <Radio
-                sx={{
-                  color: "#EF4444",
-                  '&.Mui-checked': {
-                    color: "#EF4444",
-                  }}}
-              />}
+                <Radio
+                  sx={{
+                    color: '#EF4444',
+                    '&.Mui-checked': {
+                      color: '#EF4444',
+                    },
+                  }}
+                />
+              }
             />
           </RadioGroup>
         </FormControl>

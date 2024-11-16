@@ -88,8 +88,8 @@ export const OwnerRow = ({
             helperText={walletIsOwner && 'Your connected wallet'}
             sx={{
               '& .MuiFormHelperText-root': {
-                "margin-left": 0,
-                "margin-top": "0.5rem"
+                'margin-left': 0,
+                'margin-top': '0.5rem',
               },
             }}
             InputProps={{
@@ -109,7 +109,13 @@ export const OwnerRow = ({
           </Typography>
         ) : (
           <FormControl fullWidth>
-            <AddressBookInput name={`${fieldName}.address`} label="Signer" validate={validateSafeAddress} deps={deps} showPrefix={false} />
+            <AddressBookInput
+              name={`${fieldName}.address`}
+              label="Signer"
+              validate={validateSafeAddress}
+              deps={deps}
+              showPrefix={false}
+            />
           </FormControl>
         )}
       </Grid>

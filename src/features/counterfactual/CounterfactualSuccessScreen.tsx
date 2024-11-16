@@ -3,12 +3,12 @@ import { safeCreationPendingStatuses } from '@/features/counterfactual/hooks/use
 import { SafeCreationEvent, safeCreationSubscribe } from '@/features/counterfactual/services/safeCreationEvents'
 import { useChain, useCurrentChain } from '@/hooks/useChains'
 import { useEffect, useState } from 'react'
-import { Box, Dialog, DialogContent, IconButton, Typography } from "@mui/material";
+import { Box, Dialog, DialogContent, IconButton, Typography } from '@mui/material'
 import type { ChainInfo } from '@safe-global/safe-gateway-typescript-sdk'
 import NetworkLogosList from '../multichain/components/NetworkLogosList'
 import useAllAddressBooks from '@/hooks/useAllAddressBooks'
-import css from "@/components/common/TxModalDialog/styles.module.css";
-import CloseIcon from "@mui/icons-material/Close";
+import css from '@/components/common/TxModalDialog/styles.module.css'
+import CloseIcon from '@mui/icons-material/Close'
 
 const CounterfactualSuccessScreen = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -70,8 +70,7 @@ const CounterfactualSuccessScreen = () => {
         }}
       >
         <DialogContent className="bg-[#D7D3CD] p-4 relative">
-          <div
-            className="flex flex-col justify-center items-center p-8 border-black border-2 bg-ka-ching-white rounded">
+          <div className="flex flex-col justify-center items-center p-8 border-black border-2 bg-ka-ching-white rounded">
             <div className="absolute top-4 right-4 border-2 border-black rounded-bl bg-[#D7D3CD]">
               <button className="p-0.5" onClick={onClose}>
                 <CloseIcon fontSize="medium" className="text-[#ABAAA8]" />
@@ -84,14 +83,13 @@ const CounterfactualSuccessScreen = () => {
               <p className="font-light">
                 {isCFCreation
                   ? `Activate the account ${
-                    isMultiChain ? 'per network' : ''
-                  } to unlock all features of your smart wallet.`
-                  : 'Start your journey to the smart account security now.'}
-                {' '}
+                      isMultiChain ? 'per network' : ''
+                    } to unlock all features of your smart wallet.`
+                  : 'Start your journey to the smart account security now.'}{' '}
                 {isCFCreation && isMultiChain
                   ? `You can use the address below to receive funds on the selected ${
-                    isMultiChain ? 'networks' : 'network'
-                  }.`
+                      isMultiChain ? 'networks' : 'network'
+                    }.`
                   : `Use your address to receive funds ${chainName ? `on ${chainName}` : ''}`}
               </p>
             </Box>
@@ -101,9 +99,7 @@ const CounterfactualSuccessScreen = () => {
                 <div className="flex justify-center mb-1">
                   <NetworkLogosList networks={networks.length > 0 ? networks : chain ? [chain] : []} />
                 </div>
-                <Typography variant="h5">
-                  {safeName}
-                </Typography>
+                <Typography variant="h5">{safeName}</Typography>
                 <EthHashInfo
                   address={safeAddress}
                   showCopyButton

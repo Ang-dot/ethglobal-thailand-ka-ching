@@ -97,7 +97,12 @@ const OwnerPolicyStep = ({
 
   return (
     <FormProvider {...formMethods}>
-      <form data-testid="owner-policy-step-form" onSubmit={onFormSubmit} id={OWNER_POLICY_STEP_FORM_ID} className="space-y-8">
+      <form
+        data-testid="owner-policy-step-form"
+        onSubmit={onFormSubmit}
+        id={OWNER_POLICY_STEP_FORM_ID}
+        className="space-y-8"
+      >
         <Box className="w-full">
           {ownerFields.map((field, i) => (
             <OwnerRow
@@ -131,9 +136,7 @@ const OwnerPolicyStep = ({
               </span>
             </Tooltip>
           </Typography>
-          <p className="text-gray-600">
-            Any transaction requires the confirmation of:
-          </p>
+          <p className="text-gray-600">Any transaction requires the confirmation of:</p>
           <Grid container direction="row" alignItems="center" gap={1} pt={1} className="!pt-0">
             <Grid item>
               <Controller
@@ -157,7 +160,10 @@ const OwnerPolicyStep = ({
         </Box>
         <Box className="w-full mt-12">
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={3}>
-            <button className="flex justify-center items-center gap-x-1 pixel-white-btn transform transition-transform hover:scale-[1.02]" onClick={handleBack}>
+            <button
+              className="flex justify-center items-center gap-x-1 pixel-white-btn transform transition-transform hover:scale-[1.02]"
+              onClick={handleBack}
+            >
               <ArrowBackIcon fontSize="small" />
               Back
             </button>

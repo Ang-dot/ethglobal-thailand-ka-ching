@@ -5,9 +5,9 @@ import { Grid } from '@mui/material'
 import Overview from '@/components/dashboard/Overview/Overview'
 import { useIsRecoverySupported } from '@/features/recovery/hooks/useIsRecoverySupported'
 import { InconsistentSignerSetupWarning } from '@/features/multichain/components/SignerSetupWarning/InconsistentSignerSetupWarning'
-import ChartsSection from "@/components/dashboard/ChartsSection";
-import SwapWidget from "@/components/dashboard/SwapWidget";
-import PendingTxsList from "@/components/dashboard/PendingTxs/PendingTxsList";
+import ChartsSection from '@/components/dashboard/ChartsSection'
+import SwapWidget from '@/components/dashboard/SwapWidget'
+import PendingTxsList from '@/components/dashboard/PendingTxs/PendingTxsList'
 
 const RecoveryHeader = dynamic(() => import('@/features/recovery/components/RecoveryHeader'))
 

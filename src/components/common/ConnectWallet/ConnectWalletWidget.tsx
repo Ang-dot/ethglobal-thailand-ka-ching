@@ -19,9 +19,7 @@ const ConnectWalletWidget = ({
   }
 
   return (
-    <div
-      onClick={handleConnect}
-    >
+    <div onClick={handleConnect}>
       <Box className={css.buttonContainer}>
         <WalletOverview />
       </Box>

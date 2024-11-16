@@ -153,7 +153,7 @@ const NetworkMultiSelector = ({
                 helperText={errors.networks ? 'Select at least one network' : ''}
                 sx={{
                   '& .MuiFormHelperText-root': {
-                    "margin-left": 0,
+                    'margin-left': 0,
                   },
                 }}
               />

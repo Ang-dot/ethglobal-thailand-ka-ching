@@ -36,16 +36,13 @@ const WelcomeLogin = () => {
   }, [redirect, shouldRedirect])
 
   return (
-    <GameBoy
-      isScrollable={false}
-    >
+    <GameBoy isScrollable={false}>
       {wallet && (
         <div>
-          <h2 className="text-white font-londrina font-bold text-2xl sm:text-3xl md:text-4xl">
-            === Get started ===
-          </h2>
+          <h2 className="text-white font-londrina font-bold text-2xl sm:text-3xl md:text-4xl">=== Get started ===</h2>
           <p className="text-white font-londrina-light text-center text-[12px] sm:text-[16px] md:text-[20px]">
-            Open your existing Safe Accounts<br /> or create a new one
+            Open your existing Safe Accounts
+            <br /> or create a new one
           </p>
         </div>
       )}

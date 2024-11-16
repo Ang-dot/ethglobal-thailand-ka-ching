@@ -22,7 +22,7 @@ import { type SafeVersion } from '@safe-global/safe-core-sdk-types'
 import { getLatestSafeVersion } from '@/utils/chains'
 import { useCurrentChain } from '@/hooks/useChains'
 import type { ChainInfo } from '@safe-global/safe-gateway-typescript-sdk'
-import ProgressSteps from "@/components/new-safe/CardStepper/ProgressSteps";
+import ProgressSteps from '@/components/new-safe/CardStepper/ProgressSteps'
 
 export type NewSafeFormData = {
   name: string
@@ -144,13 +144,7 @@ const CreateSafe = () => {
     },
     {
       render: (data, onSubmit, onBack, setStep, setStepData) => (
-        <CreateSafeStatus
-          data={data}
-          onSubmit={onSubmit}
-          onBack={onBack}
-          setStep={setStep}
-          setStepData={setStepData}
-        />
+        <CreateSafeStatus data={data} onSubmit={onSubmit} onBack={onBack} setStep={setStep} setStepData={setStepData} />
       ),
     },
   ]

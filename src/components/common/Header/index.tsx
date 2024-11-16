@@ -62,7 +62,7 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
         Ka-Ching
       </Link>
 
-      <div className={classnames("flex flex-row items-center", { "md:mr-10": !safeAddress })}>
+      <div className={classnames('flex flex-row items-center', { 'md:mr-10': !safeAddress })}>
         <ConnectWallet />
 
         {safeAddress && (
