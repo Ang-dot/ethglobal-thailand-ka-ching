@@ -4,9 +4,11 @@ import CreateTokenTransfer from './CreateTokenTransfer'
 import ReviewTokenTx from '@/components/tx-flow/flows/TokenTransfer/ReviewTokenTx'
 import { ZERO_ADDRESS } from '@safe-global/protocol-kit/dist/src/utils/constants'
 import { TokenAmountFields } from '@/components/common/TokenAmountInput'
-import { Grid } from '@mui/material'
+import { CircularProgress, Grid } from "@mui/material";
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, useContext } from "react";
+import { SafeTxContext } from "@/components/tx-flow/SafeTxProvider";
+import { useFetchAddressFeatures } from "@/hooks/useFetchAddressFeatures";
 
 export enum TokenTransferType {
   multiSig = 'multiSig',
@@ -38,20 +40,41 @@ const defaultParams: TokenTransferParams = {
   type: TokenTransferType.multiSig,
 }
 
-const FraudDetection: FC = () => {
+const FraudDetection = () => {
+  const { safeTx } = useContext(SafeTxContext);
+  const address = safeTx?.data?.to;
+
+  const { features, loading, fetchData } = useFetchAddressFeatures();
+
+  const handleDetectFraud = () => {
+    if (address) {
+      fetchData(address);
+    }
+  };
+
   return (
     <>
       <Grid item xs={12} md={7} className="pixel-card p-10 space-y-8 relative">
         <div className="space-y-4 pr-20">
           <div className="font-londrina text-[42px] capitalize">AI Transaction Risk Rate</div>
           <div>Let your AI buddy sniff out any sneaky transactions! Hit the button and watch it work its magic!</div>
+          {loading ? (
+            <>
+              <div>Analyzing transaction data for potential fraud...</div>
+              <CircularProgress />
+            </>
+          ) : (
+            features && <pre>{JSON.stringify(features, null, 2)}</pre>
+          )}
         </div>
-        <button className="pixel-btn w-36">Detect Fraud</button>
+        <button className="pixel-btn w-36" onClick={handleDetectFraud} disabled={!address}>
+          Detect Fraud
+        </button>
         <Image src="/images/common/brain3.png" alt="brain3" width={125} height={158} className="absolute bottom-0 right-5" />
       </Grid>
       <Grid item xs={12} md={4} />
     </>
-  )
+  );
 }
 
 const TokenTransferFlow = ({ txNonce, ...params }: TokenTransferFlowProps) => {
