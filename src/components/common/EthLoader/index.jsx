@@ -67,7 +67,7 @@ const EthLoader = ({ id }) => {
 
       // Load model with smaller scale
       const loader = new GLTFLoader();
-      loader.load('images/ethereum-grey.glb', (gltf) => {
+      loader.load('images/common/ethereum-grey.glb', (gltf) => {
         const model = gltf.scene.clone();
         // Adjust model scale to be smaller
         model.scale.set(0.3, 0.3, 0.3); // Reduced from 1.0 to 0.4

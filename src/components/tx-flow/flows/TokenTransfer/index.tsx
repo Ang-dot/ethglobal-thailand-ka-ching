@@ -47,7 +47,7 @@ const FraudDetection: FC = () => {
           <div>Let your AI buddy sniff out any sneaky transactions! Hit the button and watch it work its magic!</div>
         </div>
         <button className="pixel-btn w-36">Detect Fraud</button>
-        <Image src="/images/brain3.png" alt="brain3" width={125} height={158} className="absolute bottom-0 right-5" />
+        <Image src="/images/common/brain3.png" alt="brain3" width={125} height={158} className="absolute bottom-0 right-5" />
       </Grid>
       <Grid item xs={12} md={4} />
     </>
