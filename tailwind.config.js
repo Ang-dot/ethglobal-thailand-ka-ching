@@ -13,6 +13,7 @@ export default {
         londrina: ['var(--font-londrina)'],
         "londrina-light": ['var(--font-nunito)', 'sans-serif'],
         "press-start2p": ['var(--font-press-start-2p)', 'monospace'],
+        inter: ['var(--font-inter)', 'sans-serif'],
         nountown: ['Nountown', 'sans-serif']
       }
     },

@@ -1,6 +1,6 @@
 import type { TypographyOptions } from '@mui/material/styles/createTypography'
 
-const safeFontFamily = 'DM Sans, sans-serif'
+const safeFontFamily = '"Inter", sans-serif'
 
 const typography: TypographyOptions = {
   fontFamily: safeFontFamily,
