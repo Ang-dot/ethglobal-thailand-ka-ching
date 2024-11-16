@@ -28,6 +28,7 @@
   "engines": {
     "node": ">=16"
   },
+  "packageManager": "yarn@1.22.22",
   "resolutions": {
     "@safe-global/safe-core-sdk-types/**/ethers": "^6.11.1",
     "@safe-global/protocol-kit/**/ethers": "^6.11.1",
