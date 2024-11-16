@@ -8,7 +8,13 @@ import SideDrawer from './SideDrawer'
 import { useIsSidebarRoute } from '@/hooks/useIsSidebarRoute'
 import { TxModalContext } from '@/components/tx-flow'
 import BatchSidebar from '@/components/batch/BatchSidebar'
-import { Londrina_Solid, Nunito, Press_Start_2P } from "next/font/google";
+import { Inter, Londrina_Solid, Nunito, Press_Start_2P } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 const londrina_solid = Londrina_Solid({
   weight: ['100', '300', '400', '900'],
@@ -38,7 +44,12 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
 
   useEffect(() => {
     setFullWidth(!isSidebarOpen)
-    document.documentElement.classList.add(londrina_solid.variable, nunito.variable, press_start_2p.variable)
+    document.documentElement.classList.add(
+      inter.variable,
+      londrina_solid.variable,
+      nunito.variable,
+      press_start_2p.variable,
+    )
   }, [isSidebarOpen, setFullWidth])
 
   return (

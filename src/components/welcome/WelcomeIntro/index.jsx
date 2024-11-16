@@ -22,8 +22,8 @@ const WelcomeIntro = () => {
         </p>
         <div className="flex justify-center items-center h-full">
           <Image
-            src="/images/Brain.png"
-            alt="Brain"
+            src="/images/brain.png"
+            alt="brain"
             width={200}
             height={160}
             className="w-[120px] h-[96px] lg:w-[200px] lg:h-[160px]"
