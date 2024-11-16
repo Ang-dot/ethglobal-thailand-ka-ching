@@ -1,9 +1,9 @@
 'use client'
 
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
+import useSWR from 'swr';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import DoughnutChart from "@/components/dashboard/Charts/DoughnutChart";
 import BarChart from "@/components/dashboard/Charts/BarChart";
@@ -76,68 +76,45 @@ const contractABI = [
 const contractAddress = "0xa03943826246955aF459280D84BdFbEa66F7E42c";
 const providerUrl = "https://sepolia.infura.io/v3/206aa1f4330a4ebc9969c8126a47a686";
 
+const fetchWeekData = async () => {
+  const provider = new ethers.JsonRpcProvider(providerUrl);
+  const contract = new ethers.Contract(contractAddress, contractABI, provider);
+
+  const data = [];
+  const weeks = Array.from({ length: 30 }, (_, i) => i + 1);
+  for (let week of weeks) {
+    const value = await contract.getTransactionFrequency(week);
+    data.push({ week, value: parseInt(value.toString()) });
+  }
+  return data;
+};
+
 const ChartsSection = () => {
-  const [weekData, setWeekData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isBarChartLoading, setIsBarChartLoading] = useState(true);
   const [isDonutChartLoading, setIsDonutChartLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const fetchWeekData = async () => {
-    setIsLoading(true);
-    setIsBarChartLoading(true);
-    setIsDonutChartLoading(true);
-    setError(null);
-
-    setTimeout(() => setIsBarChartLoading(false), Math.random() * 9000 + 500);
-    setTimeout(() => setIsDonutChartLoading(false), Math.random() * 9000 + 500);
-
-    if (typeof window.ethereum === 'undefined') {
-      setError("Ethereum provider not detected. Please install MetaMask or use a Web3-enabled browser.");
-      setIsLoading(false);
-      setIsBarChartLoading(false);
-      setIsDonutChartLoading(false);
-      return;
-    }
-
-    try {
-      const provider = new ethers.JsonRpcProvider(providerUrl);
-      const contract = new ethers.Contract(contractAddress, contractABI, provider);
-
-      const data = [];
-      const weeks = Array.from({ length: 30 }, (_, i) => i + 1);
-      for (let week of weeks) {
-        try {
-          const value = await contract.getTransactionFrequency(week);
-          data.push({ week, value: parseInt(value.toString()) });
-        } catch (weekError) {
-          console.error(`Error fetching data for week ${week}:`, weekError);
-        }
-      }
-
-      if (data.length === 0) {
-        setError("No data was retrieved from the contract. Please check if the contract has been properly deployed and populated with data.");
-      } else {
-        setWeekData(data);
-      }
-    } catch (err) {
-      console.error("Error fetching data from contract:", err);
-      setError(`Failed to fetch data: ${err.message}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { data: weekData, error } = useSWR('weekData', fetchWeekData, {
+    refreshInterval: 3600000,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false
+  });
 
   useEffect(() => {
-    fetchWeekData();
+    if(weekData) {
+      setIsBarChartLoading(false);
+      setIsDonutChartLoading(false);
+    } else {
+      setTimeout(() => setIsBarChartLoading(false), Math.random() * 9000 + 500);
+      setTimeout(() => setIsDonutChartLoading(false), Math.random() * 9000 + 500);
+    }
   }, []);
 
   const chartData = {
-    labels: weekData.map(d => `Week ${d.week}`),
+    labels: weekData?.map(d => `Week ${d.week}`),
     datasets: [
       {
         label: 'Transaction Frequency per Week',
-        data: weekData.map(d => d.value),
+        data: weekData?.map(d => d.value),
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderWidth: 2,
@@ -207,7 +184,7 @@ const ChartsSection = () => {
               </h3>
             </div>
             <div className="pt-4 h-full">
-              {isLoading ? (
+              {!weekData && !error ? (
                 <div className="h-[300px]">
                   {' '}
                   {/* Adjust this height to match your chart */}
@@ -216,7 +193,7 @@ const ChartsSection = () => {
               ) : error ? (
                 <p>{error}</p>
               ) : weekData.length > 0 ? (
-                <div className="h-[300px]">
+                <div className="h-[300px] flex justify-center">
                   <Line data={chartData} options={chartOptions} />
                 </div>
               ) : (
