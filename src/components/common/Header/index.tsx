@@ -57,7 +57,7 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
   const showBatchButton = safeAddress && (!isProposer || isSafeOwner)
 
   return (
-    <Paper className="flex flex-row flex-nowrap items-center relative h-14 bg-[#FFF0BE] px-4">
+    <Paper className="flex flex-row flex-nowrap items-center relative h-14 bg-[#FFF0BE] px-4 rounded-none border-b-2 border-black">
       <Link href="/home" className="md:ml-10 text-2xl font-nountown text-black flex grow">
         Ka-Ching
       </Link>
