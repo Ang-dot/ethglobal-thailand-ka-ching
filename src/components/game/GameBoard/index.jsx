@@ -57,7 +57,7 @@ const GameBoard = () => {
             setStatus('Uploading image...');
 
             // Send to your API endpoint
-            const response = await fetch('/api/tweet-with-image', {
+            const response = await fetch('/api/post/tweet-with-image', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,6 +123,8 @@ const GameBoard = () => {
                     // Check for a draw (address(0))
                     const isDrawAddress = winner === "0x0000000000000000000000000000000000000000";
                     const isWinner = winner === wallet?.address;
+                    console.log("Winner address:::::::::", winner);
+                    console.log("Addressss:::::::", wallet?.address);
 
                     isDrawAddress ? setAnnoucement("It's A Tie") : isWinner ? setAnnoucement("Congratulations!") : setAnnoucement("Oh No!");
                     setGameFinish(true);

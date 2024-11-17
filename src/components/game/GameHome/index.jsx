@@ -240,7 +240,7 @@ const GameHome = () => {
                                 "May the odds be ever in your favour."
                               );
                             }}
-                            className="pixelBtn transform transition-transform hover:scale-[1.02]"
+                            className="pixel-btn transform transition-transform hover:scale-[1.02]"
                           >
                             Start Game
                           </button>

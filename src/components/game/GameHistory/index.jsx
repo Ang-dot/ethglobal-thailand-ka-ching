@@ -45,7 +45,7 @@ const GameHistory = ({ gameID, gameDetails, setIsModalOpen }) => {
             setStatus('Uploading image...');
 
             // Updated API endpoint path for Pages Router
-            const response = await fetch('/api/tweet-with-image', {
+            const response = await fetch('/api//tweet-with-image', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
