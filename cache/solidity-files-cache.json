@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/miracle/Documents/A-Ethbangkok/ethglobal-thailand-24/contracts/ThaiGame.sol": {
+      "lastModificationDate": 1731397131002,
+      "contentHash": "dad4863d7730ca83b44ed76e41836e4d",
+      "sourceName": "contracts/ThaiGame.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.28"
+      ],
+      "artifacts": [
+        "ThaiGame"
+      ]
+    }
+  }
+}

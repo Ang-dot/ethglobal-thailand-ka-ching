@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nountown';
+    src: url('/fonts/nountown.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LondrinaSolid';
+    src: url('/fonts/LondrinaSolid-Black.ttf') format('truetype');
+    font-weight: normal; /* Black weight */
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'LondrinaLight';
+  src: url('/fonts/LondrinaSolid-Light.ttf') format('truetype');
+  font-weight: normal; /* Black weight */
+  font-style: normal;
+}
+
+html {
+  cursor: url("/ka-ching-cursor-default.cur") 3 3, auto;
+}
+
+button, [role=button], a:-webkit-any-link, .cursor-pointer {
+  cursor: url("/ka-ching-cursor-pointer.cur") 3 3, pointer;
+}
+
+/* .pixelCard {
+    box-shadow:   -5px 0 0 0 black,
+                   5px 0 0 0 black,
+                   0 -5px 0 0 black,
+                   0 5px 0 0 black;
+  } */
+
+  
+  .pixelCard {
+    position: relative;
+    background: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Black border created by clip-path */
+  .pixelCard::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: black; /* This will be the color of the border */
+    clip-path: polygon(
+      /* Top-left corner */
+      0 15px,
+      5px 15px,
+      5px 10px,
+      10px 10px,
+      10px 5px,
+      15px 5px,
+      15px 0,
+      
+      /* Top-right corner */
+      calc(100% - 15px) 0,
+      calc(100% - 15px) 5px,
+      calc(100% - 10px) 5px,
+      calc(100% - 10px) 10px,
+      calc(100% - 5px) 10px,
+      calc(100% - 5px) 15px,
+      100% 15px,
+      
+      /* Bottom-right corner */
+      100% calc(100% - 15px),
+      calc(100% - 5px) calc(100% - 15px),
+      calc(100% - 5px) calc(100% - 10px),
+      calc(100% - 10px) calc(100% - 10px),
+      calc(100% - 10px) calc(100% - 5px),
+      calc(100% - 15px) calc(100% - 5px),
+      calc(100% - 15px) 100%,
+      
+      /* Bottom-left corner */
+      15px 100%,
+      15px calc(100% - 5px),
+      10px calc(100% - 5px),
+      10px calc(100% - 10px),
+      5px calc(100% - 10px),
+      5px calc(100% - 15px),
+      0 calc(100% - 15px),
+      
+      /* Close the shape */
+      0 15px
+    );
+    z-index: -2;
+  }
+  
+  /* White inner area */
+  .pixelCard::after {
+    content: '';
+    position: absolute;
+    inset: 0.1px; /* Slightly smaller than the black border */
+    background: white;
+    clip-path: polygon(
+      /* Top-left corner */
+      0 13px,
+      3px 13px,
+      3px 8px,
+      8px 8px,
+      8px 3px,
+      13px 3px,
+      13px 0,
+      
+      /* Top-right corner */
+      calc(100% - 13px) 0,
+      calc(100% - 13px) 3px,
+      calc(100% - 8px) 3px,
+      calc(100% - 8px) 8px,
+      calc(100% - 3px) 8px,
+      calc(100% - 3px) 13px,
+      100% 13px,
+      
+      /* Bottom-right corner */
+      100% calc(100% - 13px),
+      calc(100% - 3px) calc(100% - 13px),
+      calc(100% - 3px) calc(100% - 8px),
+      calc(100% - 8px) calc(100% - 8px),
+      calc(100% - 8px) calc(100% - 3px),
+      calc(100% - 13px) calc(100% - 3px),
+      calc(100% - 13px) 100%,
+      
+      /* Bottom-left corner */
+      13px 100%,
+      13px calc(100% - 3px),
+      8px calc(100% - 3px),
+      8px calc(100% - 8px),
+      3px calc(100% - 8px),
+      3px calc(100% - 13px),
+      0 calc(100% - 13px),
+      
+      /* Close the shape */
+      0 13px
+    );
+    z-index: -2;
+  }
+  
+/* Modified content structure */
+.pixelCard > div:first-child {
+    position: relative;
+    z-index: 1;
+    flex: 2; /* Takes up 2/3 of the space */
+  }
+  
+
+/* Bottom section with background */
+.pixelCard > div[class*="bg-[#FFFDEA]"] {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    clip-path: polygon(
+        3px 0,
+        calc(100% - 3px) 0,
+        calc(100% - 3px) calc(100% - 18px),
+        calc(100% - 8px) calc(100% - 18px),
+        calc(100% - 8px) calc(100% - 13px),
+        calc(100% - 13px) calc(100% - 13px),
+        calc(100% - 13px) calc(100% - 8px),
+        calc(100% - 18px) calc(100% - 8px),
+        calc(100% - 18px) calc(100% - 3px),
+        18px calc(100% - 3px),
+        18px calc(100% - 8px),
+        13px calc(100% - 8px),
+        13px calc(100% - 13px),
+        8px calc(100% - 13px),
+        8px calc(100% - 18px),
+        3px calc(100% - 18px)
+    );
+}
+/* Optional: Add padding to ensure content doesn't overlap with the corners */
+.pixelCard > div[class*="bg-[#FFFDEA]"] > div {
+    padding: 1rem;
+}
+
+
+/* .pixelBtn {
+    box-shadow:
+                   5px 0 0 0 #FFC110,
+                   0 5px 0 0 #FFC110;
+}   */
+
+.pixelBtn {
+  position: relative;
+  background: #FFC110;
+  color: #000;
+  padding: 8px 16px;
+  border: none;
+  font-weight: bold;
+  min-width: 120px;
+  min-height: 40px;
+  clip-path: polygon(
+    /* Top-left corner */
+    0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+    /* Top-right corner */
+    calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+    /* Bottom-right corner */
+    100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+    /* Bottom-left corner */
+    4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+.pixelBtn::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: 3px;
+  bottom: 3px;
+  background: #FFF0BE;
+  z-index: -1;
+  clip-path: polygon(
+    /* Top-left corner */
+    0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+    /* Top-right corner */
+    calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+    /* Bottom-right corner */
+    100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+    /* Bottom-left corner */
+    4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+.pixelWhiteBtn {
+  position: relative;
+  background: #FFC110;
+  color: #000;
+  font-weight: bold;
+  min-width: 120px;
+  min-height: 40px;
+  clip-path: polygon(
+    /* Top-left corner */
+    0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+    /* Top-right corner */
+    calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+    /* Bottom-right corner */
+    100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+    /* Bottom-left corner */
+    4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+/* White inner area */
+.pixelWhiteBtn::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: 3px;
+  z-index: -1;
+  bottom: 3px;
+  background: white;
+  clip-path: polygon(
+     /* Top-left corner */
+     0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+     /* Top-right corner */
+     calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+     /* Bottom-right corner */
+     100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+     /* Bottom-left corner */
+     4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+
+.pixelRedBtn {
+  position: relative;
+  background: #AE3208;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  font-weight: bold;
+  min-width: 120px;
+  min-height: 40px;
+  clip-path: polygon(
+    /* Top-left corner */
+    0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+    /* Top-right corner */
+    calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+    /* Bottom-right corner */
+    100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+    /* Bottom-left corner */
+    4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+.pixelRedBtn::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: 3px;
+  bottom: 3px;
+  background: #BD2D24;
+  z-index: -1;
+  clip-path: polygon(
+    /* Top-left corner */
+    0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
+    /* Top-right corner */
+    calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
+    /* Bottom-right corner */
+    100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%,
+    /* Bottom-left corner */
+    4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+.flare {
+  position: fixed;
+  border: 2px solid #ffffff2b;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999999 !important ;
+  backdrop-filter: blur(1px);
+  background-color: #0000005e;
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+  cursor: none !important; /* Let's hide the default cursor so it looks way better */
+}
+
+/* We need to remove this custom cursor in mobile devices */
+@media screen and (max-width: 768px) {
+  .flare {
+    width: 0;
+    height: 0;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out,
+      opacity 0.2s ease-in-out;
+  }
+}
+.flare.pointer {
+  opacity: 0 !important;
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
