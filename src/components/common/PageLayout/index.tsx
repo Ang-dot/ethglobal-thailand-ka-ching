@@ -42,6 +42,8 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
   const [isBatchOpen, setBatchOpen] = useState<boolean>(false)
   const { setFullWidth } = useContext(TxModalContext)
 
+  const hideHeaderRoutes = ['/game', '/game/board']
+
   useEffect(() => {
     setFullWidth(!isSidebarOpen)
     document.documentElement.classList.add(
@@ -54,14 +56,18 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
 
   return (
     <>
-      <header className={css.header}>
-        <Header onMenuToggle={isSidebarRoute ? setSidebarOpen : undefined} onBatchToggle={setBatchOpen} />
-      </header>
+      {!hideHeaderRoutes.includes(pathname) && (
+        <header className={css.header}>
+          <Header onMenuToggle={isSidebarRoute ? setSidebarOpen : undefined} onBatchToggle={setBatchOpen} />
+        </header>
+      )}
+
 
       {isSidebarRoute && <SideDrawer isOpen={isSidebarOpen} onToggle={setSidebarOpen} />}
 
       <div
         className={classnames(css.main, {
+          // [css.main]: !hideHeaderRoutes,
           [css.mainNoSidebar]: !isSidebarOpen || !isSidebarRoute,
           [css.mainAnimated]: isSidebarRoute && isAnimated,
         })}

@@ -16,6 +16,7 @@ import type { ConnectedWallet } from '@/hooks/wallets/useOnboard'
 export const enum ExecutionMethod {
   RELAY = 'RELAY',
   WALLET = 'WALLET',
+  GAME = 'GAME',
 }
 
 const _ExecutionMethodSelector = ({
@@ -36,6 +37,7 @@ const _ExecutionMethodSelector = ({
   tooltip?: string
 }): ReactElement | null => {
   const shouldRelay = executionMethod === ExecutionMethod.RELAY
+  const shouldGame = executionMethod === ExecutionMethod.GAME
 
   const onChooseExecutionMethod = (_: ChangeEvent<HTMLInputElement>, newExecutionMethod: string) => {
     setExecutionMethod(newExecutionMethod as ExecutionMethod)
@@ -52,48 +54,72 @@ const _ExecutionMethodSelector = ({
           ) : null}
 
           <RadioGroup row value={executionMethod} onChange={onChooseExecutionMethod}>
-            <FormControlLabel
-              sx={{ flex: 1 }}
-              value={ExecutionMethod.RELAY}
-              label={
-                <Typography className={css.radioLabel} whiteSpace="nowrap">
-                  Sponsored by
-                  <SponsoredBy chainId={chain?.chainId ?? ''} />
-                </Typography>
-              }
-              control={
-                <Radio
-                  sx={{
-                    color: '#EF4444',
-                    '&.Mui-checked': {
-                      color: '#EF4444',
-                    },
-                  }}
+            <div className='flex flex-col items-center'>
+              <div className='flex flex-row justify-between'>
+                <FormControlLabel
+                  sx={{ flex: 1 }}
+                  value={ExecutionMethod.RELAY}
+                  label={
+                    <Typography className={css.radioLabel} whiteSpace="nowrap">
+                      Sponsored by
+                      <SponsoredBy chainId={chain?.chainId ?? ''} />
+                    </Typography>
+                  }
+                  control={
+                    <Radio
+                      sx={{
+                        color: '#EF4444',
+                        '&.Mui-checked': {
+                          color: '#EF4444',
+                        },
+                      }}
+                    />
+                  }
                 />
-              }
-            />
 
-            <FormControlLabel
-              data-testid="connected-wallet-execution-method"
-              sx={{ flex: 1 }}
-              value={ExecutionMethod.WALLET}
-              label={
-                <Typography className={css.radioLabel}>
-                  <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Connected
-                  wallet
-                </Typography>
-              }
-              control={
-                <Radio
-                  sx={{
-                    color: '#EF4444',
-                    '&.Mui-checked': {
-                      color: '#EF4444',
-                    },
-                  }}
+                <FormControlLabel
+                  data-testid="connected-wallet-execution-method"
+                  sx={{ flex: 1 }}
+                  value={ExecutionMethod.WALLET}
+                  label={
+                    <Typography className={css.radioLabel}>
+                      <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Connected
+                      wallet
+                    </Typography>
+                  }
+                  control={
+                    <Radio
+                      sx={{
+                        color: '#EF4444',
+                        '&.Mui-checked': {
+                          color: '#EF4444',
+                        },
+                      }}
+                    />
+                  }
                 />
-              }
-            />
+              </div>
+              <FormControlLabel
+                data-testid="connected-wallet-execution-method"
+                sx={{ flex: 1 }}
+                value={ExecutionMethod.GAME}
+                label={
+                  <Typography className={css.radioLabel}>
+                    <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Play Game
+                  </Typography>
+                }
+                control={
+                  <Radio
+                    sx={{
+                      color: '#EF4444',
+                      '&.Mui-checked': {
+                        color: '#EF4444',
+                      },
+                    }}
+                  />
+                }
+              />
+            </div>
           </RadioGroup>
         </FormControl>
       </div>
