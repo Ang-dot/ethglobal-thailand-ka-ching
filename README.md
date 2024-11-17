@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  <img src="https://path/to/your/logo.png" alt="Ka-Ching logo" width="120" height="120">
+  <img src="brand-assets/app_logo.gif" alt="Ka-Ching logo" width="120" height="120">
 
  # 𝐊𝐚-𝐂𝐡𝐢𝐧𝐠: 𝐀𝐈 𝐀𝐠𝐞𝐧𝐭-𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐌𝐮𝐥𝐭𝐢𝐬𝐢𝐠 𝐖𝐚𝐥𝐥𝐞𝐭
 
@@ -78,14 +78,11 @@ Managing multisig wallets and staying secure in the Web 3 space can be complex a
 ### 🔍 On-Chain Fraud Behavior Detection Powered by Explainable AI and Cartesi
 Our AI-driven fraud detection system uses **LIME (Local Interpretable Model-agnostic Explanations)** to analyze transactions in real time. This gives users clear, actionable insights into why a transaction might be flagged, enabling smarter decision-making. **Cartesi Rollups** handle complex computations off-chain for scalable, transparent fraud detection while settling critical data on-chain.
 
-### 🤖 AI Agent-Powered Wallet Creation with XMTP Integration
-With a single prompt, users can set up a multisig wallet without the usual repetitive steps. This feature leverages AI agents and XMTP to streamline the setup process, making it accessible even for those with no technical experience. 
+### 🤖 AI Agent-Powered Wallet Creation
+With a single prompt, users can set up a multisig wallet without the usual repetitive steps. This feature leverages Google Gemini AI agents to streamline the setup process, making it accessible even for those with no technical experience. 
 
-### 🔐 Gnosis Safe Multisig with Next-Level Customization
-Built on the trusted **Gnosis Safe framework**, our wallet offers secure, multisignature control with enhanced AI monitoring. Users can tailor security settings to their preferences, ensuring transactions align with their needs, whether for individuals or DAOs.
-
-### 🔔 Seamless 2FA Authentication and On-Chain Notifications
-Integrated **Two-Factor Authentication (2FA)** powered by **WorldID** adds an extra layer of security with privacy-preserving, zero-knowledge proofs. Real-time alerts through **Push Protocol** ensure users are instantly notified of actions requiring approval, enhancing transaction control without interrupting workflow.
+### 🔔 Seamless 2FA Authentication 
+Integrated **Two-Factor Authentication (2FA)** powered by **WorldID** adds an extra layer of security with privacy-preserving, zero-knowledge proofs.
 
 ### 🎮 Bonus: The Thai Challenge: A New Take on Rock, Paper, Scissors
 Adding a unique twist, Ka-Ching features a blockchain-powered game inspired by Thai street life—Tuk-Tuk, Traffic Jam, and Food Cart—where users can settle the age-old question of "Who’s covering the gas fee?" 
@@ -105,9 +102,8 @@ Adding a unique twist, Ka-Ching features a blockchain-powered game inspired by T
 
 To get started with Ka-Ching:
 1. Clone the repository.
-2. Follow the setup instructions in the [Installation Guide](#).
-3. Set up your wallet using our AI Agent-Powered Wallet Creation feature with a single prompt.
-4. Explore features like on-chain notifications, customized security, and fraud detection.
+2. Set up your wallet using our AI Agent-Powered Wallet Creation feature with a single prompt.
+3. Explore features like on-chain notifications, customized security, and fraud detection.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -142,6 +138,10 @@ The demand for secure, AI-enhanced multisig wallets is surging, with the blockch
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
+
+## Project Impact
+
+Investing in Ka-Ching means supporting a transformative leap in the DeFi space. Our Explainable AI-powered multisig wallet addresses two of the biggest challenges in decentralized finance—security and usability. By proactively detecting and explaining potential fraud before transactions occur, Ka-Ching provides users with a level of confidence and control that’s rare in today’s DeFi ecosystem. This isn’t just about protecting individual users; it’s about building trust across the entire Web3 economy, reducing fraud, and empowering more people to participate safely in decentralized finance.
 
 ## 𝐂𝐨𝐧𝐭𝐚𝐜𝐭
 
