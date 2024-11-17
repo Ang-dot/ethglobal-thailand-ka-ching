@@ -47,6 +47,10 @@ import PkModulePopup from '@/services/private-key-module/PkModulePopup'
 import GeoblockingProvider from '@/components/common/GeoblockingProvider'
 import OutreachPopup from '@/features/targetedOutreach/components/OutreachPopup'
 import { GameProvider } from '@/utils/GameProvider'
+import { http, createConfig } from 'wagmi'
+import { baseSepolia } from 'wagmi/chains'
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const GATEWAY_URL = IS_PRODUCTION || cgwDebugStorage.get() ? GATEWAY_URL_PRODUCTION : GATEWAY_URL_STAGING
 
@@ -79,6 +83,16 @@ const InitApp = (): null => {
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
+const wagmiConfig = createConfig({
+  chains: [baseSepolia],
+  transports: {
+    [baseSepolia.id]: http()
+  },
+})
+
+const queryClient = new QueryClient()
+
+
 export const AppProviders = ({ children }: { children: ReactNode | ReactNode[] }) => {
   const isDarkMode = useDarkMode()
   const themeMode = isDarkMode ? 'dark' : 'light'
@@ -89,9 +103,13 @@ export const AppProviders = ({ children }: { children: ReactNode | ReactNode[] }
         <ThemeProvider theme={safeTheme}>
           <SentryErrorBoundary showDialog fallback={ErrorBoundary}>
             <WalletProvider>
-              <GeoblockingProvider>
-                <TxModalProvider>{children}</TxModalProvider>
-              </GeoblockingProvider>
+              <WagmiProvider config={wagmiConfig}>
+                <QueryClientProvider client={queryClient}>
+                  <GeoblockingProvider>
+                    <TxModalProvider>{children}</TxModalProvider>
+                  </GeoblockingProvider>
+                </QueryClientProvider>
+              </WagmiProvider>
             </WalletProvider>
           </SentryErrorBoundary>
         </ThemeProvider>
