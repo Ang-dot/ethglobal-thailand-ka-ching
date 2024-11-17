@@ -46,6 +46,7 @@ import CounterfactualHooks from '@/features/counterfactual/CounterfactualHooks'
 import PkModulePopup from '@/services/private-key-module/PkModulePopup'
 import GeoblockingProvider from '@/components/common/GeoblockingProvider'
 import OutreachPopup from '@/features/targetedOutreach/components/OutreachPopup'
+import { GameProvider } from '@/utils/GameProvider'
 
 export const GATEWAY_URL = IS_PRODUCTION || cgwDebugStorage.get() ? GATEWAY_URL_PRODUCTION : GATEWAY_URL_STAGING
 
@@ -123,11 +124,11 @@ const WebCoreApp = ({
           <CssBaseline />
 
           <InitApp />
-
           <PageLayout pathname={router.pathname}>
-            <Component {...pageProps} key={safeKey} />
+            <GameProvider>
+              <Component {...pageProps} key={safeKey} />
+            </GameProvider>
           </PageLayout>
-
           <CookieAndTermBanner />
 
           <OutreachPopup />

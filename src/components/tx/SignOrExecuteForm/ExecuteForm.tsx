@@ -30,6 +30,8 @@ import { TxSecurityContext } from '../security/shared/TxSecurityContext'
 import useIsSafeOwner from '@/hooks/useIsSafeOwner'
 import NonOwnerError from '@/components/tx/SignOrExecuteForm/NonOwnerError'
 import WalletRejectionError from '@/components/tx/SignOrExecuteForm/WalletRejectionError'
+import { AppRoutes } from '@/config/routes'
+import Link from 'next/link'
 
 export const ExecuteForm = ({
   safeTx,
@@ -71,6 +73,7 @@ export const ExecuteForm = ({
   // The transaction can/will be relayed
   const canRelay = walletCanRelay && hasRemainingRelays(relays[0])
   const willRelay = canRelay && executionMethod === ExecutionMethod.RELAY
+  const shouldGame = executionMethod === ExecutionMethod.GAME
 
   // Estimate gas limit
   const { gasLimit, gasLimitError } = useGasLimit(safeTx)
@@ -186,7 +189,7 @@ export const ExecuteForm = ({
 
         <Divider className={commonCss.nestedDivider} sx={{ pt: 3 }} />
 
-        <CardActions>
+        <CardActions sx={{ gap: 1 }}>
           {/* Submit button */}
           <CheckWallet allowNonOwner={onlyExecute} checkNetwork={!submitDisabled}>
             {(isOk) => (
@@ -194,15 +197,27 @@ export const ExecuteForm = ({
                 data-testid="execute-form-btn"
                 variant="contained"
                 type="submit"
-                disabled={!isOk || submitDisabled}
+                disabled={!isOk || submitDisabled || shouldGame}
                 sx={{ minWidth: '112px', width: ['100%', '100%', '100%', 'auto'] }}
               >
                 {!isSubmittable ? <CircularProgress size={20} /> : 'Execute'}
               </Button>
             )}
           </CheckWallet>
+
+          {/* New button that shows only when shouldGame is true */}
+          {shouldGame && (
+            <Link href={AppRoutes.game.index} target="_blank">
+              <Button
+                variant="contained"
+                sx={{ minWidth: '112px', width: ['100%', '100%', '100%', 'auto'] }}
+              >
+                Play Game
+              </Button>
+            </Link>
+          )}
         </CardActions>
-      </form>
+      </form >
     </>
   )
 }

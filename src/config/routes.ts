@@ -58,4 +58,8 @@ export const AppRoutes = {
     index: '/welcome',
     accounts: '/welcome/accounts',
   },
+  game: {
+    index: '/game',
+    board: '/game/board'
+  }
 }
