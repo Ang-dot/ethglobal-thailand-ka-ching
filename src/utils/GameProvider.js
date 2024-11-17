@@ -3,10 +3,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Link from 'next/link';
+// import { useCurrentChain } from '@/hooks/useChains';
 // import { useDynamicContext } from "../lib/dynamic";
 
 // Contract ABI and address
-const CONTRACT_ADDRESS = "0x6Aa208c4770ecAE834eD521c4Bf26437D1f799cf";
+const CONTRACT_ADDRESS = "0x240755c562ca5c3d280d0f77d6565150de2c763d";
+
 
 const CONTRACT_ABI = [
     {
@@ -213,7 +215,9 @@ const CONTRACT_ABI = [
 
 const GameContext = createContext();
 
+
 export const GameProvider = ({ children }) => {
+    // const chain = useCurrentChain();
     // const { primaryWallet, network } = useDynamicContext();
     const [state, setState] = useState({
         provider: null,
@@ -252,6 +256,16 @@ export const GameProvider = ({ children }) => {
 
                 // Get signer
                 const signer = await provider.getSigner();
+
+                // var CONTRACT_ADDRESS = "0x240755c562ca5c3d280d0f77d6565150de2c763d";
+
+                console.log(chain.chainId);
+                // if(chain.chainId == 5003) {
+                //     CONTRACT_ADDRESS = "0x3d981849e32b8ec58dcab7706b667005880d5ac6"
+                // }
+                // else if(chain.chainId != 11155111) {
+                //     CONTRACT_ADDRESS = "0x3d981849e32b8ec58dcab7706b667005880d5ac6"
+                // }
 
                 // Initialize contract
                 const contract = new ethers.Contract(
