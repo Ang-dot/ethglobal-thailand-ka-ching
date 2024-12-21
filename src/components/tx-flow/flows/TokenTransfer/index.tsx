@@ -6,9 +6,13 @@ import { ZERO_ADDRESS } from '@safe-global/protocol-kit/dist/src/utils/constants
 import { TokenAmountFields } from '@/components/common/TokenAmountInput'
 import { CircularProgress, Grid } from "@mui/material";
 import Image from 'next/image'
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { SafeTxContext } from "@/components/tx-flow/SafeTxProvider";
 import { useFetchAddressFeatures } from "@/hooks/useFetchAddressFeatures";
+import { stringToHex } from "viem";
+import { useWriteInputBoxAddInput } from "@/hooks/cartesi-rollup/generated";
+import { useChainId, useConnect } from "wagmi";
+import useLatestNotice from "@/hooks/cartesi-rollup/useLatestNotice";
 
 export enum TokenTransferType {
   multiSig = 'multiSig',
@@ -40,17 +44,53 @@ const defaultParams: TokenTransferParams = {
   type: TokenTransferType.multiSig,
 }
 
-const FraudDetection = () => {
+const FraudDetection: FC = () => {
   const { safeTx } = useContext(SafeTxContext);
   const address = safeTx?.data?.to;
-
   const { features, loading, fetchData } = useFetchAddressFeatures();
+  const { connectors, connect } = useConnect();
+  const chainId = useChainId();
 
-  const handleDetectFraud = () => {
+  const dAppAddress = "0x9B237718010dA3d929808EcC02Fe29E583cD8429";
+  const { isPending, writeContractAsync } = useWriteInputBoxAddInput();
+
+  const [shouldFetchNotice, setShouldFetchNotice] = useState(false);
+  const { latestNoticePayload, loading: noticeLoading, error: noticeError } = useLatestNotice(shouldFetchNotice);
+
+  const handleDetectFraud = async () => {
     if (address) {
-      fetchData(address);
+      await fetchData(address);
+
+      // Trigger connect only if not connected to base sepolia (chainId: 84532)
+      if (chainId !== 84532) {
+        connect({ connector: connectors[0] });
+      }
+
+      await writeContractAsync({
+        args: [
+          dAppAddress,
+          stringToHex(JSON.stringify(features)),
+        ],
+      });
+
+      // Set a 3-second delay before fetching the notice
+      setTimeout(() => setShouldFetchNotice(true), 3000);
     }
   };
+
+  useEffect(() => {
+    if (noticeLoading) {
+      console.log("Loading...");
+    }
+    if (noticeError) {
+      console.error("Error fetching latest notice:", noticeError);
+    }
+    if (latestNoticePayload) {
+      console.log("Latest matching notice payload:", latestNoticePayload);
+    } else if (shouldFetchNotice && !noticeLoading) {
+      console.log("No matching notice found.");
+    }
+  }, [latestNoticePayload, noticeLoading, noticeError, shouldFetchNotice]);
 
   return (
     <>
@@ -58,7 +98,7 @@ const FraudDetection = () => {
         <div className="space-y-4 pr-20">
           <div className="font-londrina text-[42px] capitalize">AI Transaction Risk Rate</div>
           <div>Let your AI buddy sniff out any sneaky transactions! Hit the button and watch it work its magic!</div>
-          {loading ? (
+          {loading || isPending ? (
             <>
               <div>Analyzing transaction data for potential fraud...</div>
               <CircularProgress />
@@ -67,7 +107,11 @@ const FraudDetection = () => {
             features && <pre>{JSON.stringify(features, null, 2)}</pre>
           )}
         </div>
-        <button className="pixel-btn w-36" onClick={handleDetectFraud} disabled={!address}>
+        <button
+          className="pixel-btn w-36"
+          onClick={handleDetectFraud}
+          disabled={chainId !== 84532 || !address}
+        >
           Detect Fraud
         </button>
         <Image src="/images/common/brain3.png" alt="brain3" width={125} height={158} className="absolute bottom-0 right-5" />
@@ -75,7 +119,7 @@ const FraudDetection = () => {
       <Grid item xs={12} md={4} />
     </>
   );
-}
+};
 
 const TokenTransferFlow = ({ txNonce, ...params }: TokenTransferFlowProps) => {
   const { data, step, nextStep, prevStep } = useTxStepper<TokenTransferParams>({
