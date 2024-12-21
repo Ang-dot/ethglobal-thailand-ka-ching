@@ -1,8 +1,10 @@
+'use client'
+
 import React, { useState, useContext, useEffect } from 'react';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
 import Link from "next/link";
-import GameContext from '@/utils/GameProvider';
+import { useGame } from '@/components/common/GameProvider';
 import GameNavbar from '../GameNavbar';
 import GameHistory from '../GameHistory';
 import GameRules from '../GameRules';
@@ -18,7 +20,7 @@ const GameHome = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [gameDetails, setGameDetails] = useState({});
   const [gameID, setGameID] = useState('');
-  const wallet = useWallet()
+  const wallet = useWallet();
 
   const {
     state,
@@ -26,7 +28,7 @@ const GameHome = () => {
     setUsername,
     setGameId,
     fetchGameDetails
-  } = useContext(GameContext);
+  } = useGame();
 
   const reset = () => {
     const newId = nanoid();
@@ -51,7 +53,7 @@ const GameHome = () => {
 
   return (
     <>
-      <main className="relative min-h-screen w-full">
+      <div className="relative min-h-screen w-full">
         {/* Background with overlay */}
         <div className="absolute inset-0">
           <div
@@ -316,7 +318,7 @@ const GameHome = () => {
                                 "May the odds be ever in your favour."
                               );
                             }}
-                            className="pixelBtn transform transition-transform hover:scale-[1.02]"
+                            className="pixel-btn transform transition-transform hover:scale-[1.02]"
                           >
                             Join Game
                           </button>
@@ -358,7 +360,7 @@ const GameHome = () => {
             )}
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 };

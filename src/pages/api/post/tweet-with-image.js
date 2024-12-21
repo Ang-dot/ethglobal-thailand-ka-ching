@@ -33,9 +33,9 @@ export default async function handler(req, res) {
     return res.status(200).json(response);
   } catch (error) {
     console.error('Error posting tweet:', error);
-    return res.status(500).json({ 
-      message: 'Error posting tweet', 
-      error: error.message 
+    return res.status(500).json({
+      message: 'Error posting tweet',
+      error: error.message
     });
   }
 }

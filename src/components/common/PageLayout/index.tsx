@@ -43,6 +43,7 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
   const { setFullWidth } = useContext(TxModalContext)
 
   const hideHeaderRoutes = ['/game', '/game/board']
+  const isGameRoute = hideHeaderRoutes.includes(pathname)
 
   useEffect(() => {
     setFullWidth(!isSidebarOpen)
@@ -56,21 +57,20 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
 
   return (
     <>
-      {!hideHeaderRoutes.includes(pathname) && (
+      {!isGameRoute && (
         <header className={css.header}>
           <Header onMenuToggle={isSidebarRoute ? setSidebarOpen : undefined} onBatchToggle={setBatchOpen} />
         </header>
       )}
 
-
       {isSidebarRoute && <SideDrawer isOpen={isSidebarOpen} onToggle={setSidebarOpen} />}
 
       <div
         className={classnames(css.main, {
-          // [css.main]: !hideHeaderRoutes,
-          [css.mainNoSidebar]: !isSidebarOpen || !isSidebarRoute,
-          [css.mainAnimated]: isSidebarRoute && isAnimated,
+          [css.mainNoSidebar]: !isSidebarOpen || !isSidebarRoute || isGameRoute,
+          [css.mainAnimated]: isSidebarRoute && isAnimated && !isGameRoute,
         })}
+        style={isGameRoute ? { paddingTop: 0, paddingLeft: 0 } : undefined}
       >
         <div className={css.content}>
           <SafeLoadingError>{children}</SafeLoadingError>

@@ -1,9 +1,11 @@
+'use client'
+
 import React, { useRef, useState, useContext, useEffect } from 'react';
 import Link from "next/link";
 import { Copy, X, Share2 } from "lucide-react";
 import Image from 'next/image';
 import * as htmlToImage from 'html-to-image';
-import GameContext from '@/utils/GameProvider';
+import { useGame } from '@/components/common/GameProvider';
 import GameNavbar from '../GameNavbar';
 import GameRules from '../GameRules';
 import useWallet from '@/hooks/wallets/useWallet';
@@ -26,7 +28,7 @@ const GameBoard = () => {
         setChoice,
         setUsername,
         fetchGameDetails,
-    } = useContext(GameContext);
+    } = useGame();
     const [isOpen, setIsOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGameFinished, setGameFinish] = useState(false);
@@ -163,7 +165,7 @@ const GameBoard = () => {
 
     return (
         <>
-            <main className="min-h-screen w-full bg-[#0a0b1e] bg-gradient-to-b from-[#0a0b1e] to-[#1a0b2e] text-white px-4">
+            <div className="min-h-screen w-full bg-[#0a0b1e] bg-gradient-to-b from-[#0a0b1e] to-[#1a0b2e] text-white px-4">
                 <GameNavbar
                     fetchGameDetails={fetchGameDetails}
                     // fetchPlayerDetails={fetchPlayerDetails}
@@ -458,7 +460,7 @@ const GameBoard = () => {
                     </div>
                 </div>
 
-            </main>
+            </div>
         </>
     );
 };

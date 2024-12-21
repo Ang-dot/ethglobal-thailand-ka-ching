@@ -45,14 +45,14 @@ const GameHistory = ({ gameID, gameDetails, setIsModalOpen }) => {
             setStatus('Uploading image...');
 
             // Updated API endpoint path for Pages Router
-            const response = await fetch('/api//tweet-with-image', {
+            const response = await fetch('/api/post/tweet-with-image', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     image: dataUrl,
-                    tweet: `Game History #${gameID} 🎮\nStatus: ${getGameState(gameDetails[7])}\n\n${tweet}`,
+                    tweet: `Check out my game history from Ka-Ching! Scored big! Who's up for a challenge?\n#KaChingGame #VibeMode #GameSummary\nGame History #${gameID} 🎮\nStatus: ${getGameState(gameDetails[7])}\n\n${tweet}`,
                 }),
             });
 

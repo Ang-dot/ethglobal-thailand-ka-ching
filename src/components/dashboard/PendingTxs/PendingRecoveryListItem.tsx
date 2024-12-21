@@ -20,7 +20,7 @@ function PendingRecoveryListItem({ transaction }: { transaction: RecoveryQueueIt
   const url = useMemo(
     () => ({
       pathname: AppRoutes.transactions.queue,
-      query: router.query,
+      query: router.query,  
     }),
     [router.query],
   )

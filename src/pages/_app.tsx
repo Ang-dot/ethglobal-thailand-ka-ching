@@ -39,6 +39,7 @@ import useSafeMessageNotifications from '@/hooks/messages/useSafeMessageNotifica
 import useSafeMessagePendingStatuses from '@/hooks/messages/useSafeMessagePendingStatuses'
 import useChangedValue from '@/hooks/useChangedValue'
 import { TxModalProvider } from '@/components/tx-flow'
+import GameProvider from '@/components/common/GameProvider'
 import { useNotificationTracking } from '@/components/settings/PushNotifications/hooks/useNotificationTracking'
 import Recovery from '@/features/recovery/components/Recovery'
 import WalletProvider from '@/components/common/WalletProvider'
@@ -46,7 +47,6 @@ import CounterfactualHooks from '@/features/counterfactual/CounterfactualHooks'
 import PkModulePopup from '@/services/private-key-module/PkModulePopup'
 import GeoblockingProvider from '@/components/common/GeoblockingProvider'
 import OutreachPopup from '@/features/targetedOutreach/components/OutreachPopup'
-import { GameProvider } from '@/utils/GameProvider'
 
 export const GATEWAY_URL = IS_PRODUCTION || cgwDebugStorage.get() ? GATEWAY_URL_PRODUCTION : GATEWAY_URL_STAGING
 
@@ -90,7 +90,11 @@ export const AppProviders = ({ children }: { children: ReactNode | ReactNode[] }
           <SentryErrorBoundary showDialog fallback={ErrorBoundary}>
             <WalletProvider>
               <GeoblockingProvider>
-                <TxModalProvider>{children}</TxModalProvider>
+                <TxModalProvider>
+                  <GameProvider>
+                    {children}
+                  </GameProvider>
+                </TxModalProvider>
               </GeoblockingProvider>
             </WalletProvider>
           </SentryErrorBoundary>
@@ -125,9 +129,7 @@ const WebCoreApp = ({
 
           <InitApp />
           <PageLayout pathname={router.pathname}>
-            <GameProvider>
-              <Component {...pageProps} key={safeKey} />
-            </GameProvider>
+            <Component {...pageProps} key={safeKey} />
           </PageLayout>
           <CookieAndTermBanner />
 

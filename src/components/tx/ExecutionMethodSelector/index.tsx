@@ -46,7 +46,7 @@ const _ExecutionMethodSelector = ({
   return (
     <div className="bg-[#FFFDEA] rounded-lg border-4 border-solid border-black">
       <div className={css.method}>
-        <FormControl sx={{ display: 'flex' }}>
+        <FormControl sx={{ display: 'flex', width: '100%' }}>
           {!noLabel ? (
             <Typography variant="body2" className={css.label}>
               Who will pay gas fees:
@@ -54,10 +54,12 @@ const _ExecutionMethodSelector = ({
           ) : null}
 
           <RadioGroup row value={executionMethod} onChange={onChooseExecutionMethod}>
-            <div className='flex flex-col items-center'>
-              <div className='flex flex-row justify-between'>
+            <div className='w-full'>
+              <div className='flex flex-row justify-between items-center w-full'>
+               
+
+                <div className='flex flex-row gap-4'>
                 <FormControlLabel
-                  sx={{ flex: 1 }}
                   value={ExecutionMethod.RELAY}
                   label={
                     <Typography className={css.radioLabel} whiteSpace="nowrap">
@@ -76,49 +78,48 @@ const _ExecutionMethodSelector = ({
                     />
                   }
                 />
-
-                <FormControlLabel
-                  data-testid="connected-wallet-execution-method"
-                  sx={{ flex: 1 }}
-                  value={ExecutionMethod.WALLET}
-                  label={
-                    <Typography className={css.radioLabel}>
-                      <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Connected
-                      wallet
-                    </Typography>
-                  }
-                  control={
-                    <Radio
-                      sx={{
-                        color: '#EF4444',
-                        '&.Mui-checked': {
+                  <FormControlLabel
+                    data-testid="connected-wallet-execution-method"
+                    value={ExecutionMethod.WALLET}
+                    label={
+                      <Typography className={css.radioLabel}>
+                        <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Connected
+                        wallet
+                      </Typography>
+                    }
+                    control={
+                      <Radio
+                        sx={{
                           color: '#EF4444',
-                        },
-                      }}
-                    />
-                  }
-                />
-              </div>
-              <FormControlLabel
-                data-testid="connected-wallet-execution-method"
-                sx={{ flex: 1 }}
-                value={ExecutionMethod.GAME}
-                label={
-                  <Typography className={css.radioLabel}>
-                    <WalletIcon provider={wallet?.label || ''} width={20} height={20} icon={wallet?.icon} /> Play Game
-                  </Typography>
-                }
-                control={
-                  <Radio
-                    sx={{
-                      color: '#EF4444',
-                      '&.Mui-checked': {
-                        color: '#EF4444',
-                      },
-                    }}
+                          '&.Mui-checked': {
+                            color: '#EF4444',
+                          },
+                        }}
+                      />
+                    }
                   />
-                }
-              />
+
+                  <FormControlLabel
+                    data-testid="game-execution-method"
+                    value={ExecutionMethod.GAME}
+                    label={
+                      <Typography className={css.radioLabel}>
+                        <img src={'/images/Tuktuk.png'} alt="tuktuk" className={css.logo} width={20} height={20}/> Play Game
+                      </Typography>
+                    }
+                    control={
+                      <Radio
+                        sx={{
+                          color: '#EF4444',
+                          '&.Mui-checked': {
+                            color: '#EF4444',
+                          },
+                        }}
+                      />
+                    }
+                  />
+                </div>
+              </div>
             </div>
           </RadioGroup>
         </FormControl>

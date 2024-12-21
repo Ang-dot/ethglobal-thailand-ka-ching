@@ -10,7 +10,7 @@ import createEmotionCache from '@/utils/createEmotionCache'
 export default class WebCoreDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" suppressHydrationWarning={true}>
         <Head>
           <meta name="emotion-insertion-point" content="" />
           {(this.props as any).emotionStyleTags}

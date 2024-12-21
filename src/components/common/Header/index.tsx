@@ -62,6 +62,10 @@ const Header = ({ onMenuToggle, onBatchToggle }: HeaderProps): ReactElement => {
         Ka-Ching
       </Link>
 
+      <Link href="/game" className="text-md font-londrina animate-pulse text-pink-500 flex grow hover:text-pink-700 transition-colors" target='_blank'>
+        Dare to play? Loser pays the gas fee! 🎮
+      </Link>
+
       <div className={classnames('flex flex-row items-center', { 'md:mr-10': !safeAddress })}>
         <ConnectWallet />
 

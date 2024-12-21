@@ -1,14 +1,13 @@
+
+
 'use client'
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+import { createContext, type ReactElement, type ReactNode, useState, useEffect, useContext } from 'react';
+import { type BrowserProvider, type Contract, type JsonRpcSigner, ethers } from 'ethers';
 import Link from 'next/link';
-// import { useCurrentChain } from '@/hooks/useChains';
-// import { useDynamicContext } from "../lib/dynamic";
 
-// Contract ABI and address
+// Contract configuration
 const CONTRACT_ADDRESS = "0x240755c562ca5c3d280d0f77d6565150de2c763d";
-
 const CONTRACT_ABI = [
     {
         "inputs": [],
@@ -210,15 +209,39 @@ const CONTRACT_ABI = [
         "stateMutability": "nonpayable",
         "type": "function"
     }
-];
+] as const;
 
-const GameContext = createContext();
+// Types
+type GameState = {
+    provider: BrowserProvider | null
+    signer: JsonRpcSigner | null
+    contract: Contract | null
+    account: string | null
+    choice: number
+    username: string
+    gameId: string
+    gameDetails: any | null
+    playerDetails: any | null
+    winner: string | null
+    loading: boolean
+    error: string | null
+    isConnected?: boolean
+}
 
+type GameContextType = {
+    state: GameState
+    makeMove: () => Promise<void>
+    fetchGameDetails: (gameId: string) => Promise<any>
+    fetchPlayerDetails: (playerAddress: string) => Promise<any>
+    setChoice: (choice: number) => void
+    setUsername: (username: string) => void
+    setGameId: (gameId: string) => void
+}
 
-export const GameProvider = ({ children }) => {
-    // const chain = useCurrentChain();
-    // const { primaryWallet, network } = useDynamicContext();
-    const [state, setState] = useState({
+export const GameContext = createContext<GameContextType | null>(null);
+
+export const GameProvider = ({ children }: { children: ReactNode }): ReactElement => {
+    const [state, setState] = useState<GameState>({
         provider: null,
         signer: null,
         contract: null,
@@ -226,9 +249,9 @@ export const GameProvider = ({ children }) => {
         choice: 0,
         username: '',
         gameId: '',
-        gameDetails: null, // Added
-        playerDetails: null, // Added
-        winner: null, // Add this line
+        gameDetails: null,
+        playerDetails: null,
+        winner: null,
         loading: false,
         error: null
     });
@@ -236,44 +259,17 @@ export const GameProvider = ({ children }) => {
     useEffect(() => {
         const init = async () => {
             try {
-                // if (!primaryWallet) {
-                //     console.log("No wallet connected");
-                //     setState(prev => ({
-                //         ...prev,
-                //         error: "Please connect to a wallet before playing!",
-                //         isConnected: false
-                //     }));
-                //     return;
-                // }
-
-                // Get the provider directly from window.ethereum for MetaMask
                 if (!window.ethereum) {
                     throw new Error("MetaMask is not installed");
                 }
 
-                const provider = new ethers.BrowserProvider(window.ethereum);
-
-                // Get signer
+                const provider = new ethers.BrowserProvider(window.ethereum as any);
                 const signer = await provider.getSigner();
-
-                // var CONTRACT_ADDRESS = "0x240755c562ca5c3d280d0f77d6565150de2c763d";
-
-                console.log(chain.chainId);
-                // if(chain.chainId == 5003) {
-                //     CONTRACT_ADDRESS = "0x3d981849e32b8ec58dcab7706b667005880d5ac6"
-                // }
-                // else if(chain.chainId != 11155111) {
-                //     CONTRACT_ADDRESS = "0x3d981849e32b8ec58dcab7706b667005880d5ac6"
-                // }
-
-                // Initialize contract
                 const contract = new ethers.Contract(
                     CONTRACT_ADDRESS,
                     CONTRACT_ABI,
                     signer
                 );
-
-                // Get connected account
                 const account = await signer.getAddress();
 
                 setState(prev => ({
@@ -290,7 +286,7 @@ export const GameProvider = ({ children }) => {
                 console.error("Web3 initialization error:", error);
                 setState(prev => ({
                     ...prev,
-                    error: `Failed to connect to Web3: ${error.message}`,
+                    error: `Failed to connect to Web3: ${error instanceof Error ? error.message : 'Unknown error'}`,
                     isConnected: false
                 }));
             }
@@ -299,8 +295,7 @@ export const GameProvider = ({ children }) => {
         init();
     }, []);
 
-    // Make a move in the game
-    const makeMove = async () => {
+    const makeMove = async (): Promise<void> => {
         if (!state.contract || !state.choice || !state.username || !state.gameId) {
             setState(prev => ({ ...prev, error: "Please fill in all fields" }));
             return;
@@ -314,9 +309,6 @@ export const GameProvider = ({ children }) => {
                 state.username
             );
             await tx.wait();
-
-            // // Fetch game details after the move
-            // await fetchGameDetails(state.gameId); // Add this line
 
             setState(prev => ({
                 ...prev,
@@ -333,7 +325,7 @@ export const GameProvider = ({ children }) => {
         }
     };
 
-    const fetchGameDetails = async (gameId) => {
+    const fetchGameDetails = async (gameId: string) => {
         if (!state.contract) {
             setState(prev => ({ ...prev, error: "Contract not initialized" }));
             return;
@@ -344,16 +336,15 @@ export const GameProvider = ({ children }) => {
             setState(prev => ({
                 ...prev,
                 gameDetails: details,
-                winner: details.winner // Add this line to set the winner
+                winner: details.winner
             }));
             return details;
         } catch (error) {
             console.error("Error fetching game details:", error);
-            // setState(prev => ({ ...prev, error: getRequireError(error) }));
         }
     };
 
-    const fetchPlayerDetails = async (playerAddress) => {
+    const fetchPlayerDetails = async (playerAddress: string) => {
         if (!state.contract) {
             setState(prev => ({ ...prev, error: "Contract not initialized" }));
             return;
@@ -372,37 +363,33 @@ export const GameProvider = ({ children }) => {
         }
     };
 
-    const getRequireError = (err) => {
-        // First check for the specific MetaMask RPC error structure
+    const getRequireError = (err: any): string => {
         if (err?.info?.error?.message) {
-            var message = err.info.error.message;
+            let message = err.info.error.message;
             if (message.startsWith('execution reverted:')) {
                 message = message.replace('execution reverted:', '').trim();
             }
-            if (message == "ethers-user-denied: MetaMask Tx Signature: User denied transaction signature.") {
+            if (message === "ethers-user-denied: MetaMask Tx Signature: User denied transaction signature.") {
                 message = "User denied transaction signature!"
             }
-            if (message == 'execution reverted') {
+            if (message === 'execution reverted') {
                 message = "This game is ended!"
             }
             return message;
         }
 
-        // Handle user rejection
         if (err?.code === 'ACTION_REJECTED') {
             return 'Transaction was rejected';
         }
 
-        // Fallback
         return 'Action failed. Please try again.';
     };
 
-    // Update state functions
-    const setChoice = (choice) => setState(prev => ({ ...prev, choice }));
-    const setUsername = (username) => setState(prev => ({ ...prev, username }));
-    const setGameId = (gameId) => setState(prev => ({ ...prev, gameId }));
+    const setChoice = (choice: number) => setState(prev => ({ ...prev, choice }));
+    const setUsername = (username: string) => setState(prev => ({ ...prev, username }));
+    const setGameId = (gameId: string) => setState(prev => ({ ...prev, gameId }));
 
-    const value = {
+    const value: GameContextType = {
         state,
         makeMove,
         fetchGameDetails,
@@ -412,11 +399,16 @@ export const GameProvider = ({ children }) => {
         setGameId
     };
 
-    return (
-        <GameContext.Provider value={value}>
-            {children}
-        </GameContext.Provider>
-    );
+    return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
 
-export default GameContext;
+// In your GameProvider.tsx, add this at the bottom:
+export const useGame = () => {
+    const context = useContext(GameContext);
+    if (!context) {
+        throw new Error('useGame must be used within a GameProvider');
+    }
+    return context;
+};
+
+export default GameProvider;

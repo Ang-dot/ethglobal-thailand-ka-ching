@@ -121,7 +121,7 @@ const GameHome = () => {
 
               {/* Game Title */}
               <h1 className="font-pressStart2P text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl text-pink-500 mb-4 animate-pulse">
-                Play & Win $ETH
+                Game On! Who’s Covering the Gas Fee?
               </h1>
 
               {/* Subtitle */}

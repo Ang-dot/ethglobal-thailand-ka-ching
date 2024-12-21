@@ -32,6 +32,8 @@ import NonOwnerError from '@/components/tx/SignOrExecuteForm/NonOwnerError'
 import WalletRejectionError from '@/components/tx/SignOrExecuteForm/WalletRejectionError'
 import { AppRoutes } from '@/config/routes'
 import Link from 'next/link'
+import ExternalLink from '@/components/common/ExternalLink'
+import { useRouter } from 'next/router'
 
 export const ExecuteForm = ({
   safeTx,
@@ -189,8 +191,27 @@ export const ExecuteForm = ({
 
         <Divider className={commonCss.nestedDivider} sx={{ pt: 3 }} />
 
-        <CardActions sx={{ gap: 1 }}>
-          {/* Submit button */}
+        <CardActions sx={{
+          gap: 1,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'nowrap'
+        }}>
+          <Box sx={{ flex: '1 1 auto' }}>
+            {shouldGame && (
+              <Link href={AppRoutes.game.index} target="_blank" style={{ textDecoration: 'none' }}>
+                <Button
+                  variant="contained"
+                  sx={{ minWidth: '112px' }}
+                >
+                  Play Game
+                </Button>
+              </Link>
+            )}
+          </Box>
+
           <CheckWallet allowNonOwner={onlyExecute} checkNetwork={!submitDisabled}>
             {(isOk) => (
               <Button
@@ -198,24 +219,12 @@ export const ExecuteForm = ({
                 variant="contained"
                 type="submit"
                 disabled={!isOk || submitDisabled || shouldGame}
-                sx={{ minWidth: '112px', width: ['100%', '100%', '100%', 'auto'] }}
+                sx={{ minWidth: '130px' }}
               >
                 {!isSubmittable ? <CircularProgress size={20} /> : 'Execute'}
               </Button>
             )}
           </CheckWallet>
-
-          {/* New button that shows only when shouldGame is true */}
-          {shouldGame && (
-            <Link href={AppRoutes.game.index} target="_blank">
-              <Button
-                variant="contained"
-                sx={{ minWidth: '112px', width: ['100%', '100%', '100%', 'auto'] }}
-              >
-                Play Game
-              </Button>
-            </Link>
-          )}
         </CardActions>
       </form >
     </>
